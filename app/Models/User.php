@@ -1,6 +1,6 @@
 <?php
 # @Date:   2020-11-16T16:31:06+00:00
-# @Last modified time: 2021-01-22T16:07:05+00:00
+# @Last modified time: 2021-01-23T17:21:19+00:00
 
 
 
@@ -50,6 +50,11 @@ class User extends Authenticatable
 public function roles()
 {
   return $this->belongsToMany('App\Models\Role', 'user_role');
+}
+
+public function employer()
+{
+  return $this->hasOne('App\Models\Employer');
 }
 
 public function authorizeRoles($roles)

@@ -1,6 +1,6 @@
 <?php
 # @Date:   2021-01-22T15:59:43+00:00
-# @Last modified time: 2021-01-23T15:01:05+00:00
+# @Last modified time: 2021-01-23T17:25:58+00:00
 
 
 
@@ -10,6 +10,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use App\Models\Role;
 use App\Models\User;
+use App\Models\Employer;
 use Hash;
 class UserSeeder extends Seeder
 {
@@ -31,5 +32,20 @@ class UserSeeder extends Seeder
       $admin->password = Hash::make('secret');
       $admin->save();
       $admin->roles()->attach($role_admin);
+
+      $user = new User();
+      $user->name = 'Aaron Minsk';
+      $user->email = 'Aaron@selfMade.ie';
+      $user->phone = '0871234567';
+      $user->password = Hash::make('secret');
+      $user->save();
+      $user->roles()->attach($role_employer);
+
+      $employer = new Employer();
+      $employer->name = 'Someone';
+      $employer->postal_address = 'None';
+      $employer->category = 'Web Design';
+      $employer->user_id = $user->id;
+      $employer->save();
     }
 }
