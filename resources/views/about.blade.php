@@ -14,7 +14,7 @@
                         </div>
                     @endif
 
-                    {{ __('Welcome. To Read more bout us click here. ') }} <a href="{{route('about')}}"> About Us</a>
+                    About Self Made
                 </div>
             </div>
         </div>

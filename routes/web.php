@@ -1,11 +1,11 @@
 <?php
 # @Date:   2021-01-23T06:08:20+00:00
-# @Last modified time: 2021-01-23T15:16:45+00:00
-
+# @Last modified time: 2021-01-23T15:47:11+00:00
 
 
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,11 +18,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [PageController::class, 'welcome'])->name('welcome');
+Route::get('/about', [PageController::class, 'about'])->name('about');
+
 
 Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/admin/home', [App\Http\Controllers\Admin\HomeController::class, 'index'])->name('admin.home');
