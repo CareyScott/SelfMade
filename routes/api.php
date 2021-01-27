@@ -1,6 +1,6 @@
 <?php
 # @Date:   2021-01-22T14:08:16+00:00
-# @Last modified time: 2021-01-23T17:05:09+00:00
+# @Last modified time: 2021-01-27T13:37:03+00:00
 
 
 
@@ -32,12 +32,12 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 // PUT /api/books/$id -> edit an existing book
 // DELETE /api/books/$id -> delete an existing book
 
-
-
-
-
 Route::middleware('api')->group(function(){
-  Route::get('/api/jobs', [APIJobController::class, 'index']);
-  Route::get('/api/jobs/{id}', [APIJobController::class, 'show']);
-  Route::get('/api/jobs/{id}', [APIJobController::class, 'show']);
+  Route::get('/jobs', [APIJobController::class, 'index']);
+  Route::get('/jobs/{id}', [APIJobController::class, 'show']);
+  Route::post('/jobs', [APIJobController::class, 'store']);
+  Route::put('/jobs/{id}', [APIJobController::class, 'update']);
+  Route::delete('/jobs/{id}', [APIJobController::class, 'destroy']);
+
+  Route::get('/employers', [APIJobController::class, 'show']);
 });

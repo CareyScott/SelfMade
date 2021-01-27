@@ -1,12 +1,13 @@
 <?php
 # @Date:   2021-01-22T15:28:03+00:00
-# @Last modified time: 2021-01-23T17:46:11+00:00
+# @Last modified time: 2021-01-27T14:24:12+00:00
 
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Job;
+use Illuminate\Support\Facades\Validator;
 
 class JobController extends Controller
 {
@@ -30,15 +31,7 @@ class JobController extends Controller
          ], 200);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+
 
     /**
      * Store a newly created resource in storage.
@@ -48,7 +41,40 @@ class JobController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $rules = [
+          'title' => 'required',
+          'date_uploaded' => 'required',
+          'valid_until' => 'required',
+          'employer_id' => 'required|integer|exists:employers,id',
+          'salary' => 'required|numeric|min:0',
+          'description' => 'required',
+
+        ];
+        $validator = Validator::make($request->all(), $rules);
+
+        if ($validator->fails()) {
+          return response()->json($validator->errors(), 422);
+        }
+
+        $job = new Job();
+
+
+        $job->title = $request->input('title');
+        $job->date_uploaded = $request->input('date_uploaded');
+        $job->valid_until = $request->input('valid_until');
+        $job->employer_id = $request->input('employer_id');
+        $job->salary = $request->input('salary');
+        $job->description = $request->input('description');
+
+        $job->save();
+
+        return response()->json([
+          'status' => 'success',
+          'data' => $job
+        ], 200);
+
+
+
     }
 
     /**
@@ -59,13 +85,14 @@ class JobController extends Controller
      */
     public function show($id)
     {
-        $job = Job::find($id)->load('employer');
+        $job = Job::find($id);
 
         if ($job === null){
           $statusMsg = "Job Not Found";
           $statusCode = 404;
         }
         else{
+          $job->load('employer');
           $statusMsg = "Success";
           $statusCode = 200;
         }
@@ -75,16 +102,7 @@ class JobController extends Controller
         ], $statusCode);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
+
 
     /**
      * Update the specified resource in storage.
@@ -95,7 +113,40 @@ class JobController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $job = Job::find($id);
+
+        if($job === null) {
+          return response()->json([
+            'status' => 'Job Not Found',
+            'data' => null
+          ], 404) ;
+
+        }
+
+        $rules = [
+          'title' => 'required',
+          'date_uploaded' => 'required',
+          'valid_until' => 'required',
+          'employer_id' => 'required|integer|exists:employers,id',
+          'salary' => 'required|numeric|min:0',
+          'description' => 'required',
+
+        ];
+        $validator = Validator::make($request->all(), $rules);
+
+        $job->title = $request->input('title');
+        $job->date_uploaded = $request->input('date_uploaded');
+        $job->valid_until = $request->input('valid_until');
+        $job->employer_id = $request->input('employer_id');
+        $job->salary = $request->input('salary');
+        $job->description = $request->input('description');
+
+        $job->save();
+
+        return response()->json([
+          'status' => 'success',
+          'data' => $job
+        ], 200);
     }
 
     /**
@@ -106,6 +157,20 @@ class JobController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $job = Job::Find($id);
+
+        if ($job === null){
+          $statusMsg = "Job Not Found";
+          $statusCode = 404;
+        }
+        else{
+          $job->delete();
+          $statusMsg = "Success Job Deleted";
+          $statusCode = 200;
+        }
+        return response()->json([
+          'status' => $statusMsg,
+          'data' => null
+        ], $statusCode);
     }
 }
