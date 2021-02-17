@@ -1,6 +1,6 @@
 <?php
-# @Date:   2021-01-23T17:06:44+00:00
-# @Last modified time: 2021-02-17T11:33:12+00:00
+# @Date:   2021-02-17T11:31:48+00:00
+# @Last modified time: 2021-02-17T11:33:39+00:00
 
 
 
@@ -9,7 +9,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateEmployersTable extends Migration
+class CreateJobSeekersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -18,11 +18,11 @@ class CreateEmployersTable extends Migration
      */
     public function up()
     {
-        Schema::create('employers', function (Blueprint $table) {
+        Schema::create('job_seekers', function (Blueprint $table) {
           $table->id();
           // $table->string('name');
-          $table->string('company_postal_address');
-          $table->string('category');
+          $table->string('personal_postal_address');
+          $table->string('skills');
           $table->unsignedBigInteger('user_id');
           $table->timestamps();
 
@@ -37,6 +37,6 @@ class CreateEmployersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('employers');
+        Schema::dropIfExists('job_seekers');
     }
 }

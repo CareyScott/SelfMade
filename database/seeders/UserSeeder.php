@@ -1,6 +1,6 @@
 <?php
 # @Date:   2021-01-22T15:59:43+00:00
-# @Last modified time: 2021-01-23T17:25:58+00:00
+# @Last modified time: 2021-02-17T11:51:34+00:00
 
 
 
@@ -42,8 +42,8 @@ class UserSeeder extends Seeder
       $user->roles()->attach($role_employer);
 
       $employer = new Employer();
-      $employer->name = 'Someone';
-      $employer->postal_address = 'None';
+      // $employer->name = 'Someone';
+      $employer->company_postal_address = 'None';
       $employer->category = 'Web Design';
       $employer->user_id = $user->id;
       $employer->save();
