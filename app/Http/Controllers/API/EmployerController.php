@@ -1,6 +1,6 @@
 <?php
 # @Date:   2021-01-22T15:28:03+00:00
-# @Last modified time: 2021-02-01T13:39:25+00:00
+# @Last modified time: 2021-02-24T12:52:26+00:00
 
 namespace App\Http\Controllers\API;
 
@@ -92,7 +92,8 @@ class EmployerController extends Controller
           $statusCode = 404;
         }
         else{
-          $employer->load('employer');
+          $employer->load('user');
+          $employer->load('job');
           $statusMsg = "Success";
           $statusCode = 200;
         }

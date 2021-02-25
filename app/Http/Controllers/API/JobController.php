@@ -1,6 +1,6 @@
 <?php
 # @Date:   2021-01-22T15:28:03+00:00
-# @Last modified time: 2021-01-27T14:24:12+00:00
+# @Last modified time: 2021-02-22T11:53:12+00:00
 
 namespace App\Http\Controllers\API;
 
@@ -48,6 +48,7 @@ class JobController extends Controller
           'employer_id' => 'required|integer|exists:employers,id',
           'salary' => 'required|numeric|min:0',
           'description' => 'required',
+          'job_category_id' => 'required|integer|exists:job_categories,id',
 
         ];
         $validator = Validator::make($request->all(), $rules);
@@ -65,6 +66,7 @@ class JobController extends Controller
         $job->employer_id = $request->input('employer_id');
         $job->salary = $request->input('salary');
         $job->description = $request->input('description');
+        $job->job_category_id = $request->input('job_category_id');
 
         $job->save();
 
@@ -93,6 +95,7 @@ class JobController extends Controller
         }
         else{
           $job->load('employer');
+          $job->load('job_category');
           $statusMsg = "Success";
           $statusCode = 200;
         }
@@ -130,6 +133,7 @@ class JobController extends Controller
           'employer_id' => 'required|integer|exists:employers,id',
           'salary' => 'required|numeric|min:0',
           'description' => 'required',
+          'job_category_id' => 'required|integer|exists:job_categories,id',
 
         ];
         $validator = Validator::make($request->all(), $rules);
@@ -140,6 +144,7 @@ class JobController extends Controller
         $job->employer_id = $request->input('employer_id');
         $job->salary = $request->input('salary');
         $job->description = $request->input('description');
+        $job->job_category_id = $request->input('job_category_id');
 
         $job->save();
 

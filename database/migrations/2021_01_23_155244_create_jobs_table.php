@@ -1,6 +1,6 @@
 <?php
 # @Date:   2021-01-23T15:52:43+00:00
-# @Last modified time: 2021-01-23T15:58:10+00:00
+# @Last modified time: 2021-02-22T16:27:42+00:00
 
 
 
@@ -26,7 +26,10 @@ class CreateJobsTable extends Migration
           $table->date('valid_until');
           $table->decimal('salary', 6, 2);
           $table->string('description');
+          $table->string('job_category');
           $table->timestamps();
+
+
         });
     }
 

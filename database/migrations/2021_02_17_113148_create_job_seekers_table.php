@@ -1,6 +1,6 @@
 <?php
 # @Date:   2021-02-17T11:31:48+00:00
-# @Last modified time: 2021-02-17T11:33:39+00:00
+# @Last modified time: 2021-02-22T11:19:05+00:00
 
 
 
@@ -22,7 +22,7 @@ class CreateJobSeekersTable extends Migration
           $table->id();
           // $table->string('name');
           $table->string('personal_postal_address');
-          $table->string('skills');
+          $table->string('skills'); //enum?
           $table->unsignedBigInteger('user_id');
           $table->timestamps();
 

@@ -1,9 +1,18 @@
 <?php
+# @Date:   2021-01-23T15:54:28+00:00
+# @Last modified time: 2021-02-24T16:21:26+00:00
+
+
+
 
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Job;
+use App\Models\Employer;
+use App\Models\JobCategory;
+
 
 class JobController extends Controller
 {
@@ -14,7 +23,19 @@ class JobController extends Controller
      */
     public function index()
     {
-        //
+      {
+        $jobs = Job::all();
+        $employers = Employer::all();
+        $jobCategories = JobCategory::all();
+
+        return view('admin.jobs.index', [
+        'jobs' => $jobs,
+        'employers' => $employers,
+        'jobCategories' => $jobCategories
+
+
+      ] );
+      }
     }
 
     /**
@@ -46,7 +67,11 @@ class JobController extends Controller
      */
     public function show($id)
     {
-        //
+      $job = Job::findOrFail($id);
+
+      return view('admin.jobs.show', [
+        'job' => $job,
+      ]);
     }
 
     /**

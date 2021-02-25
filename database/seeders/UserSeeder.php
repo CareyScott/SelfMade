@@ -1,6 +1,6 @@
 <?php
 # @Date:   2021-01-22T15:59:43+00:00
-# @Last modified time: 2021-02-17T11:51:34+00:00
+# @Last modified time: 2021-02-22T16:46:20+00:00
 
 
 
@@ -11,6 +11,7 @@ use Illuminate\Database\Seeder;
 use App\Models\Role;
 use App\Models\User;
 use App\Models\Employer;
+use App\Models\JobSeeker;
 use Hash;
 class UserSeeder extends Seeder
 {
@@ -24,6 +25,7 @@ class UserSeeder extends Seeder
       $role_admin = Role::where('name', 'admin')->first();
       $role_user = Role::where('name', 'user')->first();
       $role_employer = Role::where('name', 'employer')->first();
+      $role_job_seeker = Role::where('name', 'job_seeker')->first();
 
       $admin = new User();
       $admin->name = 'Admin';
@@ -33,19 +35,20 @@ class UserSeeder extends Seeder
       $admin->save();
       $admin->roles()->attach($role_admin);
 
+
       $user = new User();
-      $user->name = 'Aaron Minsk';
-      $user->email = 'Aaron@selfMade.ie';
-      $user->phone = '0871234567';
+      $user->name = 'Matthew Simmons';
+      $user->email = 'matthewSimmons@selfMade.ie';
+      $user->phone = '3453134563';
       $user->password = Hash::make('secret');
       $user->save();
-      $user->roles()->attach($role_employer);
+      $user->roles()->attach($role_job_seeker);
 
-      $employer = new Employer();
+      $job_seeker = new JobSeeker();
       // $employer->name = 'Someone';
-      $employer->company_postal_address = 'None';
-      $employer->category = 'Web Design';
-      $employer->user_id = $user->id;
-      $employer->save();
+      $job_seeker->personal_postal_address = 'Wexford, Ireland';
+      $job_seeker->skills = 'Food Enterprise';
+      $job_seeker->user_id = $user->id;
+      $job_seeker->save();
     }
 }

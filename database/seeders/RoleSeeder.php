@@ -1,6 +1,6 @@
 <?php
 # @Date:   2020-11-17T10:13:38+00:00
-# @Last modified time: 2021-01-23T15:00:50+00:00
+# @Last modified time: 2021-02-17T13:26:35+00:00
 
 
 
@@ -26,13 +26,18 @@ class RoleSeeder extends Seeder
 
         $role_user = new Role();
         $role_user->name = 'user';
-        $role_user->description = 'An ordinary user';
+        $role_user->description = 'The base layer of user';
         $role_user->save();
 
         $role_employer = new Role();
         $role_employer->name = 'employer';
         $role_employer->description = 'An employer';
         $role_employer->save();
+
+        $role_job_seeker = new Role();
+        $role_job_seeker->name = 'job_seeker';
+        $role_job_seeker->description = 'A Job Seeker';
+        $role_job_seeker->save();
 
     }
 }

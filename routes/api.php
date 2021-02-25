@@ -1,6 +1,6 @@
 <?php
 # @Date:   2021-01-22T14:08:16+00:00
-# @Last modified time: 2021-02-01T15:29:15+00:00
+# @Last modified time: 2021-02-24T12:28:09+00:00
 
 
 
@@ -35,4 +35,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
   Route::resource('employers', APIEmployerController::class)->except([
     'create', 'edit'
   ]);
+
 });
