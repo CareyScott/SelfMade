@@ -1,6 +1,6 @@
 <?php
 # @Date:   2021-01-23T17:06:44+00:00
-# @Last modified time: 2021-02-22T16:49:27+00:00
+# @Last modified time: 2021-03-04T15:17:40+00:00
 
 
 
@@ -26,9 +26,9 @@ class CreateEmployersTable extends Migration
           $table->unsignedBigInteger('user_id');
           // $table->unsignedBigInteger('job_id');
           $table->timestamps();
-
-          $table->foreign('user_id')->references('id')->on('users');
-          // $table->foreign('job_id')->references('id')->on('jobs');
+          //
+          // $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
+          // $table->foreign('job_id')->references('id')->on('job_ids')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 

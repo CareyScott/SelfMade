@@ -17,19 +17,25 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
+
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" /> --}}
+
+    @notifyCss
+    {{-- clashing with style sheet --}}
 </head>
 
 <body>
     <div id="app">
         <header class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-dark border-bottom shadow-sm">
-            <a class="navbar-brand col-1" href="{{ url('home') }}">
+
+            <a class="navbar-brand col" href="{{ url('home') }}">
                 <img src="{{url('/images/logo1.png')}}" alt="Image" width="112.333333333" height="81" />
             </a>
 
 
-            <nav class="navbar navbar-expand-md navbar-light shadow-sm bg-light col-10">
+            <nav class="navbar navbar-expand-md navbar-light shadow-sm bg-light col">
 
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -45,21 +51,24 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto ">
                         <a class="p-2 text-dark " href="{{route('home')}}">
-                            <li>Home</li>
+                            <li class="col">Home</li>
                         </a>
                         <a class="p-2 text-dark " href="{{route('about')}}">
-                            <li>About</li>
+                            <li class="col">About</li>
                         </a>
                         <a class="p-2 text-dark " href="{{route('welcome')}}">
-                            <li>Welcome</li>
+                            <li class="col">Welcome</li>
                         </a>
                         <a class="p-2 text-dark" href="{{route('admin.jobs.index')}}">
-                            <li>Jobs</li>
+                            <li class="col">Jobs</li>
+                        </a>
+                        <a class="p-2 text-dark" href="{{route('admin.employers.index')}}">
+                            <li class="col">Employers</li>
                         </a>
                         <!-- Authentication Links -->
                         @guest
                         @if (Route::has('login'))
-                        <li class="nav-item">
+                        <li class="nav-item col">
                             <a class="nav-link p-2 text-dark" href="{{ route('login') }}">{{ __('Login') }}</a>
                         </li>
                         @endif
@@ -88,14 +97,18 @@
                         </li>
                         @endguest
                     </ul>
-
-    </nav>
-    </header>
-
-    <main class="py-4">
-        @yield('content')
-    </main>
+                </div>
+            </nav>
+        </header>
+        <main class="py-4">
+            @yield('content')
+        </main>
     </div>
+
+
+    @include('notify::messages')
+    <x:notify-messages />
+    @notifyJs
 </body>
 
 </html>

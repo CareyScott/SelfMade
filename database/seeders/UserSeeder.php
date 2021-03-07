@@ -1,6 +1,6 @@
 <?php
 # @Date:   2021-01-22T15:59:43+00:00
-# @Last modified time: 2021-02-22T16:46:20+00:00
+# @Last modified time: 2021-03-07T14:13:17+00:00
 
 
 
@@ -9,6 +9,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\Role;
+use App\Models\Skill;
 use App\Models\User;
 use App\Models\Employer;
 use App\Models\JobSeeker;
@@ -44,11 +45,18 @@ class UserSeeder extends Seeder
       $user->save();
       $user->roles()->attach($role_job_seeker);
 
-      $job_seeker = new JobSeeker();
-      // $employer->name = 'Someone';
-      $job_seeker->personal_postal_address = 'Wexford, Ireland';
-      $job_seeker->skills = 'Food Enterprise';
-      $job_seeker->user_id = $user->id;
-      $job_seeker->save();
+      $jobSeeker = new JobSeeker();
+      $jobSeeker->personal_postal_address = 'Dublin, Ireland';
+      $jobSeeker->personal_bio = 'This is my bio';
+      $jobSeeker->skills = 'some skill';
+      $jobSeeker->skill_id_1 = '1';
+      $jobSeeker->skill_id_2 = '1';
+      $jobSeeker->skill_id_3 = '1';
+      $jobSeeker->user_id = $user->id;
+      $jobSeeker->save();
+
+
+
+
     }
 }

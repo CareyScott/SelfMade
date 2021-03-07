@@ -1,6 +1,6 @@
 <?php
 # @Date:   2020-11-30T10:42:41+00:00
-# @Last modified time: 2021-01-23T15:22:21+00:00
+# @Last modified time: 2021-03-04T17:17:47+00:00
 
 
 
@@ -36,12 +36,13 @@ class HomeController extends Controller
         if($user->hasRole('admin')){
           $home = 'admin.home';
         }
-    else if ($user->hasRole('employer')) {
-        $home = 'employer.home';
-    }
-    else if ($user->hasRole('user')) {
-      $home = 'user.home';
-  }
+        else if ($user->hasRole('employer')) {
+          $home = 'employer.home';
+        }
+        else if ($user->hasRole('user')) {
+          $home = 'user.home';
+        }
+
         return redirect()->route($home);
     }
 }

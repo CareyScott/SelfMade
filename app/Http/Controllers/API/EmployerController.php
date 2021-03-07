@@ -1,12 +1,17 @@
 <?php
 # @Date:   2021-01-22T15:28:03+00:00
-# @Last modified time: 2021-02-24T12:52:26+00:00
+# @Last modified time: 2021-03-07T16:29:39+00:00
 
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Job;
+use App\Models\User;
 use App\Models\Employer;
+use App\Models\Role;
+use App\Models\JobCategory;
+use Hash;
 use Illuminate\Support\Facades\Validator;
 
 class EmployerController extends Controller
@@ -42,12 +47,11 @@ class EmployerController extends Controller
     public function store(Request $request)
     {
         $rules = [
-          'title' => 'required',
-          'date_uploaded' => 'required',
-          'valid_until' => 'required',
-          'employer_id' => 'required|integer|exists:employers,id',
-          'salary' => 'required|numeric|min:0',
-          'description' => 'required',
+          'name' => 'required|max:191',
+          'phone' => 'required|max:191',
+          'email' => 'required|max:191',
+          'company_postal_address' => 'required',
+          'category' => 'required',
 
         ];
         $validator = Validator::make($request->all(), $rules);
@@ -56,16 +60,23 @@ class EmployerController extends Controller
           return response()->json($validator->errors(), 422);
         }
 
+        $role_admin = Role::where('name', 'admin')->first();
+        $role_user = Role::where('name', 'user')->first();
+        $role_employer = Role::where('name', 'employer')->first();
+
+        // $visit = Visit::findOrFail($id);
+        $user = new User();
+        $user->name = $request->input('name');
+        $user->phone = $request->input('phone');
+        $user->email = $request->input('email');
+        $user->password = Hash::make('secret');
+        $user->save();
+        $user->roles()->attach($role_employer);
+
         $employer = new Employer();
-
-
-        $employer->title = $request->input('title');
-        $employer->date_uploaded = $request->input('date_uploaded');
-        $employer->valid_until = $request->input('valid_until');
-        $employer->employer_id = $request->input('employer_id');
-        $employer->salary = $request->input('salary');
-        $employer->description = $request->input('description');
-
+        $employer->company_postal_address = $request->input('company_postal_address');
+        $employer->category = $request->input('category');
+        $employer->user_id = $user->id;
         $employer->save();
 
         return response()->json([
@@ -125,22 +136,25 @@ class EmployerController extends Controller
         }
 
         $rules = [
-          'title' => 'required',
-          'date_uploaded' => 'required',
-          'valid_until' => 'required',
-          'employer_id' => 'required|integer|exists:employers,id',
-          'salary' => 'required|numeric|min:0',
-          'description' => 'required',
+          'name' => 'required|max:191',
+          'phone' => 'required|max:191|exists',
+          'email' => 'required|max:191|exists',
+          'company_postal_address' => 'required',
+          'category' => 'required',
 
         ];
         $validator = Validator::make($request->all(), $rules);
 
-        $employer->title = $request->input('title');
-        $employer->date_uploaded = $request->input('date_uploaded');
-        $employer->valid_until = $request->input('valid_until');
-        $employer->employer_id = $request->input('employer_id');
-        $employer->salary = $request->input('salary');
-        $employer->description = $request->input('description');
+        $employer->user->name = $request->input('name');
+        $employer->user->phone = $request->input('phone');
+        $employer->user->email = $request->input('email');
+        $employer->user->password = Hash::make('secret');
+        $employer->user->save();
+
+
+        $employer->company_postal_address = $request->input('company_postal_address');
+        $employer->category = $request->input('category');
+
 
         $employer->save();
 
@@ -165,6 +179,7 @@ class EmployerController extends Controller
           $statusCode = 404;
         }
         else{
+          $employer->user->delete();
           $employer->delete();
           $statusMsg = "Success Employer Deleted";
           $statusCode = 200;

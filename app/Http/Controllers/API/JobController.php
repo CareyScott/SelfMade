@@ -1,12 +1,13 @@
 <?php
 # @Date:   2021-01-22T15:28:03+00:00
-# @Last modified time: 2021-02-22T11:53:12+00:00
+# @Last modified time: 2021-03-07T16:22:06+00:00
 
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Job;
+use App\Models\JobId;
 use Illuminate\Support\Facades\Validator;
 
 class JobController extends Controller
@@ -69,6 +70,11 @@ class JobController extends Controller
         $job->job_category_id = $request->input('job_category_id');
 
         $job->save();
+
+        $job_ids = new JobId();
+        $job_ids->job_id = $job->id;
+        $job_ids->employer_id = $job->employer_id;
+        $job_ids->save();
 
         return response()->json([
           'status' => 'success',

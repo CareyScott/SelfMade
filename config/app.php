@@ -1,4 +1,9 @@
 <?php
+# @Date:   2021-01-23T14:33:58+00:00
+# @Last modified time: 2021-03-05T12:49:03+00:00
+
+
+
 
 return [
 
@@ -161,6 +166,7 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
+        Mckenziearts\Notify\LaravelNotifyServiceProvider::class,
 
         /*
          * Package Service Providers...

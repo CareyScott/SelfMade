@@ -1,6 +1,6 @@
 <?php
 # @Date:   2020-11-30T10:54:30+00:00
-# @Last modified time: 2021-02-01T13:34:24+00:00
+# @Last modified time: 2021-03-04T17:09:38+00:00
 
 
 
@@ -35,6 +35,6 @@ class HomeController extends Controller
 
         //$user->authorizeRoles('user');
 
-        return view('user.home');
+        return view('employer.home');
     }
 }

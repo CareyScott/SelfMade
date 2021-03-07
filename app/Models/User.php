@@ -1,6 +1,6 @@
 <?php
 # @Date:   2020-11-16T16:31:06+00:00
-# @Last modified time: 2021-02-01T14:14:31+00:00
+# @Last modified time: 2021-03-07T12:44:02+00:00
 
 
 
@@ -57,6 +57,11 @@ public function roles()
 public function employer()
 {
   return $this->hasOne('App\Models\Employer');
+}
+
+public function jobSeeker()
+{
+  return $this->hasOne('App\Models\JobSeeker');
 }
 
 public function authorizeRoles($roles)

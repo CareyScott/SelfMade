@@ -1,6 +1,6 @@
 <?php
 # @Date:   2021-02-01T13:54:04+00:00
-# @Last modified time: 2021-02-01T15:37:44+00:00
+# @Last modified time: 2021-03-04T19:18:38+00:00
 
 namespace App\Http\Controllers\API;
 
@@ -33,7 +33,7 @@ class PassportController extends Controller
     ]);
 
     $token = $user->createToken('self-made')->accessToken;
-    return response()->json(['token' => $token], 200);
+    return response()->json(['token' => $token], 200);      //remove me for no token api
   }
 
 
@@ -55,11 +55,11 @@ class PassportController extends Controller
 
   if (auth()->attempt($credentials)) {
     $user = auth()->user();
-    $token = $user->createToken('self-made')->accessToken;
+    $token = $user->createToken('self-made')->accessToken;    //remove me for no token api
     return response()->json([
       'name'=>$user->name,
       'email'=>$user->email,
-      'token'=>$token
+      'token'=>$token           //remove me for no token api
     ], 200);
   }
   else {

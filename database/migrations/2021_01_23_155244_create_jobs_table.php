@@ -1,6 +1,6 @@
 <?php
 # @Date:   2021-01-23T15:52:43+00:00
-# @Last modified time: 2021-02-22T16:27:42+00:00
+# @Last modified time: 2021-03-04T16:17:57+00:00
 
 
 
@@ -28,7 +28,6 @@ class CreateJobsTable extends Migration
           $table->string('description');
           $table->string('job_category');
           $table->timestamps();
-
 
         });
     }

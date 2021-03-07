@@ -1,6 +1,6 @@
 <?php
 # @Date:   2020-12-08T10:32:36+00:00
-# @Last modified time: 2021-02-22T16:46:33+00:00
+# @Last modified time: 2021-03-07T13:29:05+00:00
 
 
 
@@ -20,10 +20,12 @@ class DatabaseSeeder extends Seeder
     {
 
       $this->call(RoleSeeder::class);
+      $this->call(SkillSeeder::class);
       $this->call(UserSeeder::class);
       $this->call(JobCategorySeeder::class);
-      $this->call(EmployerSeeder::class);
-      $this->call(JobSeeder::class);
+
+      // $this->call(EmployerSeeder::class);
+      // $this->call(JobSeeder::class);
 
     }
 }
