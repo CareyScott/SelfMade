@@ -75,6 +75,35 @@
                             </div>
                         </div>
 
+                        <div class="form-group">
+                            <label for="title"><strong> Postal Address </strong></label>
+                            <input type="text" class="form-control" id='personal_postal_address' name='personal_postal_address' value='{{old('personal_postal_address')}}'></input>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="title"><strong> Bio </label>
+                            <textarea type="text" class="form-control" id='personal_bio' name='personal_bio' value='{{old('personal_bio')}}'></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="title"><strong> Education </strong></label>
+                            <input  type="text" class="form-control" id='education' name='education' value='{{old('education')}}'></input >
+                        </div>
+
+                        <div class="form-group">
+                          <div>
+                            <label for="title"> <strong>Pick three appropriate skills</strong> </label>
+                          </div>
+                            <select name="skill">
+
+
+                                <option value="{{1}}">pick me</option>
+
+
+                            </select>
+
+                        </div>
+
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">

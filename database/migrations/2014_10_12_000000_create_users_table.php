@@ -1,6 +1,6 @@
 <?php
 # @Date:   2021-01-22T14:08:16+00:00
-# @Last modified time: 2021-01-22T15:43:29+00:00
+# @Last modified time: 2021-03-08T17:30:18+00:00
 
 
 
@@ -25,6 +25,7 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->unsignedBigInteger('user_role')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

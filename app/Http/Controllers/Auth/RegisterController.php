@@ -1,6 +1,6 @@
 <?php
 # @Date:   2021-01-23T06:08:20+00:00
-# @Last modified time: 2021-03-04T19:20:58+00:00
+# @Last modified time: 2021-03-09T19:38:59+00:00
 
 
 
@@ -10,7 +10,9 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
+use App\Models\Skill;
 use App\Models\Role;
+use App\Models\JobSeeker;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -55,11 +57,15 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
+
+
+
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'phone' => ['required', 'string', 'max:10', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            // 'skills' => ['required', 'string', 'confirmed'],
         ]);
     }
 
@@ -68,18 +74,80 @@ class RegisterController extends Controller
      *
      * @param  array  $data
      * @return \App\Models\User
+     * @return \App\Models\Skill
      */
     protected function create(array $data)
+
+
     {
-        return User::create([
+      $user =  User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'phone' => $data['phone'],
             'password' => Hash::make($data['password']),
+            // 'skills' => $skills,
+
+            // 'password' => Hash::make($data['password']),
         ]);
 
-      $user->roles()->attach(Role::where('name','job_seeker')->first());
+        $user->roles()->attach(Role::where('name','jobSeeker')->first());
+
+
+        $jobSeeker =  JobSeeker::create([
+              'personal_postal_address' => $data['personal_postal_address'],
+              'personal_bio' => $data['personal_bio'],
+              'education' => $data['education'],
+              'skill' => $data['skill'],
+              'user_id' => $data[$user->id],
+              'skills' => $skills,
+
+              // 'password' => Hash::make($data['password']),
+          ]);
+
+          $skill_jobSeeker = Skill::where('name', $jobSeeker->skill)->first();
+
+              $jobSkill =  JobSkill::create([
+              $jobSkill->skill_id => $data[$jobSeeker->skill],
+              $jobSkill->jobSeeker_id => $data[$jobSeeker->id],
+
+
+
+              // 'skills' => $skills,
+
+              // 'password' => Hash::make($data['password']),
+          ]);
+
+          $jobSkill->skills()->attach($skill_jobSeeker);
+
+
+
+
+
+
+      // foreach ($employer->jobs => $job) {
+      //   $job->name
+      // }
+
+      // $jobSeeker = new JobSeeker();
+      // $jobSeeker->personal_postal_address = $request->input('personal_postal_address');
+      // $jobSeeker->personal_bio = $request->input('personal_bio');
+      // $jobSeeker->education = $request->input('education');
+      // $jobSeeker->skill = $request->input('skill');
+      // $jobSeeker->user_id = $user->id;
+      // $jobSeeker->save();
+
+
+      // $skill_jobSeeker = Skill::where('name', $jobSeeker->skill)->first();
+      //
+      // $jobSkill = new JobSkill();
+      // $jobSkill->skill_id = $jobSeeker->skill;
+      // $jobSkill->jobSeeker_id =  $jobSeeker->id;
+      // $jobSkill->save();
+      // $jobSkill->skills()->attach($skill_jobSeeker);
 
         return $user;
+  //
+  //       $skills = Skill::all();
+  // 'skills' => $skills,
     }
 }

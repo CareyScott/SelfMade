@@ -1,11 +1,12 @@
 <?php
 # @Date:   2021-01-23T06:08:20+00:00
-# @Last modified time: 2021-03-07T13:16:32+00:00
+# @Last modified time: 2021-03-08T18:52:21+00:00
 
 
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\ProfileController;
 
 use App\Http\Controllers\Admin\JobController as  AdminJobController;
 use App\Http\Controllers\Admin\EmployerController as  AdminEmployerController;
@@ -29,13 +30,28 @@ Route::get('/about', [PageController::class, 'about'])->name('about');
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
+
+Route::resource('jobSeekers', App\Http\Controllers\JobSeeker\ProfileController::class)->except([
+  'create', 'edit'
+]);
+
+// Route::resource('jobs', App\Http\Controllers\Admin\JobController::class)->except([
+//
+// ]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/admin/home', [App\Http\Controllers\Admin\HomeController::class, 'index'])->name('admin.home');
 Route::get('/user/home', [App\Http\Controllers\User\HomeController::class, 'index'])->name('user.home');
 Route::get('/employer/home', [App\Http\Controllers\Employer\HomeController::class, 'index'])->name('employer.home');
+Route::get('/jobSeeker/home', [App\Http\Controllers\JobSeeker\HomeController::class, 'index'])->name('jobSeeker.home');
+
+Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'index'])->name('profile');
+Route::get('/admin/profile', [App\Http\Controllers\Admin\ProfileController::class, 'index'])->name('admin.profile');
+Route::get('/jobSeeker/profile', [App\Http\Controllers\JobSeeker\ProfileController::class, 'index'])->name('jobSeeker.profile');
+Route::get('/employer/profile', [App\Http\Controllers\Employer\ProfileController::class, 'index'])->name('employer.profile');
 
 Route::get('/admin/jobs', [AdminJobController::class, 'index'])->name('admin.jobs.index');
 Route::get('/admin/jobs/create', [AdminJobController::class, 'create'])->name('admin.jobs.create');

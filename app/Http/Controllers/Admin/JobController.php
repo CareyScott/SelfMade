@@ -1,6 +1,6 @@
 <?php
 # @Date:   2021-01-23T15:54:28+00:00
-# @Last modified time: 2021-03-07T12:35:02+00:00
+# @Last modified time: 2021-03-09T13:46:53+00:00
 
 
 
@@ -42,6 +42,8 @@ class JobController extends Controller
         'jobs' => $jobs,
         'employers' => $employers,
         'jobCategories' => $jobCategories
+
+        // ->whereRaw('DATEDIFF(CURDATE(),STR_TO_DATE(created_at, '%Y-%m-%d'))'), $daysTillTrialEnds)
       ]);
       }
     }
@@ -80,7 +82,7 @@ class JobController extends Controller
         'title' => 'required|max:191',
         'employer_id' => 'required|max:191',
         'date_uploaded' => 'required',
-        'valid_until' => 'required',
+        'valid_until' => 'required|after:today',
         'salary' => 'required|between:0,99.99',
         'description' => 'required',
         'job_category_id' => 'required',

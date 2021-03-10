@@ -35,6 +35,9 @@
                     </p>
                 </div>
                 @endforeach
+                <div class="col mt-5">
+                    {{ $jobSeekers->links() }}
+                </div>
             </div>
             @endif
         </div>

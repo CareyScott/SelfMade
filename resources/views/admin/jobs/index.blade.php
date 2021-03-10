@@ -46,7 +46,10 @@
                     <p class="media-body pb-3 mb-0 medium lh-125 border-bottom border-gray">
                         <a href="{{ route('admin.jobs.show', $job->id) }}"><strong class="d-block text-dark">{{$job->title}}</strong></a>
                         {{$job->description}}
+
+
                     </p>
+                      {{-- <small class="date-only">{{$job->updated_at}}</small> --}}
                 </div>
                 @endforeach
                 <div class="col mt-5">
@@ -73,7 +76,6 @@
         </div>
     </div>
 </div>
-
 {{-- </div> --}}
 {{-- </div> --}}
 @include('layouts.footer')

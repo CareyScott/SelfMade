@@ -1,6 +1,6 @@
 <?php
 # @Date:   2020-11-17T10:13:38+00:00
-# @Last modified time: 2021-02-17T13:26:35+00:00
+# @Last modified time: 2021-03-08T17:56:54+00:00
 
 
 
@@ -35,7 +35,7 @@ class RoleSeeder extends Seeder
         $role_employer->save();
 
         $role_job_seeker = new Role();
-        $role_job_seeker->name = 'job_seeker';
+        $role_job_seeker->name = 'jobSeeker';
         $role_job_seeker->description = 'A Job Seeker';
         $role_job_seeker->save();
 

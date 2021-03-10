@@ -1,6 +1,6 @@
 <?php
 # @Date:   2021-01-23T15:54:28+00:00
-# @Last modified time: 2021-03-07T15:39:30+00:00
+# @Last modified time: 2021-03-09T11:30:14+00:00
 
 
 
@@ -102,6 +102,9 @@ class EmployerController extends Controller
         $employer->user_id = $user->id;
         $employer->save();
 
+        smilify('success', 'Employer Created Successfully');
+
+
         return redirect()->route('admin.employers.index');
       }
     }
@@ -115,12 +118,15 @@ class EmployerController extends Controller
     public function show($id)
     {
       $employer = Employer::findOrFail($id);
+      $jobs = Job::all();
 
+      // $employer->load('job');
 
 
       return view('admin.employers.show', [
         'employer' => $employer,
-        // 'jobs' => $jobs,
+        'jobs' => $jobs,
+        // 'employer_id' => $employer_id,
 
 
 

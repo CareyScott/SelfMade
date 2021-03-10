@@ -41,7 +41,6 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
-
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
@@ -88,11 +87,19 @@
                                 <a class="dropdown-item p-2 text-dark" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}
+
                                 </a>
+
 
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                     @csrf
                                 </form>
+
+                                <a href="{{ route('profile', Auth::user()->id) }}"><strong class="d-block text-dark dropdown-item p-2 text-dark">My Profile</strong>
+
+                                  {{-- {{ __('profile') }} --}}
+
+                              </a>
                             </div>
                         </li>
                         @endguest

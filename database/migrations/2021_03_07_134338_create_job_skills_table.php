@@ -1,6 +1,6 @@
 <?php
 # @Date:   2021-03-07T13:43:36+00:00
-# @Last modified time: 2021-03-07T14:11:44+00:00
+# @Last modified time: 2021-03-09T17:45:26+00:00
 
 
 
@@ -25,7 +25,7 @@ class CreateJobSkillsTable extends Migration
       $table->timestamps();
 
       $table->foreign('skill_id')->references('id')->on('skills')->onUpdate('cascade')->onDelete('cascade');
-      $table->foreign('jobSeeker_id')->references('id')->on('job_seekers')->onUpdate('cascade')->onDelete('restrict');
+      $table->foreign('jobSeeker_id')->references('id')->on('job_seekers')->onUpdate('cascade')->onDelete('cascade');
       });
     }
 

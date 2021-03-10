@@ -56,14 +56,21 @@
                           <div>
                             <label for="title"> <strong>Pick three appropriate skills</strong> </label>
                           </div>
-                            <select name="skill_id_1">
+                            <select name="skill">
                                 @foreach ($skills as $skill)
 
                                 <option value="{{$skill->id}}">{{$skill->name}}</option>
 
                                 @endforeach
                             </select>
-                            <select name="skill_id_2">
+                            <select name="skill">
+                                @foreach ($skills as $skill)
+
+                                <option value="{{$skill->id}}">{{$skill->name}}</option>
+
+                                @endforeach
+                            </select>
+                            {{-- <select name="skill_id_2">
                                 @foreach ($skills as $skill)
 
                                 <option value="{{$skill->id}}">{{$skill->name}}</option>
@@ -76,7 +83,7 @@
                                 <option value="{{$skill->id}}">{{$skill->name}}</option>
 
                                 @endforeach
-                            </select>
+                            </select> --}}
                         </div>
 
 

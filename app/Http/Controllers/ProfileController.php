@@ -1,6 +1,6 @@
 <?php
 # @Date:   2020-11-30T10:42:41+00:00
-# @Last modified time: 2021-03-09T11:51:09+00:00
+# @Last modified time: 2021-03-08T18:50:59+00:00
 
 
 
@@ -10,7 +10,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 
-class HomeController extends Controller
+class ProfileController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -31,24 +31,24 @@ class HomeController extends Controller
     {
 
         $user = Auth::user();
-        $home = 'guest.home';
+        $profile = 'profile';
 
         if($user->hasRole('admin')){
-          $home = 'admin.home';
+          $profile = 'admin.profile';
         }
         else if ($user->hasRole('employer')) {
-          $home = 'employer.home';
+          $profile = 'employer.profile';
         }
         else if ($user->hasRole('user')) {
-          $home = 'user.home';
+          $profile = 'user.profile';
         }
         else if ($user->hasRole('jobSeeker')) {
-          $home = 'jobSeeker.home';
-        }
-        else if ($user->hasRole('guest')) {
-          $home = 'guest.home';
+          $profile = 'jobSeeker.profile';
         }
 
-        return redirect()->route($home);
+
+
+
+        return redirect()->route($profile);
     }
 }

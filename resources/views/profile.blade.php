@@ -7,7 +7,7 @@
             {{-- Profile Page --}}
             <div class="parallax shadow-sm" width="100%"></div>
             <img src="https://picsum.photos/140" class=" margin-left-custom rounded-circle margintop-custom ml-4 border shadow-sm " alt="Profile Picture">
-            <p class="h2 mt-4 margin-left-custom">{{$jobSeeker->user->name}}</p>
+            <p class="h2 mt-4 margin-left-custom">{{$user}}</p>
             <nav class="nav nav-masthead justify-content-end mb-3">
                 <a class="nav-link btn btn-sm btn-outline-primary" href="{{route('admin.jobSeekers.edit', $jobSeeker->id) }}">Edit Profile</a>
             </nav>
@@ -68,8 +68,9 @@
                             {{-- <small>3 days ago</small> --}}
                         </div>
                         <div>
-                            <p class="mb-1 list-group-item text-light bg-dark ">{{$jobSeeker->skill}}</p>
-
+                            <p class="mb-1 list-group-item text-light bg-dark ">{{$jobSeeker->skill_id_1}}</p>
+                            <p class="mb-1 list-group-item text-light bg-dark ">{{$jobSeeker->skill_id_2}}</p>
+                            <p class="mb-1 list-group-item text-light bg-dark ">{{$jobSeeker->skill_id_3}}</p>
 
                         </div>
                     </div>

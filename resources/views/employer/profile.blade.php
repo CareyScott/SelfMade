@@ -7,9 +7,9 @@
             {{-- Profile Page --}}
             <div class="parallax shadow-sm" width="100%"></div>
             <img src="https://picsum.photos/140" class=" margin-left-custom rounded-circle margintop-custom ml-4 border shadow-sm " alt="Profile Picture">
-            <p class="h2 mt-4 margin-left-custom">{{$jobSeeker->user->name}}</p>
+            <p class="h2 mt-4 margin-left-custom">{{$user->name}}</p>
             <nav class="nav nav-masthead justify-content-end mb-3">
-                <a class="nav-link btn btn-sm btn-outline-primary" href="{{route('admin.jobSeekers.edit', $jobSeeker->id) }}">Edit Profile</a>
+                <a class="nav-link btn btn-sm btn-outline-primary" href="{{route('admin.jobSeekers.edit', $user) }}">Edit Profile</a>
             </nav>
         </div>
 
@@ -43,7 +43,7 @@
                             <h5 class="mb-1"><strong>Bio</strong></h5>
                             {{-- <small>3 days ago</small> --}}
                         </div>
-                        <p class="mb-1">{{$jobSeeker->personal_bio}}</p>
+                        {{-- <p class="mb-1">{{$jobSeeker->personal_bio}}</p> --}}
                         {{-- <small></small> --}}
                     </div>
                     <div class="list-group-item list-group-item-action flex-column align-items-start ">
@@ -51,7 +51,7 @@
                             <h5 class="mb-1"><strong>Phone</strong></h5>
                             {{-- <small>3 days ago</small> --}}
                         </div>
-                        <p class="mb-1">{{$jobSeeker->user->phone}}</p>
+                        <p class="mb-1">{{$user->phone}}</p>
                         {{-- <small></small> --}}
                     </div>
                     <div class="list-group-item list-group-item-action flex-column align-items-start ">
@@ -59,7 +59,7 @@
                             <h5 class="mb-1"><strong>Email</strong></h5>
                             {{-- <small>3 days ago</small> --}}
                         </div>
-                        <a href="mailto:{{$jobSeeker->user->email}}?subject=Job Query Via Self-Made" <p class="text-dark d-inline-flex">{{$jobSeeker->user->email}}</p></a>
+                        <a href="mailto:{{$user->email}}?subject=Job Query Via Self-Made" <p class="text-dark d-inline-flex">{{$user->email}}</p></a>
                         {{-- <small></small> --}}
                     </div>
                     <div class="list-group-item list-group-item-action flex-column align-items-start ">
@@ -68,8 +68,9 @@
                             {{-- <small>3 days ago</small> --}}
                         </div>
                         <div>
-                            <p class="mb-1 list-group-item text-light bg-dark ">{{$jobSeeker->skill}}</p>
-
+                            <p class="mb-1 list-group-item text-light bg-dark ">{{$user}}</p>
+                            {{-- <p class="mb-1 list-group-item text-light bg-dark ">{{$jobSeeker->skill_id_2}}</p> --}}
+                            {{-- <p class="mb-1 list-group-item text-light bg-dark ">{{$jobSeeker->skill_id_3}}</p> --}}
 
                         </div>
                     </div>
@@ -80,13 +81,13 @@
         <div class="col-6 text-left text-white overflow-hidden mb-5">
             <div class="d-flex justify-content-center shadow-sm mx-auto text-dark mt-5 mb-5" style="width:100%; "><iframe width="100%" height="300px" frameborder="0" scrolling="yes" marginheight="0" marginwidth="0"
                   style="border-radius: 21px 21px 21px 21px; border: 1px solid black;" class=""
-                  src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q={{$jobSeeker->personal_postal_address}}+(JobSeeker)&amp;z=14&amp;ie=UTF8&amp;output=embed">
+                  {{-- src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q={{$jobSeeker->personal_postal_address}}+(JobSeeker)&amp;z=14&amp;ie=UTF8&amp;output=embed"> --}}
                 </iframe>
             </div>
             <div class="list-group-item list-group-item-action flex-column align-items-start " style="border-radius: 21px 21px 21px 21px; height: 75px;">
                 <div>
                     <p class="h5 ml-4 ">From:</p>
-                    <p class="h6 ml-4">{{$jobSeeker->personal_postal_address}}</p>
+                    {{-- <p class="h6 ml-4">{{$jobSeeker->personal_postal_address}}</p> --}}
                 </div>
             </div>
         </div>
@@ -103,7 +104,7 @@
 </div>
 
 <div class="float-right">
-    <form style="display:inline-block" method="POST" action="{{route('admin.jobSeekers.destroy', $jobSeeker->id)}}">
+    {{-- <form style="display:inline-block" method="POST" action="{{route('admin.jobSeekers.destroy', $jobSeeker->id)}}"> --}}
         <input type="hidden" name="_method" value="DELETE">
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
         <button type="submit" class="form-control btn btn-outline-danger">Delete</button>

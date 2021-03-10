@@ -1,6 +1,6 @@
 <?php
 # @Date:   2021-01-22T15:59:43+00:00
-# @Last modified time: 2021-03-07T14:13:17+00:00
+# @Last modified time: 2021-03-10T11:21:25+00:00
 
 
 
@@ -26,7 +26,7 @@ class UserSeeder extends Seeder
       $role_admin = Role::where('name', 'admin')->first();
       $role_user = Role::where('name', 'user')->first();
       $role_employer = Role::where('name', 'employer')->first();
-      $role_job_seeker = Role::where('name', 'job_seeker')->first();
+      $role_job_seeker = Role::where('name', 'jobSeeker')->first();
 
       $admin = new User();
       $admin->name = 'Admin';
@@ -42,17 +42,20 @@ class UserSeeder extends Seeder
       $user->email = 'matthewSimmons@selfMade.ie';
       $user->phone = '3453134563';
       $user->password = Hash::make('secret');
+
+
       $user->save();
       $user->roles()->attach($role_job_seeker);
 
       $jobSeeker = new JobSeeker();
       $jobSeeker->personal_postal_address = 'Dublin, Ireland';
       $jobSeeker->personal_bio = 'This is my bio';
-      $jobSeeker->skills = 'some skill';
-      $jobSeeker->skill_id_1 = '1';
-      $jobSeeker->skill_id_2 = '1';
-      $jobSeeker->skill_id_3 = '1';
+      $jobSeeker->education = 'some skill';
+      $jobSeeker->skill = '1';
+      // $jobSeeker->skill_id_2 = '1';
+      // $jobSeeker->skill_id_3 = '1';
       $jobSeeker->user_id = $user->id;
+      $jobSeeker->user->user_role = $user->id;
       $jobSeeker->save();
 
 

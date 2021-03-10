@@ -1,6 +1,6 @@
 <?php
 # @Date:   2021-01-23T15:54:28+00:00
-# @Last modified time: 2021-03-07T15:14:44+00:00
+# @Last modified time: 2021-03-10T11:20:16+00:00
 
 
 
@@ -91,9 +91,9 @@ class JobSeekerController extends Controller
         'personal_postal_address' => 'required|max:191',
         'personal_bio' => 'required|max:191',
         'education' => 'required',
-        'skill_id_1' => 'required',
-        'skill_id_2' => 'required',
-        'skill_id_3' => 'required',
+        'skill' => 'required',
+        // 'skill_id_2' => 'required',
+        // 'skill_id_3' => 'required',
 
       ]);
 
@@ -115,26 +115,44 @@ class JobSeekerController extends Controller
       $jobSeeker->personal_postal_address = $request->input('personal_postal_address');
       $jobSeeker->personal_bio = $request->input('personal_bio');
       $jobSeeker->education = $request->input('education');
-      $jobSeeker->skill_id_1 = $request->input('skill_id_1');
-      $jobSeeker->skill_id_2 = $request->input('skill_id_2');
-      $jobSeeker->skill_id_3 = $request->input('skill_id_3');
+      $jobSeeker->skill = $request->input('skill');
+      // $jobSeeker->skill_id_2 = $request->input('skill_id_2');
+      // $jobSeeker->skill_id_3 = $request->input('skill_id_3');
       $jobSeeker->user_id = $user->id;
       $jobSeeker->save();
 
-      $jobSkill = new JobSkill();
-      $jobSkill->skill_id = $jobSeeker->skill_id_1;
-      $jobSkill->jobSeeker_id =  $jobSeeker->id;
-      $jobSkill->save();
+      $skill_jobSeeker = Skill::where('name', $jobSeeker->skill)->first();
 
       $jobSkill = new JobSkill();
-      $jobSkill->skill_id = $jobSeeker->skill_id_2;
+      $jobSkill->skill_id = $jobSeeker->skill;
       $jobSkill->jobSeeker_id =  $jobSeeker->id;
       $jobSkill->save();
+      $jobSkill->skills()->attach($skill_jobSeeker);
 
-      $jobSkill = new JobSkill();
-      $jobSkill->skill_id = $jobSeeker->skill_id_3;
-      $jobSkill->jobSeeker_id =  $jobSeeker->id;
-      $jobSkill->save();
+
+      // $jobSkill = new JobSkill();
+      //
+      //
+      // if(is_array($jobSeeker->skill)){
+      //
+      //   foreach (request('skill') as $skill_jobSeeker) {
+      //     $jobSkill->skill_id = $jobSeeker->skill;
+      //     $jobSkill->jobSeeker_id =  $jobSeeker->id;
+      //     $jobSkill->save();
+      //     $jobSkill->skills()->attach($skill_jobSeeker);
+      //   }
+      //   }
+
+      //
+      // $jobSkill = new JobSkill();
+      // $jobSkill->skill_id = $jobSeeker->skill_id_2;
+      // $jobSkill->jobSeeker_id =  $jobSeeker->id;
+      // $jobSkill->save();
+      //
+      // $jobSkill = new JobSkill();
+      // $jobSkill->skill_id = $jobSeeker->skill_id_3;
+      // $jobSkill->jobSeeker_id =  $jobSeeker->id;
+      // $jobSkill->save();
 
       smilify('success', 'User Created Successfully');
 
@@ -152,6 +170,8 @@ class JobSeekerController extends Controller
     {
       $jobSeeker = JobSeeker::findOrFail($id);
       $skill = Skill::all();
+
+      // $jobSeeker->load('skills');
 
       return view('admin.jobSeekers.show', [
         'jobSeeker' => $jobSeeker,
