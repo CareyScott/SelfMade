@@ -1,6 +1,6 @@
 <?php
 # @Date:   2021-01-23T15:54:28+00:00
-# @Last modified time: 2021-03-10T18:06:00+00:00
+# @Last modified time: 2021-03-12T23:11:50+00:00
 
 
 
@@ -33,8 +33,8 @@ class EmployerController extends Controller
     public function index()
     {
       {
-        $jobs = Job::all();
         $employers = Employer::all();
+        $jobs = Job::where('employer_id', $employer->id)->get();
         $jobCategories = JobCategory::all();
 
         return view('jobSeeker.employers.index', [

@@ -1,6 +1,6 @@
 <?php
 # @Date:   2020-11-30T10:54:30+00:00
-# @Last modified time: 2021-03-11T20:24:23+00:00
+# @Last modified time: 2021-03-12T23:27:11+00:00
 
 
 
@@ -39,8 +39,10 @@ class HomeController extends Controller
     public function index()
     {
       $jobSeekers = JobSeeker::all();
+      $user = Auth::user();
+      $jobs = Job::where('employer_id', $user->employer->id)->get();
+      // $jobs= Job::paginate(5);
 
-      $jobs = Job::all();
       $employers = Employer::all();
       $jobCategories = JobCategory::all();
 

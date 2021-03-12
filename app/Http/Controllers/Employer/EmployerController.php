@@ -1,6 +1,6 @@
 <?php
 # @Date:   2021-01-23T15:54:28+00:00
-# @Last modified time: 2021-03-12T12:32:06+00:00
+# @Last modified time: 2021-03-12T23:36:49+00:00
 
 
 
@@ -119,7 +119,8 @@ class EmployerController extends Controller
     public function show($id)
     {
       $employer = Employer::findOrFail($id);
-      $jobs = Job::all();
+      $jobs = Job::where('employer_id', $employer->id)->get();
+      // $jobs = Job::all();
 
       // $employer->load('job');
 
@@ -187,7 +188,7 @@ class EmployerController extends Controller
         $employer->category = $request->input('category');
         $employer->save();
 
-        smilify('success', 'Employer Edited Successfully');
+        smilify('success', 'Account Edited Successfully');
         return redirect()->route('employer.profile');
 
       }

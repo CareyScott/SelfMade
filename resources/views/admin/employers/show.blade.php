@@ -86,9 +86,9 @@
 
         <div class="row">
             <div class="col-6 text-left overflow-hidden">
-                <div class="bg-light shadow-sm mx-auto text-dark " style="width: 80%; border-radius: 21px 21px 21px 21px;">
+                <div class="bg-light shadow-sm mx-auto text-dark " style="width: 80%; border-radius: 10px 10px 10px 10px;">
 
-                    <div class="list-grlight pure-black mt-5" style="border-radius: 21px 21px 21px 21px;">
+                    <div class="list-grlight pure-black mt-5" style="border-radius: 10px 10px 10px 10px;">
                         <div class="list-group-item list-group-item-action flex-column align-items-start">
                             <div class="d-flex w-100 justify-content-between">
                                 <h5 class="mb-1"><strong>Name</strong></h5>
@@ -125,7 +125,7 @@
 
                     </div>
                 </div>
-                <div class="bg-light shadow-sm mx-auto text-dark mt-5 mb-5" style="width: 80%; border-radius: 21px 21px 21px 21px;">
+                <div class="bg-light shadow-sm mx-auto text-dark mt-5 mb-5" style="width: 80%; border-radius: 10px 10px 10px 10px;">
                     <div class="justify-content-center">
                         <h5 class="mb-1 justify-content-center"><strong>Jobs By this Employer</strong></h5>
                     </div>
@@ -147,11 +147,11 @@
 
             <div class="col-6 text-left text-white overflow-hidden mb-5">
                 <div class="d-flex justify-content-center shadow-sm mx-auto text-dark mt-5 mb-5" style="width:100%; "><iframe width="100%" height="300px" frameborder="0" scrolling="yes" marginheight="0" marginwidth="0"
-                      style="border-radius: 21px 21px 21px 21px; border: 1px solid black;" class=""
+                      style="border-radius: 10px 10px 10px 10px; border: 1px solid black;" class=""
                       src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q={{$employer->company_postal_address}}+(Employer)&amp;z=14&amp;ie=UTF8&amp;output=embed">
                     </iframe>
                 </div>
-                <div class="list-group-item list-group-item-action flex-column align-items-start " style="border-radius: 21px 21px 21px 21px; height: 75px;">
+                <div class="list-group-item list-group-item-action flex-column align-items-start " style="border-radius: 10px 10px 10px 10px; height: 75px;">
                     <div>
                         <p class="h5 ml-4 ">Company is based in:</p>
                         <p class="h6 ml-4">{{$employer->company_postal_address}}</p>

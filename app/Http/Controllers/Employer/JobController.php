@@ -1,7 +1,7 @@
 <?php
 
 # @Date:   2021-01-23T15:54:28+00:00
-# @Last modified time: 2021-03-12T13:45:17+00:00
+# @Last modified time: 2021-03-12T23:35:59+00:00
 
 
 
@@ -123,7 +123,7 @@ class JobController extends Controller
 
       smilify('success', 'Job Created Successfully');
 
-      return redirect()->route('employer.jobs.index');
+      return redirect()->route('employer.home');
 
 
     }
@@ -203,6 +203,9 @@ class JobController extends Controller
 
       $job->save();
 
+      smilify('success', 'Job Updated Successfully');
+
+
       return redirect()->route('employer.jobs.index');
 
     }
@@ -218,6 +221,8 @@ class JobController extends Controller
       $job = Job::findOrFail($id);
       $job->delete();
 
-      return redirect()->route('employer.jobs.index');
+      smilify('success', 'Job Deleted Successfully');
+
+      return redirect()->route('employer.home');
     }
 }

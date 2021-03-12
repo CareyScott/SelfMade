@@ -75,7 +75,7 @@
 
 
                         <div class="float-right">
-                            <a href="{{route('employer.jobs.index')}}" class="btn btn-default"> Cancel </a>
+                            <a href="{{route('home')}}" class="btn btn-default"> Cancel </a>
                             <button type="submit" class="btn btn-primary pull-right">Submit</button>
                         </div>
                     </form>

@@ -7,9 +7,7 @@
     <div class="row">
         <div class="col">
 
-          <h1 class="h1 title-font text-dark text-center mb-5 mt-5">SELF MADE.</h1>
-
-            <h1 class="h3 mb-3 fw-normal text-center title-font">Sign Up</h1>
+      
 
 
 {{-- `this hides the form not being used bugs out though` --}}
@@ -152,7 +150,7 @@
                     <div class="mx-auto col-md-5">
                         <label for="skill" class="  text-md-right">{{ __('Skill') }}</label>
 
-                        <select class="form-control " name="skill[]">
+                        <select class="form-control " name="skill">
                             @foreach ($skills as $skill)
                             <option value="{{$skill->id}}">{{$skill->name}}</option>
                             @endforeach
@@ -168,7 +166,7 @@
                     <div class="mx-auto col-md-5">
                         <label for="skill" class="  text-md-right">{{ __('Skill') }}</label>
 
-                        <select class="form-control " name="skill[]">
+                        <select class="form-control " name="skill">
                             @foreach ($skills as $skill)
                             <option value="{{$skill->id}}">{{$skill->name}}</option>
                             @endforeach

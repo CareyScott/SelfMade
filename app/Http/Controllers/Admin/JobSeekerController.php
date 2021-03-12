@@ -1,6 +1,6 @@
 <?php
 # @Date:   2021-01-23T15:54:28+00:00
-# @Last modified time: 2021-03-12T12:08:27+00:00
+# @Last modified time: 2021-03-12T23:39:31+00:00
 
 
 
@@ -249,6 +249,9 @@ class JobSeekerController extends Controller
       // $jobSkill->jobSeeker_id =  $jobSeeker->id;
       // $jobSkill->save();
 
+      smilify('success', 'User Updated Successfully');
+
+
       return redirect()->route('admin.jobSeekers.index');
 
       }
@@ -265,6 +268,9 @@ class JobSeekerController extends Controller
       $jobSeeker = JobSeeker::findOrFail($id);
       $jobSeeker->user->delete();
       $jobSeeker->delete();
+
+      smilify('success', 'USer Deleted Successfully');
+
 
       return redirect()->route('admin.jobSeekers.index');
     }

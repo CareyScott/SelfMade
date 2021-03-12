@@ -180,7 +180,7 @@
     <div class="container">
         <div class="row">
           <div class="col-7 mt-3 mx-auto list-group-item" style="width: 100%; border-radius: 10px 10px 10px 10px;">
-              <p class="heading text-center">Job Listing</p>
+              <p class="heading text-center title-font">Job Listing</p>
 
               <div class=" shadow-sm mx-auto  " style="width: 90%; border-radius: 10px 10px 10px 10px;">
                 <div class="list-group-item list-group-item-action flex-column align-items-start">
@@ -203,7 +203,7 @@
                 </div>
                 <div class="list-group-item list-group-item-action flex-column align-items-start ">
                     <div class="d-flex w-100 justify-content-between">
-                        <h5 class="mb-1"><strong>Valid Until</strong></h5>
+                        <h5 class="mb-1"><strong>Application Deadline </strong></h5>
                     </div>
                     <p class="mb-1 ">{{$job->valid_until}}</p>
                 </div>
@@ -218,7 +218,7 @@
           </div>
 
             <div class="col-4 mt-3  list-group-item mx-auto" style="width: 100%; border-radius: 10px 10px 10px 10px;">
-                <p class="heading text-center">Employer</p>
+                <p class="heading text-center title-font">Employer</p>
 
                 <img src="https://picsum.photos/140" class=" rounded-circle mt-3 mb-2 border shadow-sm mx-auto " alt="Profile Picture">
                 <div class=" shadow-sm mx-auto text-dark " style="width: 100%; border-radius: 10px 10px 10px 10px;">
@@ -326,7 +326,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                <form style="display:inline-block" method="POST" action="{{route('admin.jobs.destroy', $job->id)}}">
+                <form style="display:inline-block" method="POST" action="{{route('employer.jobs.destroy', $job->id)}}">
                     <input type="hidden" name="_method" value="DELETE">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <button type="submit" class="form-control btn btn-outline-danger">Delete</button>

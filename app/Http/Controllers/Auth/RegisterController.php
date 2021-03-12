@@ -1,6 +1,6 @@
 <?php
 # @Date:   2021-01-23T06:08:20+00:00
-# @Last modified time: 2021-03-12T21:31:48+00:00
+# @Last modified time: 2021-03-12T22:54:05+00:00
 
 
 
@@ -118,23 +118,23 @@ class RegisterController extends Controller
 
 
 
-          // //i work
-          // $skill_jobSeeker = Skill::findOrFail($data['skill'] );
-          // foreach ((array) $data['skill'] as $skill)
-          // {
-          // $jobSkill =  JobSkill::create([
-          //       'skill_id' => $skill,
-          //       'jobSeeker_id' => $jobSeeker->id,
-          //   ]);
-          // }
-
-          foreach ( $data['skill'] as $skill)
+          //i work
+          $skill_jobSeeker = Skill::findOrFail($data['skill'] );
+          foreach ((array) $data['skill'] as $skill)
           {
           $jobSkill =  JobSkill::create([
                 'skill_id' => $skill,
                 'jobSeeker_id' => $jobSeeker->id,
             ]);
           }
+
+          // foreach ( $data['skill'] as $skill)
+          // {
+          // $jobSkill =  JobSkill::create([
+          //       'skill_id' => $skill,
+          //       'jobSeeker_id' => $jobSeeker->id,
+          //   ]);
+          // }
 
 
                     // foreach((array)$data['skill'] as $skill)

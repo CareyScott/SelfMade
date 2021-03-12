@@ -1,6 +1,6 @@
 <?php
 # @Date:   2020-11-30T10:54:30+00:00
-# @Last modified time: 2021-03-12T13:13:12+00:00
+# @Last modified time: 2021-03-12T23:43:34+00:00
 
 
 
@@ -38,8 +38,8 @@ class ProfileController extends Controller
     {
       $employer = Employer::all();
       $skill = Skill::all();
-      $jobs = Job::all();
       $user = Auth::user();
+      $jobs = Job::where('employer_id', $user->employer->id)->get();
 
       $user->load('employer');
       $employer->load('jobs');

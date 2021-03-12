@@ -1,6 +1,6 @@
 <?php
 # @Date:   2021-03-07T12:45:08+00:00
-# @Last modified time: 2021-03-12T20:49:01+00:00
+# @Last modified time: 2021-03-12T22:42:18+00:00
 
 
 
@@ -17,6 +17,10 @@ class JobSeeker extends Model
     public function skills()
     {
       return $this->belongsToMany('App\Models\Skill');
+    }
+    public function jobSkill()
+    {
+      return $this->belongsToMany('App\Models\JobSkill');
     }
     public function skill()
     {

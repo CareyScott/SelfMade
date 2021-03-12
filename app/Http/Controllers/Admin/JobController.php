@@ -1,6 +1,6 @@
 <?php
 # @Date:   2021-01-23T15:54:28+00:00
-# @Last modified time: 2021-03-12T11:53:39+00:00
+# @Last modified time: 2021-03-12T23:38:57+00:00
 
 
 
@@ -200,6 +200,9 @@ class JobController extends Controller
 
       $job->save();
 
+      smilify('success', 'Job Updated Successfully');
+
+
       return redirect()->route('admin.jobs.index');
 
     }
@@ -214,6 +217,9 @@ class JobController extends Controller
     {
       $job = Job::findOrFail($id);
       $job->delete();
+
+      smilify('success', 'Job Deleted Successfully');
+
 
       return redirect()->route('admin.jobs.index');
     }

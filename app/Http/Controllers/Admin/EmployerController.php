@@ -1,6 +1,6 @@
 <?php
 # @Date:   2021-01-23T15:54:28+00:00
-# @Last modified time: 2021-03-12T11:31:28+00:00
+# @Last modified time: 2021-03-12T23:38:25+00:00
 
 
 
@@ -117,8 +117,9 @@ class EmployerController extends Controller
      */
     public function show($id)
     {
+
       $employer = Employer::findOrFail($id);
-      $jobs = Job::all();
+      $jobs = Job::where('employer_id', $employer->id)->get();
 
       // $employer->load('job');
 
@@ -185,6 +186,9 @@ class EmployerController extends Controller
         $employer->category = $request->input('category');
         $employer->save();
 
+        smilify('success', 'Employer Updated Successfully');
+
+
         return redirect()->route('admin.employers.show', $id);
 
       }
@@ -203,6 +207,7 @@ class EmployerController extends Controller
       $employer->user->delete();
       $employer->delete();
 
+      smilify('success', 'Employer Deleted Successfully');
 
       return redirect()->route('admin.employers.index');
     }
