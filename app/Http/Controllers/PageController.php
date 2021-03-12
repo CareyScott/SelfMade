@@ -1,6 +1,6 @@
 <?php
 # @Date:   2021-01-23T15:44:26+00:00
-# @Last modified time: 2021-03-08T16:20:30+00:00
+# @Last modified time: 2021-03-11T14:54:41+00:00
 
 
 
@@ -21,5 +21,5 @@ class PageController extends Controller
     {
       return view('about');
     }
-    
+
 }

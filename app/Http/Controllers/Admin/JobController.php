@@ -1,6 +1,6 @@
 <?php
 # @Date:   2021-01-23T15:54:28+00:00
-# @Last modified time: 2021-03-09T13:46:53+00:00
+# @Last modified time: 2021-03-12T11:53:39+00:00
 
 
 
@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use App\Models\Job;
 use App\Models\Employer;
 use App\Models\JobId;
+use App\Models\Skill;
 use App\Models\JobCategory;
 
 
@@ -36,12 +37,16 @@ class JobController extends Controller
         // $jobs = Job::all();
         $employers = Employer::all();
         $jobCategories = JobCategory::all();
+        $skills = Skill::all();
+
 
 
         return view('admin.jobs.index', compact('jobs'), [
         'jobs' => $jobs,
         'employers' => $employers,
-        'jobCategories' => $jobCategories
+        'jobCategories' => $jobCategories,
+        'skills' => $skills,
+
 
         // ->whereRaw('DATEDIFF(CURDATE(),STR_TO_DATE(created_at, '%Y-%m-%d'))'), $daysTillTrialEnds)
       ]);
@@ -59,12 +64,14 @@ class JobController extends Controller
       $employers = Employer::all();
       $jobCategories = JobCategory::all();
       $job_ids = JobId::all();
+      $skills = Skill::all();
 
       return view('admin.jobs.create', [
       'jobs' => $jobs,
       'employers' => $employers,
       'jobCategories' => $jobCategories,
       'job_ids' => $job_ids,
+      'skills' => $skills,
 
 
     ] );
@@ -86,6 +93,7 @@ class JobController extends Controller
         'salary' => 'required|between:0,99.99',
         'description' => 'required',
         'job_category_id' => 'required',
+        'skill_id' => 'required',
 
       ]);
 
@@ -98,6 +106,7 @@ class JobController extends Controller
       $job->salary = $request->input('salary');
       $job->description = $request->input('description');
       $job->job_category_id = $request->input('job_category_id');
+      $job->skill_id = $request->input('skill_id');
       $job->save();
 
       $job_ids = new JobId();
@@ -122,9 +131,18 @@ class JobController extends Controller
     public function show($id)
     {
       $job = Job::findOrFail($id);
+      $skills = Skill::all();
+      $employers = Employer::all();
+      $jobCategories = JobCategory::all();
+
+
 
       return view('admin.jobs.show', [
         'job' => $job,
+        'skills' => $skills,
+        'employers' => $employers,
+        'jobCategories' => $jobCategories,
+
       ]);
     }
 
@@ -165,6 +183,7 @@ class JobController extends Controller
         'salary' => 'required|between:0,99.99',
         'description' => 'required',
         'job_category_id' => 'required',
+        'skill_id' => 'required',
 
       ]);
 
@@ -177,6 +196,7 @@ class JobController extends Controller
       $job->salary = $request->input('salary');
       $job->description = $request->input('description');
       $job->job_category_id = $request->input('job_category_id');
+      $job->skill_id = $request->input('skill_id');
 
       $job->save();
 

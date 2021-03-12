@@ -8,11 +8,11 @@
             <option selected>Location</option>
             @foreach ($employers as $employer)
             <option value="{{$employer->id}}">{{$employer->user->name}}</option>
-            @endforeach
+        @endforeach
         </select> --}}
-        <form class="form-inline my-2 my-md-0 col">
+        {{-- <form class="form-inline my-2 my-md-0 col">
             <input class="form-control" placeholder="Search"></input>
-        </form>
+        </form> --}}
     </div>
 
     <div class="row">
@@ -35,15 +35,84 @@
                     </p>
                 </div>
                 @endforeach
+                @endif
             </div>
-            @endif
         </div>
         <div class="col-4">
             <div class="my-3 p-3 bg-white rounded box-shadow col">
                 <div class="card-body">
                     <h5 class="card-title">Create an Employer</h5>
                     <p class="card-text">Administrators, follow the link below to create a new Employer.</p>
-                    <a href="{{route('admin.employers.create')}}" class="btn btn-primary">Create</a>
+                    <button class="btn btn-primary" data-toggle="modal" data-target="#create">
+                        Create Employer
+                    </button>
+
+                    <div class="modal fade" id="create" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header pure-black text-light">
+                                    Create Employer
+                                </div>
+                                <div class="modal-body">
+                                        <div class="card-body">
+                                            @if ($errors->any())
+                                            <div class="alert alert-danger">
+                                                <ul>
+                                                    @foreach ($errors->all() as $error)
+                                                    <li>{{ $error }} </li>
+                                                    @endforeach
+                                                </ul>
+                                            </div>
+                                            @endif
+
+                                            <form method="POST" action="{{route('admin.employers.store')}}">
+                                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+
+                                                <div class="form-group">
+                                                    <label for="title"> Employer Name </label>
+                                                    <input type="text" class="form-control" id='name' name='name' value='{{old('name' )}}' />
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="title"> Phone </label>
+                                                    <input type="text" class="form-control" id='phone' name='phone' value='{{old('phone' )}}' />
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="title"> Email </label>
+                                                    <input type="text" class="form-control" id='email' name='email' value='{{old('email')}}'></input>
+                                                  </div>
+
+                                                <div class="form-group">
+                                                    <label for="title"> Postal Address </label>
+                                                    <input type="text" class="form-control" id='company_postal_address' name='company_postal_address' value='{{old('company_postal_address')}}'></input>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="title"> Category </label>
+                                                    <input type="text" class="form-control" id='category' name='category' value='{{old('category')}}'></input>
+                                                </div>
+
+
+                                                <div class="float-right">
+                                                    <a href="{{route('admin.employers.index')}}" class="btn btn-default"> Cancel </a>
+                                                    <button type="submit" class="btn btn-outline-primary pull-right">Submit</button>
+                                                </div>
+                                            </form>
+
+                                        </div>
+                                </div>
+                                <div class="modal-footer">
+                                    {{-- <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                <form style="display:inline-block" method="POST" action="{{route('admin.employers.destroy', $employer->id)}}">
+                                    <input type="hidden" name="_method" value="DELETE">
+                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                    <button type="submit" class="form-control btn btn-outline-danger">Delete</button>
+                                    </form> --}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="my-3 p-3 bg-white rounded box-shadow col">
@@ -55,6 +124,37 @@
             </div>
         </div>
     </div>
+
+    <style>
+        .parallax {
+            /* The image used */
+            background-image: url("https://picsum.photos/1920/1080") !important;
+
+            /* Set a specific height */
+            min-height: 300px;
+
+            /* Create the parallax scrolling effect */
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .margintop-custom {
+            margin-top: -100px !important;
+        }
+
+        .margin-left-custom {
+            margin-left: px !important;
+        }
+
+        .box-vertical-offset {
+            margin-top: -250px !important;
+        }
+    </style>
+
+
+
 </div>
 {{-- </div> --}}
 {{-- </div> --}}

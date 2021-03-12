@@ -1,6 +1,6 @@
 <?php
 # @Date:   2021-01-23T15:54:28+00:00
-# @Last modified time: 2021-03-09T11:30:14+00:00
+# @Last modified time: 2021-03-12T11:31:28+00:00
 
 
 
@@ -183,11 +183,9 @@ class EmployerController extends Controller
 
         $employer->company_postal_address = $request->input('company_postal_address');
         $employer->category = $request->input('category');
-
-
         $employer->save();
 
-        return redirect()->route('admin.employers.index');
+        return redirect()->route('admin.employers.show', $id);
 
       }
     }

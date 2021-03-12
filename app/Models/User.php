@@ -1,6 +1,6 @@
 <?php
 # @Date:   2020-11-16T16:31:06+00:00
-# @Last modified time: 2021-03-07T12:44:02+00:00
+# @Last modified time: 2021-03-11T12:44:06+00:00
 
 
 
@@ -27,6 +27,9 @@ class User extends Authenticatable
         'email',
         'phone',
         'password',
+        // 'personal_postal_address',
+        // 'personal_bio',
+        // 'education',
     ];
 
     /**

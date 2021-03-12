@@ -1,6 +1,6 @@
 <?php
 # @Date:   2021-01-23T06:08:20+00:00
-# @Last modified time: 2021-03-08T18:52:21+00:00
+# @Last modified time: 2021-03-12T13:12:39+00:00
 
 
 
@@ -11,6 +11,14 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\JobController as  AdminJobController;
 use App\Http\Controllers\Admin\EmployerController as  AdminEmployerController;
 use App\Http\Controllers\Admin\JobSeekerController as  AdminJobSeekerController;
+
+use App\Http\Controllers\Employer\JobController as  EmployerJobController;
+use App\Http\Controllers\Employer\EmployerController as  EmployerEmployerController;
+use App\Http\Controllers\Employer\JobSeekerController as  EmployerJobSeekerController;
+
+use App\Http\Controllers\JobSeeker\JobController as  JobSeekerJobController;
+use App\Http\Controllers\JobSeeker\EmployerController as  JobSeekerEmployerController;
+use App\Http\Controllers\JobSeeker\JobSeekerController as  JobSeekerJobSeekerController;
 
 
 /*
@@ -53,6 +61,8 @@ Route::get('/admin/profile', [App\Http\Controllers\Admin\ProfileController::clas
 Route::get('/jobSeeker/profile', [App\Http\Controllers\JobSeeker\ProfileController::class, 'index'])->name('jobSeeker.profile');
 Route::get('/employer/profile', [App\Http\Controllers\Employer\ProfileController::class, 'index'])->name('employer.profile');
 
+// Admin Routes
+
 Route::get('/admin/jobs', [AdminJobController::class, 'index'])->name('admin.jobs.index');
 Route::get('/admin/jobs/create', [AdminJobController::class, 'create'])->name('admin.jobs.create');
 Route::get('/admin/jobs/{id}', [AdminJobController::class, 'show'])->name('admin.jobs.show');
@@ -76,6 +86,39 @@ Route::post('/admin/jobSeekers/store', [AdminJobSeekerController::class, 'store'
 Route::get('/admin/jobSeekers/{id}/edit', [AdminJobSeekerController::class, 'edit'])->name('admin.jobSeekers.edit');
 Route::put('/admin/jobSeekers/{id}', [AdminJobSeekerController::class, 'update'])->name('admin.jobSeekers.update');
 Route::delete('/admin/jobSeekers/{id}', [AdminJobSeekerController::class, 'destroy'])->name('admin.jobSeekers.destroy');
+
+// Employer Routes
+
+Route::get('/employer/jobs', [EmployerJobController::class, 'index'])->name('employer.jobs.index');
+Route::get('/employer/jobs/create', [EmployerJobController::class, 'create'])->name('employer.jobs.create');
+Route::get('/employer/jobs/{id}', [EmployerJobController::class, 'show'])->name('employer.jobs.show');
+Route::post('/employer/jobs/store', [EmployerJobController::class, 'store'])->name('employer.jobs.store');
+Route::get('/employer/jobs/{id}/edit', [EmployerJobController::class, 'edit'])->name('employer.jobs.edit');
+Route::put('/employer/jobs/{id}', [EmployerJobController::class, 'update'])->name('employer.jobs.update');
+Route::delete('/employer/jobs/{id}', [EmployerJobController::class, 'destroy'])->name('employer.jobs.destroy');
+
+Route::get('/employer/employers', [EmployerEmployerController::class, 'index'])->name('employer.employers.index');
+Route::get('/employer/employers/create', [EmployerEmployerController::class, 'create'])->name('employer.employers.create');
+Route::get('/employer/employers/{id}', [EmployerEmployerController::class, 'show'])->name('employer.employers.show');
+Route::post('/employer/employers/store', [EmployerEmployerController::class, 'store'])->name('employer.employers.store');
+Route::get('/employer/employers/{id}/edit', [EmployerEmployerController::class, 'edit'])->name('employer.employers.edit');
+Route::put('/employer/employers/{id}', [EmployerEmployerController::class, 'update'])->name('employer.employers.update');
+Route::delete('/employer/employers/{id}', [EmployerEmployerController::class, 'destroy'])->name('employer.employers.destroy');
+
+Route::get('/employer/jobSeekers/{id}', [EmployerJobSeekerController::class, 'show'])->name('employer.jobSeekers.show');
+
+// Job Seeker Routes
+Route::get('/jobSeeker/jobs', [JobSeekerJobController::class, 'index'])->name('jobSeeker.jobs.index');
+Route::get('/jobSeeker/jobs/{id}', [JobSeekerJobController::class, 'show'])->name('jobSeeker.jobs.show');
+
+Route::get('/jobSeeker/employers', [JobSeekerEmployerController::class, 'index'])->name('jobSeeker.employers.index');
+Route::get('/jobSeeker/employers/{id}', [JobSeekerEmployerController::class, 'show'])->name('jobSeeker.employers.show');
+
+Route::get('/jobSeeker/jobSeekers/{id}', [JobSeekerJobSeekerController::class, 'show'])->name('jobSeeker.jobSeekers.show');
+Route::put('/jobSeeker/jobSeekers/{id}', [JobSeekerJobSeekerController::class, 'update'])->name('jobSeeker.jobSeekers.update');
+Route::delete('/jobSeeker/jobSeekers/{id}', [JobSeekerJobSeekerController::class, 'destroy'])->name('jobSeeker.jobSeekers.destroy');
+
+
 
 // Route::get('/admin/patients', [AdminPatientController::class, 'index'])->name('admin.patients.index');
 // Route::get('/admin/patients/create', [AdminPatientController::class, 'create'])->name('admin.patients.create');

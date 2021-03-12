@@ -28,12 +28,19 @@
 
 <body>
     <div id="app">
-        <header class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-dark border-bottom shadow-sm">
+        <header class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 pure-black border-bottom shadow-sm">
 
-            <a class="navbar-brand col" href="{{ url('home') }}">
-                <img src="{{url('/images/logo1.png')}}" alt="Image" width="112.333333333" height="81" />
-            </a>
+            {{-- <form class="col form-header">
+              <input type="text" class="input" placeholder="Search...">
+              <i class="fa fa-search"></i>
+          </form> --}}
 
+
+            <div class="col-7">
+                <a class="navbar-brand" href="{{ url('home') }}">
+                    <img src="{{url('/images/logo1.png')}}" alt="Image" width="112.333333333" height="81" />
+                </a>
+            </div>
 
             <nav class="navbar navbar-expand-md navbar-light shadow-sm bg-light col">
 
@@ -49,6 +56,7 @@
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto ">
+
                         <a class="p-2 text-dark " href="{{route('home')}}">
                             <li class="col">Home</li>
                         </a>
@@ -97,9 +105,9 @@
 
                                 <a href="{{ route('profile', Auth::user()->id) }}"><strong class="d-block text-dark dropdown-item p-2 text-dark">My Profile</strong>
 
-                                  {{-- {{ __('profile') }} --}}
+                                    {{-- {{ __('profile') }} --}}
 
-                              </a>
+                                </a>
                             </div>
                         </li>
                         @endguest
@@ -113,9 +121,71 @@
     </div>
 
 
+
+
     @include('notify::messages')
     <x:notify-messages />
     @notifyJs
+
+
+    <style>
+        .input {
+            border: 0px;
+            background: white !important;
+            width: 0%;
+            padding: 5px 0;
+            outline: none;
+            /*font-weight: var(--fw-sb);*/
+            transition: all 0.3s ease;
+            font-size: 24px;
+
+        }
+
+        .input.active {
+            width: 250px;
+            padding-left: 5px;
+            transition: all 0.5s 0.8s ease;
+        }
+
+        .input::placeholder {
+            color: black;
+            font-size: 26px;
+            /*
+    font-size: var(--fs2);
+*/
+        }
+
+        .search-cont .fa {
+            color: #ffffff;
+            position: absolute;
+            /*right: 15px;
+    top: 20px;*/
+            cursor: pointer;
+        }
+
+        .fa-search {
+            font-size: 26px;
+        }
+
+        .pure-black {
+            background-color: #000000
+        }
+    </style>
+
 </body>
 
 </html>
+
+{{-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript" src="public\scripts\jquery-2.2.0.min.js"></script> --}}
+
+{{--
+<script>
+    $('.custom-btn').click(function() {
+        $(this).toggleClass("active");
+    });
+
+</script> --}}

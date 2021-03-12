@@ -1,6 +1,6 @@
 <?php
 # @Date:   2021-01-23T17:22:41+00:00
-# @Last modified time: 2021-03-03T15:54:40+00:00
+# @Last modified time: 2021-03-12T11:23:48+00:00
 
 
 
@@ -22,7 +22,7 @@ class AddEmployerIdToJobsTable extends Migration
         Schema::table('jobs', function (Blueprint $table) {
           $table->dropColumn('employer');
           $table->unsignedBigInteger('employer_id');
-          $table->foreign('employer_id')->references('id')->on('employers')->onUpdate('cascade')->onDelete('restrict');
+          $table->foreign('employer_id')->references('id')->on('employers')->onUpdate('cascade')->onDelete('cascade'); // im te problem
         });
     }
 

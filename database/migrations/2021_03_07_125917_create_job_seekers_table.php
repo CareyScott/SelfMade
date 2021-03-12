@@ -1,6 +1,6 @@
 ->onUpdate('cascade')->onDelete('cascade')<?php
 # @Date:   2021-03-07T12:59:16+00:00
-# @Last modified time: 2021-03-09T18:46:45+00:00
+# @Last modified time: 2021-03-10T12:38:26+00:00
 
 
 
@@ -31,7 +31,7 @@ class CreateJobSeekersTable extends Migration
          // $table->unsignedBigInteger('skill_id_3');
          $table->timestamps();
 
-         $table->foreign('user_id')->references('id')->on('users');
+         $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
          // $table->foreign('skill')->references('id')->on('skills')->onUpdate('cascade')->onDelete('cascade');
          // $table->foreign('skill_id_2')->references('id')->on('skills')->onUpdate('cascade')->onDelete('cascade');
          // $table->foreign('skill_id_3')->references('id')->on('skills')->onUpdate('cascade')->onDelete('cascade');

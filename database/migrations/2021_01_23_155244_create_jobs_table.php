@@ -1,6 +1,6 @@
 <?php
 # @Date:   2021-01-23T15:52:43+00:00
-# @Last modified time: 2021-03-04T16:17:57+00:00
+# @Last modified time: 2021-03-11T19:30:06+00:00
 
 
 
@@ -27,6 +27,7 @@ class CreateJobsTable extends Migration
           $table->decimal('salary', 6, 2);
           $table->string('description');
           $table->string('job_category');
+          // $table->unsignedBigInteger('skill_id');
           $table->timestamps();
 
         });

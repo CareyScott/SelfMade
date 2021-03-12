@@ -1,6 +1,6 @@
 <?php
 # @Date:   2020-11-30T10:54:30+00:00
-# @Last modified time: 2021-03-08T18:44:59+00:00
+# @Last modified time: 2021-03-12T13:13:29+00:00
 
 
 
@@ -36,14 +36,14 @@ class ProfileController extends Controller
     public function index()
     {
       $jobSeeker = JobSeeker::all();
-      $skill = Skill::all();
+      $skills = Skill::all();
       $user = Auth::user();
 
       $user->load('jobSeeker');
 
       return view('jobSeeker.profile', [
         // 'jobSeeker' => $jobSeeker,
-        'skill' => $skill,
+        'skills' => $skills,
         'user' => $user,
       ]);
     }

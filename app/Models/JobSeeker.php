@@ -1,6 +1,6 @@
 <?php
 # @Date:   2021-03-07T12:45:08+00:00
-# @Last modified time: 2021-03-09T18:32:51+00:00
+# @Last modified time: 2021-03-11T19:56:54+00:00
 
 
 
@@ -18,9 +18,24 @@ class JobSeeker extends Model
     {
       return $this->hasMany('App\Models\Skill');
     }
+    public function skill()
+    {
+      return $this->hasMany('App\Models\Skill');
+    }
 
     public function user()
     {
       return $this->belongsTo('App\Models\User');
     }
+
+
+
+    protected $fillable = [
+
+        'personal_postal_address',
+        'personal_bio',
+        'education',
+        'user_id',
+        'skill',
+    ];
 }

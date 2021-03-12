@@ -4,15 +4,105 @@
 <div class="container">
     <div class="row">
 
-        {{-- <select class="form-select form-select-sm col px-2 mr-3 " aria-label="Default select example" name="jobCategories">
-            <option selected>Location</option>
-            @foreach ($jobSeekers as $jobSeeker)
-            <option value="{{$jobSeeker->id}}">{{$jobSeeker->user->name}}</option>
-            @endforeach
-        </select> --}}
-        <form class="form-inline my-2 my-md-0 col">
-            <input class="form-control" placeholder="Search"></input>
-        </form>
+    </div>
+
+    <div class="modal fade" id="create" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header pure-black text-light">
+                    Create Job Seeker
+                </div>
+                <div class="modal-body">
+                        <div class="card-body">
+                            @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                    <li>{{ $error }} </li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                            @endif
+
+                            <form method="POST" action="{{route('admin.jobSeekers.store')}}">
+                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+
+                                <div class="form-group">
+                                    <label for="title"><strong> Name </strong></label>
+                                    <input type="text" class="form-control" id='name' name='name' value='{{old('name' )}}' />
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="title"> <strong>Phone </strong></label>
+                                    <input type="text" class="form-control" id='phone' name='phone' value='{{old('phone' )}}' />
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="title"> <strong>Email </strong></label>
+                                    <input type="text" class="form-control" id='email' name='email' value='{{old('email')}}'></input>
+                                  </div>
+
+                                <div class="form-group">
+                                    <label for="title"><strong> Postal Address </strong></label>
+                                    <input type="text" class="form-control" id='personal_postal_address' name='personal_postal_address' value='{{old('personal_postal_address')}}'></input>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="title"><strong> Bio </label>
+                                    <textarea type="text" class="form-control" id='personal_bio' name='personal_bio' value='{{old('personal_bio')}}'></textarea>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="title"><strong> Education </strong></label>
+                                    <input  type="text" class="form-control" id='education' name='education' value='{{old('education')}}'></input >
+                                </div>
+
+                                <div class="form-group">
+                                  <div>
+                                    <label for="title"> <strong>Pick three appropriate skills</strong> </label>
+                                  </div>
+                                    <select name="skill">
+                                        @foreach ($skills as $skill)
+
+                                        <option value="{{$skill->id}}">{{$skill->name}}</option>
+
+                                        @endforeach
+                                    </select>
+                                    <select name="skill">
+                                        @foreach ($skills as $skill)
+
+                                        <option value="{{$skill->id}}">{{$skill->name}}</option>
+
+                                        @endforeach
+                                    </select>
+                                    {{-- <select name="skill_id_2">
+                                        @foreach ($skills as $skill)
+
+                                        <option value="{{$skill->id}}">{{$skill->name}}</option>
+
+                                        @endforeach
+                                    </select>
+                                    <select name="skill_id_3">
+                                        @foreach ($skills as $skill)
+
+                                        <option value="{{$skill->id}}">{{$skill->name}}</option>
+
+                                        @endforeach
+                                    </select> --}}
+                                </div>
+
+
+                                <div class="float-right">
+                                    <a href="{{route('admin.jobSeekers.index')}}" class="btn btn-outline-default"> Cancel </a>
+                                    <button type="submit" class="btn btn-outline-primary pull-right">Submit</button>
+                                </div>
+                            </form>
+
+                        </div>
+                </div>
+
+            </div>
+        </div>
     </div>
 
     <div class="row">
@@ -44,10 +134,11 @@
         <div class="col-4">
             <div class="my-3 p-3 bg-white rounded box-shadow col">
                 <div class="card-body">
-                    <h5 class="card-title">Create an Employer</h5>
-                    <p class="card-text">Administrators, follow the link below to create a new Employer.</p>
-                    <a href="{{route('admin.jobSeekers.create')}}" class="btn btn-primary">Create</a>
-                </div>
+                    <h5 class="card-title">Create an Job Seeker</h5>
+                    <p class="card-text">Administrators, follow the link below to create a new Job Seeker.</p>
+                    <button class="btn btn-primary" data-toggle="modal" data-target="#create">
+                        Create Job Seeker
+                    </button>                </div>
             </div>
             <div class="my-3 p-3 bg-white rounded box-shadow col">
                 <div class="card-body">
@@ -59,6 +150,5 @@
         </div>
     </div>
 </div>
-{{-- </div> --}}
-{{-- </div> --}}
+@include('layouts.footer')
 @endsection

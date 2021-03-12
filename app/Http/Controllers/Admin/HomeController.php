@@ -1,6 +1,6 @@
 <?php
 # @Date:   2020-11-30T10:54:30+00:00
-# @Last modified time: 2021-01-23T15:30:32+00:00
+# @Last modified time: 2021-03-11T17:04:48+00:00
 
 
 
@@ -10,7 +10,13 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Auth;
-
+use App\Models\Job;
+use App\Models\JobSeeker;
+use App\Models\User;
+use App\Models\Employer;
+use App\Models\Role;
+use App\Models\JobCategory;
+use Hash;
 
 class HomeController extends Controller
 {
@@ -32,10 +38,20 @@ class HomeController extends Controller
      */
     public function index()
     {
-        //$user = Auth::user();
+      $jobSeekers = JobSeeker::all();
 
-        //$user->authorizeRoles('admin');
+      $jobs = Job::all();
+      $employers = Employer::all();
+      $jobCategories = JobCategory::all();
 
-        return view('admin.home');
+
+      return view('admin.home', [
+      'jobSeekers' => $jobSeekers,
+      'jobs' => $jobs,
+      'employers' => $employers,
+      'jobCategories' => $jobCategories
+    ]);
+
+
     }
 }

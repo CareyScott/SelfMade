@@ -4,116 +4,237 @@
 <div class="container">
     <div class="row">
         <div class="col">
-
-
-
-            {{-- Profile Page --}}
-            <div class="container">
-                <div class="col">
-                    <div class="parallax shadow-sm" width="100%">
-                    </div>
-
+            <div class="col">
+                <div class="parallax shadow-sm" width="100%">
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <button class="btn btn-outline-primary float-right" data-toggle="modal" data-target="#create">
+        Edit Employer
+    </button>
 
 
-                <div class="row">
-                    <div class="col">
-                      <h3 class="text-dark font-weight-bold ml-2 mt-4">Job Details</h3>
-                        <div class="col-12">
-                            <label class="text-dark font-weight-bold mt-2" for="title"> Job Title: </label>
-                            <h5 class="text-dark bg-light rounded d-inline-flex ml-3 ">{{$job->title}}</h5>
-                        </div>
-                        <div class="col-12">
-                            <label class="text-dark font-weight-bold" for="title"> Approximate Salary: </label>
-                            <h5 class="text-dark bg-light rounded d-inline-flex ml-3 ">{{$job->salary}}</h5>
-                        </div>
-                        <div class="col-12">
-                            <label class="text-dark font-weight-bold" for="title"> Description: </label>
-                            <h5 class="text-dark bg-light rounded d-inline-flex ml-3 ">{{$job->description}}</h5>
-                        </div>
-                        <div class="col-12">
-                            <label class="text-dark font-weight-bold" for="title"> Date Uploaded: </label>
-                            <h5 class="text-dark bg-light rounded d-inline-flex ml-3">{{$job->date_uploaded}}</h5>
-                        </div>
-                        <div class="col-12">
-                            <label class="text-dark font-weight-bold" for="title"> Valid Until: </label>
-                            <h5 class="text-dark bg-light rounded d-inline-flex ml-3">{{$job->valid_until}}</h5>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <img src="https://picsum.photos/140" class="rounded-circle border shadow-sm float-right mt-3" alt="Profile Picture">
-                        <h3 class="text-dark font-weight-bold ml-2 mt-4">Employer Details</h3>
-                        <div class="col-12">
-                            <label class="text-dark font-weight-bold" for="title"> Employer Name: </label>
-                            <h5 class="text-dark bg-light rounded d-inline-flex ml-3">{{$job->employer->user->name}}</h5>
-                        </div>
-                        <div class="col-12">
-                            <label class="text-dark font-weight-bold" for="title"> Employer Phone: </label>
-                            <h5 class="text-dark bg-light rounded d-inline-flex ml-3">{{$job->employer->user->phone}}</h5>
-                        </div>
-                        <div class="col-12">
-                            <label class="text-dark font-weight-bold" for="title"> Employer Email: </label>
-                            <a href="mailto:{{$job->employer->user->email}}?subject=Job Query Via Self-Made" <h5 class="text-dark d-inline-flex ml-3">{{$job->employer->user->email}}</h5></a>
-                        </div>
-                    </div>
+    <div class="modal fade" id="create" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header pure-black text-light">
+                    Edit Job
                 </div>
+                <div class="modal-body">
+                    <div class="card-body">
+                        @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                <li>{{ $error }} </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                        @endif
 
-                <div class="row">
-                    <div class="col-8">
+                        <form method="POST" action="{{route('admin.jobs.update', $job->id)}}">
+                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                            <input type="hidden" name="_method" value="PUT">
 
-                    </div>
-                    <div class="col-4" style="width:100%"><iframe width="100%" height="300" frameborder="0" scrolling="yes" marginheight="0" marginwidth="0"
-                          src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q={{$job->employer->company_postal_address}}+(Employer)&amp;z=14&amp;ie=UTF8&amp;output=embed">
-                        </iframe>
+                            <div class="form-group">
+                                <label for="title"> Job Title </label>
+                                <input type="title" class="form-control" id='title' name='title' value='{{old('title' , $job->title)}}' />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="title"> Employer </label>
+                                <select name="employer_id">
+
+                                    @foreach ($employers as $employer)
+
+                                    <option value="{{$employer->id}}" selected="{{$employer->user->name}}">{{$employer->user->name}}</option>
+
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="title"> Date Uploaded </label>
+                                <input type="date" class="form-control" id='date_uploaded' name='date_uploaded' value='{{old('date_uploaded' , $job->date_uploaded)}}' />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="title"> Valid Until </label>
+                                <input type="date" class="form-control" id='valid_until' name='valid_until' value='{{old('valid_until',$job->valid_until)}}'></input>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="title"> Salary </label>
+                                <input type="text" class="form-control" id='salary' name='salary' value='{{old('salary',$job->salary)}}'></input>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="title"> description </label>
+                                <input type="text" class="form-control" id='description' name='description' value='{{old('description',$job->description)}}'></input>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="title"> Job Category </label>
+                                <select name="job_category_id">
+                                    @foreach ($jobCategories as $jobCategory)
+
+                                    <option value="{{$jobCategory->id}}">{{$jobCategory->title}}</option>
+
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="title"> Job Category </label>
+                                <select name="skill_id">
+                                    @foreach ($skills as $skill)
+
+                                    <option value="{{$skill->id}}">{{$skill->name}}</option>
+
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div class="float-right">
+                                <a href="{{route('admin.jobs.index')}}" class="btn btn-default"> Cancel </a>
+                                <button type="submit" class="btn btn-primary pull-right">Submit</button>
+                            </div>
+                        </form>
+
                     </div>
                 </div>
             </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
 
 
 
-            {{-- <table class="table table-striped table-dark text-white">
+    <div class="row">
+
+        <div class="col">
+            <h3 class="text-dark font-weight-bold ml-2 mt-4">Job Details</h3>
+            <div class="col-12">
+                <label class="text-dark font-weight-bold mt-2" for="title"> Job Title: </label>
+                <h5 class="text-dark bg-light rounded d-inline-flex ml-3 ">{{$job->title}}</h5>
+            </div>
+            <div class="col-12">
+                <label class="text-dark font-weight-bold" for="salary"> Approximate Salary: </label>
+                <h5 class="text-dark bg-light rounded d-inline-flex ml-3 ">{{$job->salary}}</h5>
+            </div>
+            <div class="col-12">
+                <label class="text-dark font-weight-bold" for="description"> Description: </label>
+                <h5 class="text-dark bg-light rounded d-inline-flex ml-3 ">{{$job->description}}</h5>
+            </div>
+            <div class="col-12">
+                <label class="text-dark font-weight-bold" for="date_uploaded"> Date Uploaded: </label>
+                <h5 class="text-dark bg-light rounded d-inline-flex ml-3">{{$job->date_uploaded}}</h5>
+            </div>
+            <div class="col-12">
+                <label class="text-dark font-weight-bold" for="valid_until"> Valid Until: </label>
+                <h5 class="text-dark bg-light rounded d-inline-flex ml-3">{{$job->valid_until}}</h5>
+            </div>
+            <div class="col-12">
+                <label class="text-dark font-weight-bold" for="skill_id"> Skill required: </label>
+                <h5 class="text-dark bg-light rounded d-inline-flex ml-3">{{$job->skill_id}}</h5>
+            </div>
+        </div>
+        <div class="col">
+            <img src="https://picsum.photos/140" class="rounded-circle border shadow-sm float-right mt-3" alt="Profile Picture">
+            <h3 class="text-dark font-weight-bold ml-2 mt-4">Employer Details</h3>
+            <div class="col-12">
+                <label class="text-dark font-weight-bold" for="title"> Employer Name: </label>
+                <h5 class="text-dark bg-light rounded d-inline-flex ml-3">{{$job->employer->user->name}}</h5>
+            </div>
+            <div class="col-12">
+                <label class="text-dark font-weight-bold" for="title"> Employer Phone: </label>
+                <h5 class="text-dark bg-light rounded d-inline-flex ml-3">{{$job->employer->user->phone}}</h5>
+            </div>
+            <div class="col-12">
+                <label class="text-dark font-weight-bold" for="title"> Employer Email: </label>
+                <a href="mailto:{{$job->employer->user->email}}?subject=Job Query Via Self-Made" <h5 class="text-dark d-inline-flex ml-3">{{$job->employer->user->email}}</h5></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-8">
+
+        </div>
+        <div class="col-4" style="width:100%"><iframe width="100%" height="300" frameborder="0" scrolling="yes" marginheight="0" marginwidth="0"
+              src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q={{$job->employer->company_postal_address}}+(Employer)&amp;z=14&amp;ie=UTF8&amp;output=embed">
+            </iframe>
+        </div>
+    </div>
+
+
+
+
+    {{-- <table class="table table-striped table-dark text-white">
                         <tbody>
                             <tr>
                                 <td>Name </td>
                                 <td>{{ $employer->user->name }}</td>
-            </tr>
-            <tr>
-                <td>Phone: </td>
-                <td>{{ $employer->user->phone }}</td>
-            </tr>
-            <tr>
-                <td>Email: </td>
-                <td>{{$employer->user->email }}</td>
-            </tr>
-            <tr>
-                <td>Postal Address </td>
-                <td>{{ $employer->company_postal_address }}</td>
-            </tr>
-            <tr>
-                <td>Employer Category</td>
-                <td>{{ $employer->category }}</td>
-            </tr>
-            </tbody>
-            </table> --}}
+    </tr>
+    <tr>
+        <td>Phone: </td>
+        <td>{{ $employer->user->phone }}</td>
+    </tr>
+    <tr>
+        <td>Email: </td>
+        <td>{{$employer->user->email }}</td>
+    </tr>
+    <tr>
+        <td>Postal Address </td>
+        <td>{{ $employer->company_postal_address }}</td>
+    </tr>
+    <tr>
+        <td>Employer Category</td>
+        <td>{{ $employer->category }}</td>
+    </tr>
+    </tbody>
+    </table> --}}
 
-            {{-- <div class="col" style="width:100%"><iframe width="100%" height="300" frameborder="0" scrolling="yes" marginheight="0" marginwidth="0"
+    {{-- <div class="col" style="width:100%"><iframe width="100%" height="300" frameborder="0" scrolling="yes" marginheight="0" marginwidth="0"
                   src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q={{$employer->company_postal_address}}+(Employer)&amp;z=14&amp;ie=UTF8&amp;output=embed">
-            </iframe>
-        </div> --}}
+    </iframe>
+</div> --}}
 
-        <div class="float-right">
-            <form style="display:inline-block" method="POST" action="{{route('admin.jobs.destroy', $job->id)}}">
-                <input type="hidden" name="_method" value="DELETE">
-                <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                <button type="submit" class="form-control btn btn-outline-danger">Delete</button>
-            </form>
-            <a href="{{route('admin.jobs.edit', $job->id) }}" class="btn btn-outline-info"> Edit</a>
-            <a href="{{route('admin.jobs.index') }}" class="btn btn-outline-dark"> Back</a>
+<div class="float-right">
+    <button class="btn btn-danger" data-toggle="modal" data-target="#confirm-delete">
+        Delete
+    </button>
+    <a href="{{route('admin.jobs.index') }}" class="btn btn-outline-dark"> Back</a>
+</div>
+
+<div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header pure-black text-light">
+                Are you sure you want to delete this Job?
+            </div>
+            <div class="modal-body">
+                <p class="mb-1">{{$job->title}}</p>
+                <p class="mb-1">Job-Id: &nbsp; {{$job->id}}</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <form style="display:inline-block" method="POST" action="{{route('admin.jobs.destroy', $job->id)}}">
+                    <input type="hidden" name="_method" value="DELETE">
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                    <button type="submit" class="form-control btn btn-outline-danger">Delete</button>
+                </form>
+            </div>
         </div>
     </div>
 </div>
-</div>
 
+</div>
 
 <style>
     .parallax {

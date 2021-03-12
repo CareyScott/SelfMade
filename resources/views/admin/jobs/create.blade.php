@@ -68,6 +68,16 @@
                                 @endforeach
                             </select>
                         </div>
+                        <div class="form-group">
+                            <label for="title"> Job Category </label>
+                            <select name="skill_id">
+                                @foreach ($skills as $skill)
+
+                                <option value="{{$skill->id}}">{{$skill->name}}</option>
+
+                                @endforeach
+                            </select>
+                        </div>
 
 
                         <div class="float-right">

@@ -1,6 +1,6 @@
 <?php
 # @Date:   2021-01-23T15:54:28+00:00
-# @Last modified time: 2021-03-10T11:20:16+00:00
+# @Last modified time: 2021-03-12T12:08:27+00:00
 
 
 
@@ -42,13 +42,15 @@ class JobSeekerController extends Controller
         $jobs = Job::all();
         $employers = Employer::all();
         $jobCategories = JobCategory::all();
+        $skills = Skill::all();
 
 
         return view('admin.jobSeekers.index', compact('jobSeekers'), [
         'jobSeekers' => $jobSeekers,
         'jobs' => $jobs,
         'employers' => $employers,
-        'jobCategories' => $jobCategories
+        'jobCategories' => $jobCategories,
+        'skills' => $skills
       ]);
       }
     }
@@ -169,13 +171,13 @@ class JobSeekerController extends Controller
     public function show($id)
     {
       $jobSeeker = JobSeeker::findOrFail($id);
-      $skill = Skill::all();
+      $skills = Skill::all();
 
       // $jobSeeker->load('skills');
 
       return view('admin.jobSeekers.show', [
         'jobSeeker' => $jobSeeker,
-        'skill' => $skill,
+        'skills' => $skills,
       ]);
     }
 
@@ -187,15 +189,20 @@ class JobSeekerController extends Controller
      */
     public function edit($id)
     {
-      $job = Job::findOrFail($id);
+      $jobSeeker = JobSeeker::findOrFail($id);
+      $jobs = Job::all();
       $employers = Employer::all();
       $jobCategories = JobCategory::all();
+      $jobSkills = JobSkill::all();
+      $skills = Skill::all();
 
       return view('admin.jobSeekers.edit', [
-      'job' => $job,
+      'jobSeeker' => $jobSeeker,
+      'jobs' => $jobs,
       'employers' => $employers,
       'jobCategories' => $jobCategories,
-
+      'jobSkills' => $jobSkills,
+      'skills' => $skills,
     ] );
     }
 
@@ -208,29 +215,43 @@ class JobSeekerController extends Controller
      */
     public function update(Request $request, $id)
     {
+      {
       $request->validate([
+        'name' => 'required|max:191',
+        'phone' => 'required|max:191',
+        'email' => 'required|max:191',
         'personal_postal_address' => 'required|max:191',
         'personal_bio' => 'required|max:191',
-        'skills' => 'required',
-        'skill_id_1' => 'required',
-        'skill_id_2' => 'required',
-        'skill_id_3' => 'required',
+        'education' => 'required',
+        'skill' => 'required',
+
       ]);
 
-      $job = Job::findOrFail($id);
+      $jobSeeker = JobSeeker::findOrFail($id);
+      $user = User::findOrFail($id);
+      // $jobSkill = JobSkill::findOrFail($id);
 
-      $job->title = $request->input('title');
-      $job->employer_id = $request->input('employer_id');
-      $job->date_uploaded = $request->input('date_uploaded');
-      $job->valid_until = $request->input('valid_until');
-      $job->salary = $request->input('salary');
-      $job->description = $request->input('description');
-      $job->job_category_id = $request->input('job_category_id');
+      $jobSeeker->user->name = $request->input('name');
+      $jobSeeker->user->phone = $request->input('phone');
+      $jobSeeker->user->email = $request->input('email');
+      $jobSeeker->user->password = Hash::make('secret');
+      $jobSeeker->user->save();
 
-      $job->save();
+
+      $jobSeeker->personal_postal_address = $request->input('personal_postal_address');
+      $jobSeeker->personal_bio = $request->input('personal_bio');
+      $jobSeeker->education = $request->input('education');
+      $jobSeeker->skill = $request->input('skill');
+      $jobSeeker->save();
+
+
+      // $jobSkill->skill_id = $jobSeeker->skill;
+      // $jobSkill->jobSeeker_id =  $jobSeeker->id;
+      // $jobSkill->save();
 
       return redirect()->route('admin.jobSeekers.index');
 
+      }
     }
 
     /**
@@ -241,8 +262,9 @@ class JobSeekerController extends Controller
      */
     public function destroy($id)
     {
-      $job = Job::findOrFail($id);
-      $job->delete();
+      $jobSeeker = JobSeeker::findOrFail($id);
+      $jobSeeker->user->delete();
+      $jobSeeker->delete();
 
       return redirect()->route('admin.jobSeekers.index');
     }
