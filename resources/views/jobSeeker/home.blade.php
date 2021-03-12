@@ -65,14 +65,14 @@
                         <a href="{{route('admin.jobs.index')}}"><button class="btn home-btn-dark text-light col-8 bike-img-btn">Jobs</button></a>
                     </div>
                     <div class="col-6 mt-4 border border-dark mb-5">
-                        <p class="heading mt-2">Recommended Jobs</p>
-                          <p><strong>Jobs for: </strong></p>
-                          {{$user->name}}
-                          <br>
-                          {{$user->jobSeeker->personal_postal_address}}
-                          <br>
-                           {{-- // will show skill name --}}
-                          Skills: {{$user->jobSeeker->skill}}
+                        <p class="title-font h1 mt-2">Recommended Jobs</p>
+                        <p><strong>Jobs for: </strong></p>
+                        {{$user->name}}
+                        <br>
+                        {{$user->jobSeeker->personal_postal_address}}
+                        <br>
+                        {{-- // will show skill name --}}
+                        Skills: {{$user->jobSeeker->skill}}
 
                         @if (count($jobs) === 0)
 

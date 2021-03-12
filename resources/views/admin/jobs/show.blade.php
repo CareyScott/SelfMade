@@ -66,7 +66,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="title"> Valid Until </label>
+                            <label for="title"> Application Deadline </label>
                             <input type="date" class="form-control" id='valid_until' name='valid_until' value='{{old('valid_until',$job->valid_until)}}'></input>
                         </div>
 
@@ -76,7 +76,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="title"> description </label>
+                            <label for="title"> Description </label>
                             <input type="text" class="form-control" id='description' name='description' value='{{old('description',$job->description)}}'></input>
                         </div>
 
@@ -92,7 +92,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="title"> Job Category </label>
+                            <label for="title"> Job Skills </label>
                             <select name="skill_id">
                                 @foreach ($skills as $skill)
 
@@ -182,7 +182,7 @@
     <div class="container">
         <div class="row">
           <div class="col-7 mt-3 mx-auto list-group-item" style="width: 100%; border-radius: 10px 10px 10px 10px;">
-              <p class="heading text-center">Job Listing</p>
+              <p class=" h1 text-center title-font">Job Listing</p>
 
               <div class=" shadow-sm mx-auto  " style="width: 90%; border-radius: 10px 10px 10px 10px;">
                 <div class="list-group-item list-group-item-action flex-column align-items-start">
@@ -199,7 +199,7 @@
                 </div>
                 <div class="list-group-item list-group-item-action flex-column align-items-start ">
                     <div class="d-flex w-100 justify-content-between">
-                        <h5 class="mb-1"><strong>Date Uploaded</strong></h5>
+                        <h5 class="mb-1"><strong>Application Deadline</strong></h5>
                     </div>
                     <p class="mb-1">{{$job->date_uploaded}}</p>
                 </div>
@@ -220,7 +220,7 @@
           </div>
 
             <div class="col-4 mt-3  list-group-item mx-auto" style="width: 100%; border-radius: 10px 10px 10px 10px;">
-                <p class="heading text-center">Employer</p>
+                <p class="title-font h1 text-center">Employer</p>
 
                 <img src="https://picsum.photos/140" class=" rounded-circle mt-3 mb-2 border shadow-sm mx-auto " alt="Profile Picture">
                 <div class=" shadow-sm mx-auto text-dark " style="width: 100%; border-radius: 10px 10px 10px 10px;">

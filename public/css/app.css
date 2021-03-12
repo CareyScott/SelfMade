@@ -1,6 +1,6 @@
 /**
  * @Date:   2021-01-23T14:52:58+00:00
- * @Last modified time: 2021-03-04T12:43:55+00:00
+ * @Last modified time: 2021-03-12T22:05:37+00:00
  */
 
 
@@ -15,9 +15,12 @@
  */
 
 
- 
+ .home-btn-dark {
+     background-color: #000000;
+ }
+.title-font{font-family: 'Ramabhadra', sans-serif;
 
-
+}
 :root {
   --blue: #3490dc;
   --indigo: #6574cd;

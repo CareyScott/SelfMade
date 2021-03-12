@@ -5,7 +5,7 @@
         <div class="container">
             <div class="row">
                 <DIV class="col-7 mt-3 mb-3">
-                    <img src="{{url('/images/logo1.png')}}" class="img-fluid col-2">
+                  <h1 class="h1 title-font text-light">SELF MADE.</h1>
                 </div>
 
                 <div class="col-5 mt-4 mb-4 ">

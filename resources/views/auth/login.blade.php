@@ -7,11 +7,11 @@
 
             <div class="col-4 form-signin mx-auto">
 
-              <a class="navbar-brand col mx-auto mb-5 mt-5" href="{{ url('home') }}">
-                  <img src="{{url('/images/logo1.png')}}" alt="Image"/>
-              </a>
 
-              <h1 class="h3 mb-3 fw-normal text-center">Login</h1>
+
+              <h1 class="h1 title-font text-dark text-center mb-5 mt-5">SELF MADE.</h1>
+
+                <h1 class="h3 mb-3 fw-normal text-center title-font">Login</h1>
 
                 <form method="POST" action="{{ route('login') }}">
                     @csrf
@@ -53,7 +53,7 @@
                     </div>
 
                     <div class="form-group row">
-                        <button type="submit" class="w-100 btn btn-lg btn-primary" class="mx-auto">
+                        <button type="submit" class="w-100 btn btn-lg btn-dark" class="mx-auto">
                             {{ __('Login') }}
                         </button>
 

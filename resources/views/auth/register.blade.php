@@ -1,13 +1,15 @@
 @extends('layouts.app')
+<link href="{{ asset('public\css\app.css') }}" rel="stylesheet">
 
 @section('content')
 <div class="container">
+
     <div class="row">
         <div class="col">
 
-            <img src="{{url('/images/logo1.png')}}" alt="Image" class="mx-auto col-2 mt-5 mb-2" />
+          <h1 class="h1 title-font text-dark text-center mb-5 mt-5">SELF MADE.</h1>
 
-            <h1 class="h3 mb-3 fw-normal text-center">Registration</h1>
+            <h1 class="h3 mb-3 fw-normal text-center title-font">Sign Up</h1>
 
 
 {{-- `this hides the form not being used bugs out though` --}}
@@ -150,7 +152,23 @@
                     <div class="mx-auto col-md-5">
                         <label for="skill" class="  text-md-right">{{ __('Skill') }}</label>
 
-                        <select class="form-control " name="skill">
+                        <select class="form-control " name="skill[]">
+                            @foreach ($skills as $skill)
+                            <option value="{{$skill->id}}">{{$skill->name}}</option>
+                            @endforeach
+                        </select>
+
+
+                        @error('skill')
+
+                        @enderror
+                    </div>
+                </div>
+                <div class="form-group row jobSeeker box">
+                    <div class="mx-auto col-md-5">
+                        <label for="skill" class="  text-md-right">{{ __('Skill') }}</label>
+
+                        <select class="form-control " name="skill[]">
                             @foreach ($skills as $skill)
                             <option value="{{$skill->id}}">{{$skill->name}}</option>
                             @endforeach
@@ -202,7 +220,7 @@
 
                 <div class="form-group row">
                     <div class="col-md-5 mx-auto">
-                        <button type="submit" class="w-100 btn btn-lg btn-primary">
+                        <button type="submit" class="w-100 btn btn-lg btn-dark">
                             {{ __('Register') }}
                         </button>
                     </div>

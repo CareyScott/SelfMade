@@ -64,7 +64,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="title"> Valid Until </label>
+                            <label for="title"> Application Deadline  </label>
                             <input type="date" class="form-control" id='valid_until' name='valid_until' value='{{old('valid_until',$job->valid_until)}}'></input>
                         </div>
 

@@ -1,6 +1,6 @@
 <?php
 # @Date:   2021-01-23T06:08:20+00:00
-# @Last modified time: 2021-03-12T17:45:11+00:00
+# @Last modified time: 2021-03-12T21:31:48+00:00
 
 
 
@@ -54,6 +54,7 @@ class RegisterController extends Controller
     public function showRegistrationForm()
 {
     $skills=Skill::all();
+    $jobSkill=JobSkill::all();
     return view('auth.register', compact('skills'));
 }
 
@@ -117,18 +118,30 @@ class RegisterController extends Controller
 
 
 
-
+          // //i work
           // $skill_jobSeeker = Skill::findOrFail($data['skill'] );
+          // foreach ((array) $data['skill'] as $skill)
+          // {
+          // $jobSkill =  JobSkill::create([
+          //       'skill_id' => $skill,
+          //       'jobSeeker_id' => $jobSeeker->id,
+          //   ]);
+          // }
 
-
-
-          foreach ((array) $data['skill'] as $skill)
+          foreach ( $data['skill'] as $skill)
           {
           $jobSkill =  JobSkill::create([
                 'skill_id' => $skill,
                 'jobSeeker_id' => $jobSeeker->id,
             ]);
           }
+
+
+                    // foreach((array)$data['skill'] as $skill)
+                    // {
+                    //   $jobSkill = JobSkill::findOrFail($skill);
+                    //   $jobSeeker->skills()->attach($jobSkill);
+                    // }
 
 
 
