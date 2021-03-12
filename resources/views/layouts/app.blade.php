@@ -63,7 +63,7 @@
                         <a class="p-2 text-dark " href="{{route('about')}}">
                             <li class="col">About</li>
                         </a>
-                        <a class="p-2 text-dark " href="{{route('welcome')}}">
+                        <a class="p-2 text-dark " href="{{route('home')}}">
                             <li class="col">Home</li>
                         </a>
                         <a class="p-2 text-dark " href="{{route('market')}}">

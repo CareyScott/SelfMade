@@ -48,7 +48,7 @@
                     <div class="d-flex w-100 justify-content-between">
                         <h5 class="mb-1"><strong>Skills Required</strong></h5>
                     </div>
-                        <p>{{$job->salary}}</p>
+                        <p>{{$job->skill_id}}</p>
 
                 </div>
               </div>

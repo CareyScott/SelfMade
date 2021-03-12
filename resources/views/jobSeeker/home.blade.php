@@ -74,8 +74,9 @@
                            {{-- // will show skill name --}}
                           Skills: {{$user->jobSeeker->skill}}
 
-                        @if (count(array($jobs)) === 0)
-                        <p> There are no jobs.</p>
+                        @if (count($jobs) === 0)
+
+                        <p class="mt-5 h5"> We Can't find any jobs for you at this time. Check back later.</p>
                         @else
 
 

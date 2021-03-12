@@ -154,7 +154,7 @@
 
 
                                             <div class="float-right">
-                                                <a data-dismiss="modal">Cancel class="btn btn-default"> Cancel </a>
+                                                <a data-dismiss="modal" class="btn btn-default"> Cancel </a>
                                                 <button type="submit" class="btn btn-outline-primary pull-right">Submit</button>
                                             </div>
                                         </form>
