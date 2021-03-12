@@ -1,6 +1,6 @@
 <?php
 # @Date:   2021-01-23T16:13:01+00:00
-# @Last modified time: 2021-03-07T14:50:18+00:00
+# @Last modified time: 2021-03-12T17:09:29+00:00
 
 
 
@@ -22,17 +22,32 @@ class SkillSeeder extends Seeder
 
 
       $skill = new Skill();
-      $skill->name = 'Skill';
+      $skill->name = 'Willingness to learn';
       $skill->description = 'this is a skill';
       $skill->save();
 
       $skill = new Skill();
-      $skill->name = 'Skill 2';
+      $skill->name = 'Self-management';
       $skill->description = 'this is a skill 2';
       $skill->save();
 
       $skill = new Skill();
-      $skill->name = 'Skill 3';
+      $skill->name = 'Teamwork';
+      $skill->description = 'this is a skill 3';
+      $skill->save();
+
+      $skill = new Skill();
+      $skill->name = 'Resilience';
+      $skill->description = 'this is a skill 3';
+      $skill->save();
+
+      $skill = new Skill();
+      $skill->name = 'Leadership';
+      $skill->description = 'this is a skill 3';
+      $skill->save();
+
+      $skill = new Skill();
+      $skill->name = 'Organisation';
       $skill->description = 'this is a skill 3';
       $skill->save();
 

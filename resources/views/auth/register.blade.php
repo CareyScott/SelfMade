@@ -10,8 +10,26 @@
             <h1 class="h3 mb-3 fw-normal text-center">Registration</h1>
 
 
+{{-- `this hides the form not being used bugs out though` --}}
+            {{-- <div class="form-group row ">
+                <div class="mx-auto col-md-5">
+
+                    <select class="form-control " name="form_split">
+                        <option>I am an...</option>
+                        <option value="employer">Employer</option>
+                        <option value="jobSeeker">JobSeeker</option>
+                    </select>
+
+
+                    @error('skill')
+
+                    @enderror
+                </div>
+            </div> --}}
+
             <form method="POST" action="{{ route('register') }}">
                 @csrf
+
 
                 <div class="form-group row">
 
@@ -26,7 +44,7 @@
                     </div>
                 </div>
 
-                <div class="form-group row">
+                <div class="form-group row ">
 
                     <div class="mx-auto col-md-5">
                         <input id="phone" type="phone" placeholder="Phone Number" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required autocomplete="phone">
@@ -84,8 +102,9 @@
 
 
 
+                {{-- JobSeeker register form --}}
 
-                <div class="form-group row">
+                <div class="form-group row jobSeeker box">
 
                     <div class="mx-auto col-md-5">
                         <input id="personal_postal_address" placeholder="Postal Address" type="text" class="form-control @error('personal_postal_address') is-invalid @enderror" name="personal_postal_address"
@@ -99,7 +118,7 @@
                     </div>
                 </div>
 
-                <div class="form-group row">
+                <div class="form-group row jobSeeker box">
 
                     <div class="mx-auto col-md-5">
                         <input id="personal_bio" type="text" placeholder="Bio" class="form-control @error('personal_bio') is-invalid @enderror" name="personal_bio" value="{{ old('personal_bio') }}" required
@@ -113,7 +132,7 @@
                     </div>
                 </div>
 
-                <div class="form-group row">
+                <div class="form-group row jobSeeker box">
 
                     <div class="mx-auto col-md-5">
                         <input id="education" type="text" placeholder="education" class="form-control @error('education') is-invalid @enderror" name="education" value="{{ old('education') }}" required autocomplete="education">
@@ -126,32 +145,60 @@
                     </div>
                 </div>
 
-                <div class="form-group row">
-                    <label for="skill" class="col-md-4 col-form-label text-md-right">{{ __('Skill') }}</label>
+
+                <div class="form-group row jobSeeker box">
                     <div class="mx-auto col-md-5">
-                        <select name="skill">
-                            <option value="{{2}}">pick me</option>
+                        <label for="skill" class="  text-md-right">{{ __('Skill') }}</label>
+
+                        <select class="form-control " name="skill">
+                            @foreach ($skills as $skill)
+                            <option value="{{$skill->id}}">{{$skill->name}}</option>
+                            @endforeach
                         </select>
+
+
                         @error('skill')
 
                         @enderror
                     </div>
                 </div>
-                <div class="form-group row">
-                    <label for="skill" class="col-md-4 col-form-label text-md-right">{{ __('Skill') }}</label>
+
+{{-- Employer register form--}}
+
+
+                {{-- <div class="form-group row employer box">
+
                     <div class="mx-auto col-md-5">
-                        <select name="skill">
-                            {{-- @foreach ($skill as $skill) --}}
+                        <input id="company_postal_address" placeholder="Company Postal Address" type="text" class="form-control @error('company_postal_address') is-invalid @enderror" name="company_postal_address"
+                        value="{{ old('company_postal_address') }}" required autocomplete="company_postal_address">
 
-                            <option value="{{2}}">skill 2</option>
-
-
-                        </select>
-                        @error('skill')
-
+                        @error('personal_postal_address')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
                         @enderror
                     </div>
                 </div>
+
+                <div class="form-group row employer box">
+
+                    <div class="mx-auto col-md-5">
+                        <input id="category" type="text" placeholder="Category" class="form-control @error('category') is-invalid @enderror" name="category" value="{{ old('ccategory') }}" required
+                        autocomplete="category">
+
+                        @error('personal_bio')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                        @enderror
+                    </div>
+                </div> --}}
+
+
+
+
+
+
 
                 <div class="form-group row">
                     <div class="col-md-5 mx-auto">
@@ -164,5 +211,22 @@
         </div>
     </div>
 </div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+{{-- <script>
+    $(document).ready(function() {
+        $("select").change(function() {
+            $(this).find("option:selected").each(function() {
+                var optionValue = $(this).attr("value");
+                if (optionValue) {
+                    $(".box").not("." + optionValue).hide();
+                    $("." + optionValue).show();
+                } else {
+                    $(".box").hide();
+                }
+            });
+        }).change();
+    });
+</script> --}}
 
 @endsection

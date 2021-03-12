@@ -1,12 +1,14 @@
 <?php
 # @Date:   2021-01-23T06:08:20+00:00
-# @Last modified time: 2021-03-12T13:12:39+00:00
+# @Last modified time: 2021-03-12T18:07:48+00:00
 
 
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\JobsMarketController;
+use App\Http\Controllers\EmployersIndexController;
 
 use App\Http\Controllers\Admin\JobController as  AdminJobController;
 use App\Http\Controllers\Admin\EmployerController as  AdminEmployerController;
@@ -41,6 +43,8 @@ Auth::routes();
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
+Route::get('/jobs', [JobsMarketController::class, 'index'])->name('market');
+Route::get('/employers', [EmployersIndexController::class, 'index'])->name('employer');
 
 Route::resource('jobSeekers', App\Http\Controllers\JobSeeker\ProfileController::class)->except([
   'create', 'edit'

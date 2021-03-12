@@ -1,6 +1,6 @@
 <?php
 # @Date:   2021-01-23T06:08:20+00:00
-# @Last modified time: 2021-03-11T13:29:45+00:00
+# @Last modified time: 2021-03-12T17:45:11+00:00
 
 
 
@@ -12,6 +12,7 @@ use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use App\Models\Skill;
 use App\Models\JobSkill;
+use App\Models\Employer;
 use App\Models\Role;
 use App\Models\JobSeeker;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -50,6 +51,12 @@ class RegisterController extends Controller
         $this->middleware('guest');
     }
 
+    public function showRegistrationForm()
+{
+    $skills=Skill::all();
+    return view('auth.register', compact('skills'));
+}
+
     /**
      * Get a validator for an incoming registration request.
      *
@@ -79,8 +86,6 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
 
-
-
     {
 
       $skill = Skill::all();
@@ -96,6 +101,9 @@ class RegisterController extends Controller
             // 'password' => Hash::make($data['password']),
         ]);
 
+        //FOR LOGGING IN AS JOB sEEKER
+
+
         $user->roles()->attach(Role::where('name','jobSeeker')->first());
 
 
@@ -110,7 +118,7 @@ class RegisterController extends Controller
 
 
 
-          $skill_jobSeeker = Skill::findOrFail($data['skill'] );
+          // $skill_jobSeeker = Skill::findOrFail($data['skill'] );
 
 
 
@@ -124,8 +132,8 @@ class RegisterController extends Controller
 
 
 
-
-
+//FOR LOGGING IN AS employer
+          //
           // $user->roles()->attach(Role::where('name','employer')->first());
           //
           //

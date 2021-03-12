@@ -5,7 +5,7 @@
     <div class="row">
 
 
-        <select class="form-select form-select-sm col px-2 mr-1" aria-label="Default select example" name="jobCategories">
+        {{-- <select class="form-select form-select-sm col px-2 mr-1" aria-label="Default select example" name="jobCategories">
             <option selected>Job Category</option>
             @foreach ($jobCategories as $jobCategory)
             <option value="{{$jobCategory->id}}">{{$jobCategory->title}}</option>
@@ -25,7 +25,7 @@
         </select>
         <form class="form-inline my-2 my-md-0 col">
             <input class="form-control" placeholder="Search"></input>
-        </form>
+        </form> --}}
     </div>
 
     <div class="row">
@@ -55,15 +55,16 @@
                 <div class="col mt-5">
                     {{ $jobs->links() }}
                 </div>
+                @endif
             </div>
-            @endif
+
         </div>
         <div class="col-4">
             <div class="my-3 p-3 bg-white rounded box-shadow col">
                 <div class="card-body">
-                    <h5 class="card-title">Create a Listing</h5>
-                    <p class="card-text">If you would like to create your own job listing follow the link below.</p>
-                    <a href="{{route('employer.jobs.create')}}" class="btn btn-primary">Create</a>
+                    <h5 class="card-title">Promotional Listing</h5>
+                    <p class="card-text">This could be your listing. Click see more to find out more..</p>
+                    <a href="#" class="btn btn-primary">See More</a>
                 </div>
             </div>
             <div class="my-3 p-3 bg-white rounded box-shadow col">
@@ -75,6 +76,7 @@
             </div>
         </div>
     </div>
+</div>
 
 @include('layouts.footer')
 @endsection

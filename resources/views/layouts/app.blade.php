@@ -42,7 +42,7 @@
                 </a>
             </div>
 
-            <nav class="navbar navbar-expand-md navbar-light shadow-sm bg-light col">
+            <nav class="navbar navbar-expand-md navbar-light shadow-sm bg-light d-flex mx-auto">
 
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -50,26 +50,29 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
+                    {{-- <ul class="navbar-nav mr-auto">
 
-                    </ul>
+                    </ul> --}}
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto ">
 
-                        <a class="p-2 text-dark " href="{{route('home')}}">
+                        {{-- <a class="p-2 text-dark " href="{{route('home')}}">
                             <li class="col">Home</li>
-                        </a>
+                        </a> --}}
                         <a class="p-2 text-dark " href="{{route('about')}}">
                             <li class="col">About</li>
                         </a>
                         <a class="p-2 text-dark " href="{{route('welcome')}}">
-                            <li class="col">Welcome</li>
+                            <li class="col">Home</li>
                         </a>
-                        <a class="p-2 text-dark" href="{{route('admin.jobs.index')}}">
+                        <a class="p-2 text-dark " href="{{route('market')}}">
+                            <li class="col">Jobs Market</li>
+                        </a>
+                        {{-- <a class="p-2 text-dark" href="{{route('admin.jobs.index')}}">
                             <li class="col">Jobs</li>
-                        </a>
-                        <a class="p-2 text-dark" href="{{route('admin.employers.index')}}">
+                        </a> --}}
+                        <a class="p-2 text-dark" href="{{route('employer')}}">
                             <li class="col">Employers</li>
                         </a>
                         <!-- Authentication Links -->
@@ -97,7 +100,7 @@
                                     {{ __('Logout') }}
 
                                 </a>
-
+<div class="dropdown-divider"></div>
 
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                     @csrf

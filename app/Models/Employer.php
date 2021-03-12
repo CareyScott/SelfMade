@@ -1,6 +1,6 @@
 <?php
 # @Date:   2021-01-23T17:06:44+00:00
-# @Last modified time: 2021-03-09T12:09:12+00:00
+# @Last modified time: 2021-03-12T17:42:10+00:00
 
 
 
@@ -24,5 +24,11 @@ class Employer extends Model
     return $this->belongsTo('App\Models\User');
   }
 
+  protected $fillable = [
 
+      'company_postal_address',
+      'category',
+      'user_id',
+
+  ];
 }
