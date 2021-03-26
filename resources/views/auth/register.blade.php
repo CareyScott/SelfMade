@@ -7,10 +7,10 @@
     <div class="row">
         <div class="col">
 
-      
 
 
-{{-- `this hides the form not being used bugs out though` --}}
+
+            {{-- `this hides the form not being used bugs out though` --}}
             {{-- <div class="form-group row ">
                 <div class="mx-auto col-md-5">
 
@@ -26,6 +26,12 @@
                     @enderror
                 </div>
             </div> --}}
+
+
+            <h1 class="h1 title-font text-dark text-center mb-5 mt-5">SELF MADE.</h1>
+
+            <h1 class="h3 mb-3 fw-normal text-center title-font">Register</h1>
+
 
             <form method="POST" action="{{ route('register') }}">
                 @csrf
@@ -135,9 +141,9 @@
                 <div class="form-group row jobSeeker box">
 
                     <div class="mx-auto col-md-5">
-                        <input id="education" type="text" placeholder="education" class="form-control @error('education') is-invalid @enderror" name="education" value="{{ old('education') }}" required autocomplete="education">
+                        <input id="education" type="text" placeholder="Education" class="form-control @error('education') is-invalid @enderror" name="education" value="{{ old('education') }}" required autocomplete="education">
 
-                        @error('personal_bio')
+                        @error('education')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
@@ -162,7 +168,7 @@
                         @enderror
                     </div>
                 </div>
-                <div class="form-group row jobSeeker box">
+                {{-- <div class="form-group row jobSeeker box">
                     <div class="mx-auto col-md-5">
                         <label for="skill" class="  text-md-right">{{ __('Skill') }}</label>
 
@@ -177,9 +183,9 @@
 
                         @enderror
                     </div>
-                </div>
+                </div> --}}
 
-{{-- Employer register form--}}
+                {{-- Employer register form--}}
 
 
                 {{-- <div class="form-group row employer box">
@@ -188,44 +194,44 @@
                         <input id="company_postal_address" placeholder="Company Postal Address" type="text" class="form-control @error('company_postal_address') is-invalid @enderror" name="company_postal_address"
                         value="{{ old('company_postal_address') }}" required autocomplete="company_postal_address">
 
-                        @error('personal_postal_address')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                        @enderror
-                    </div>
-                </div>
-
-                <div class="form-group row employer box">
-
-                    <div class="mx-auto col-md-5">
-                        <input id="category" type="text" placeholder="Category" class="form-control @error('category') is-invalid @enderror" name="category" value="{{ old('ccategory') }}" required
-                        autocomplete="category">
-
-                        @error('personal_bio')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                        @enderror
-                    </div>
-                </div> --}}
-
-
-
-
-
-
-
-                <div class="form-group row">
-                    <div class="col-md-5 mx-auto">
-                        <button type="submit" class="w-100 btn btn-lg btn-dark">
-                            {{ __('Register') }}
-                        </button>
-                    </div>
-                </div>
-            </form>
+                @error('personal_postal_address')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+                @enderror
         </div>
     </div>
+
+    <div class="form-group row employer box">
+
+        <div class="mx-auto col-md-5">
+            <input id="category" type="text" placeholder="Category" class="form-control @error('category') is-invalid @enderror" name="category" value="{{ old('ccategory') }}" required
+            autocomplete="category">
+
+            @error('personal_bio')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+            @enderror
+        </div>
+    </div> --}}
+
+
+
+
+
+
+
+    <div class="form-group row">
+        <div class="col-md-5 mx-auto">
+            <button type="submit" class="w-100 btn btn-lg btn-dark">
+                {{ __('Register') }}
+            </button>
+        </div>
+    </div>
+    </form>
+</div>
+</div>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>

@@ -1,6 +1,6 @@
 <?php
 # @Date:   2021-01-22T15:28:03+00:00
-# @Last modified time: 2021-03-07T16:22:06+00:00
+# @Last modified time: 2021-03-19T15:23:38+00:00
 
 namespace App\Http\Controllers\API;
 
@@ -68,6 +68,7 @@ class JobController extends Controller
         $job->salary = $request->input('salary');
         $job->description = $request->input('description');
         $job->job_category_id = $request->input('job_category_id');
+        $job->skill_id = $request->input('skill_id');
 
         $job->save();
 

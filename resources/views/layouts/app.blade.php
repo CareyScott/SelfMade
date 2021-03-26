@@ -104,7 +104,7 @@
                                     {{ __('Logout') }}
 
                                 </a>
-<div class="dropdown-divider"></div>
+                                <div class="dropdown-divider"></div>
 
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                     @csrf
