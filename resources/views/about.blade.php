@@ -1,9 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-  <!-- BOOTSTRAP -->
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"> </script>
+  
 <div class="container">
     <div class="row mt-3 mb-5">
         <p class="h1">About Self-Made</p>
