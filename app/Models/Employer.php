@@ -1,6 +1,6 @@
 <?php
 # @Date:   2021-01-23T17:06:44+00:00
-# @Last modified time: 2021-03-12T17:42:10+00:00
+# @Last modified time: 2021-04-06T17:40:37+01:00
 
 
 
@@ -15,6 +15,10 @@ class Employer extends Model
   use HasFactory;
 
   public function jobs()
+  {
+    return $this->hasMany('App\Models\Job');
+  }
+  public function job()
   {
     return $this->hasMany('App\Models\Job');
   }
