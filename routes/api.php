@@ -1,6 +1,6 @@
 <?php
 # @Date:   2021-01-22T14:08:16+00:00
-# @Last modified time: 2021-03-10T16:49:54+00:00
+# @Last modified time: 2021-04-06T15:05:52+01:00
 
 
 
@@ -20,6 +20,7 @@ Route::post('login', [APIPassportController::class, 'login']);
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
 
   //anything in this group needs to have authorization
   Route::middleware('auth:api')->group(function(){    //remove me for no token api
