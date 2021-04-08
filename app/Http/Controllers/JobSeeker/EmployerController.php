@@ -1,6 +1,6 @@
 <?php
 # @Date:   2021-01-23T15:54:28+00:00
-# @Last modified time: 2021-03-12T23:11:50+00:00
+# @Last modified time: 2021-04-08T11:44:40+01:00
 
 
 
@@ -34,11 +34,11 @@ class EmployerController extends Controller
     {
       {
         $employers = Employer::all();
-        $jobs = Job::where('employer_id', $employer->id)->get();
+        // $jobs = Job::where('employer_id', $employer->id)->get();
         $jobCategories = JobCategory::all();
 
         return view('jobSeeker.employers.index', [
-        'jobs' => $jobs,
+        // 'jobs' => $jobs,
         'employers' => $employers,
         'jobCategories' => $jobCategories
 
@@ -127,8 +127,6 @@ class EmployerController extends Controller
         'employer' => $employer,
         'jobs' => $jobs,
         // 'employer_id' => $employer_id,
-
-
 
       ]);
     }

@@ -30,7 +30,7 @@
 
             <h1 class="h1 title-font text-dark text-center mb-5 mt-5">SELF MADE.</h1>
 
-            <h1 class="h3 mb-3 fw-normal text-center title-font">Register</h1>
+            <h1 class="h3 mb-3 fw-normal text-center title-font">Sign Up</h1>
 
 
             <form method="POST" action="{{ route('register') }}">
@@ -225,7 +225,7 @@
     <div class="form-group row">
         <div class="col-md-5 mx-auto">
             <button type="submit" class="w-100 btn btn-lg btn-dark">
-                {{ __('Register') }}
+                {{ __('Sign Up') }}
             </button>
         </div>
     </div>

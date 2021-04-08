@@ -57,7 +57,7 @@
             <div class="col-4 mt-3  list-group-item mx-auto" style="width: 100%; border-radius: 10px 10px 10px 10px;">
                 <p class="heading text-center">Employer</p>
 
-                <img src="https://picsum.photos/140" class=" rounded-circle mt-3 mb-2 border shadow-sm mx-auto " alt="Profile Picture">
+              <a href="{{ route('jobSeeker.employers.show', $job->employer->id) }}">  <img src="https://picsum.photos/140" class=" rounded-circle mt-3 mb-2 border shadow-sm mx-auto " alt="Profile Picture"></a>
                 <div class=" shadow-sm mx-auto text-dark " style="width: 100%; border-radius: 10px 10px 10px 10px;">
 
 
@@ -66,7 +66,7 @@
 
                             <h5 class="mb-1"><strong>Name</strong></h5>
                         </div>
-                        <p class="mb-1">{{$job->employer->user->name}}</p>
+                      <a href="{{ route('jobSeeker.employers.show', $job->employer->id) }}">  <p class="mb-1" >{{$job->employer->user->name}}</p> </a>
                     </div>
                     <div class="list-group-item list-group-item-action flex-column align-items-start ">
                         <div class="d-flex w-100 justify-content-between">

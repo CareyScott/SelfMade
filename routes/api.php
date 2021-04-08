@@ -1,6 +1,6 @@
 <?php
 # @Date:   2021-01-22T14:08:16+00:00
-# @Last modified time: 2021-04-06T15:05:52+01:00
+# @Last modified time: 2021-04-08T21:59:22+01:00
 
 
 
@@ -23,7 +23,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
   //anything in this group needs to have authorization
-  Route::middleware('auth:api')->group(function(){    //remove me for no token api
+  // Route::middleware('auth:api')->group(function(){    //remove me for no token api
   //logout route
   Route::get('logout', [APIPassportController::class, 'logout']);
   //View Currenyt User route
@@ -37,4 +37,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     'create', 'edit'
   ]);
 
-});   //remove me for no token api
+// });   //remove me for no token api

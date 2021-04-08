@@ -31,7 +31,7 @@
                                 <h5 class="mb-1"><strong>Name</strong></h5>
                                 {{-- <small>3 days ago</small> --}}
                             </div>
-                            <p class="mb-1">{{$employer->user->name}}</p>
+                            <a href="{{ route('employer.employers.show', $employer->id) }}"><p class="mb-1">{{$employer->user->name}}</p></a>
                             {{-- <small></small> --}}
                         </div>
                         <div class="list-group-item list-group-item-action flex-column align-items-start ">
