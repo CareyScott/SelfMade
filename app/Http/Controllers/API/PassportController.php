@@ -1,6 +1,6 @@
 <?php
 # @Date:   2021-02-01T13:54:04+00:00
-# @Last modified time: 2021-04-08T21:59:01+01:00
+# @Last modified time: 2021-04-08T22:02:29+01:00
 
 namespace App\Http\Controllers\API;
 
@@ -59,7 +59,7 @@ class PassportController extends Controller
     return response()->json([
       'name'=>$user->name,
       'email'=>$user->email,
-      'token'=>$token           //remove me for no token api
+      // 'token'=>$token           //remove me for no token api
     ], 200);
   }
   else {
