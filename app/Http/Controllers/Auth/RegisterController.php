@@ -1,6 +1,6 @@
 <?php
 # @Date:   2021-01-23T06:08:20+00:00
-# @Last modified time: 2021-03-12T22:54:05+00:00
+# @Last modified time: 2021-04-10T11:28:07+01:00
 
 
 
@@ -102,61 +102,46 @@ class RegisterController extends Controller
             // 'password' => Hash::make($data['password']),
         ]);
 
-        //FOR LOGGING IN AS JOB sEEKER
+/////////////////////////////////////        //FOR LOGGING IN AS JOB sEEKER
 
 
-        $user->roles()->attach(Role::where('name','jobSeeker')->first());
+        // $user->roles()->attach(Role::where('name','jobSeeker')->first());
+        //
+        //
+        // $jobSeeker =  JobSeeker::create([
+        //       'personal_postal_address' => $data['personal_postal_address'],
+        //       'personal_bio' => $data['personal_bio'],
+        //       'education' => $data['education'],
+        //       'user_id' => $user->id,
+        //       'skill' => $data['skill'],
+        //   ]);
+        //
+        //
+        //
+        //   //i work
+        //   $skill_jobSeeker = Skill::findOrFail($data['skill'] );
+        //   foreach ((array) $data['skill'] as $skill)
+        //   {
+        //   $jobSkill =  JobSkill::create([
+        //         'skill_id' => $skill,
+        //         'jobSeeker_id' => $jobSeeker->id,
+        //     ]);
+        //   }
 
 
-        $jobSeeker =  JobSeeker::create([
-              'personal_postal_address' => $data['personal_postal_address'],
-              'personal_bio' => $data['personal_bio'],
-              'education' => $data['education'],
-              'user_id' => $user->id,
-              'skill' => $data['skill'],
-          ]);
+
+//FOR LOGGING IN AS employer////////////////////////////////////////////////
+
+          $user->roles()->attach(Role::where('name','employer')->first());
 
 
+          $employer =  Employer::create([
+                'company_postal_address' => $data['company_postal_address'],
+                'category' => $data['category'],
+                'user_id' => $user->id,
 
-          //i work
-          $skill_jobSeeker = Skill::findOrFail($data['skill'] );
-          foreach ((array) $data['skill'] as $skill)
-          {
-          $jobSkill =  JobSkill::create([
-                'skill_id' => $skill,
-                'jobSeeker_id' => $jobSeeker->id,
             ]);
-          }
-
-          // foreach ( $data['skill'] as $skill)
-          // {
-          // $jobSkill =  JobSkill::create([
-          //       'skill_id' => $skill,
-          //       'jobSeeker_id' => $jobSeeker->id,
-          //   ]);
-          // }
-
-
-                    // foreach((array)$data['skill'] as $skill)
-                    // {
-                    //   $jobSkill = JobSkill::findOrFail($skill);
-                    //   $jobSeeker->skills()->attach($jobSkill);
-                    // }
-
-
-
-//FOR LOGGING IN AS employer
-          //
-          // $user->roles()->attach(Role::where('name','employer')->first());
-          //
-          //
-          // $employer =  Employer::create([
-          //       'company_postal_address' => $data['company_postal_address'],
-          //       'category' => $data['category'],
-          //       'user_id' => $user->id,
-          //
-          //   ]);
-
+//////////////////////////////////////////////////////////////////////////////
 
           // foreach($data['skill'] => $skill)
           // {
@@ -222,3 +207,23 @@ class RegisterController extends Controller
   // 'skills' => $skills,
     }
 }
+
+
+
+
+
+
+          // foreach ( $data['skill'] as $skill)
+          // {
+          // $jobSkill =  JobSkill::create([
+          //       'skill_id' => $skill,
+          //       'jobSeeker_id' => $jobSeeker->id,
+          //   ]);
+          // }
+
+
+                    // foreach((array)$data['skill'] as $skill)
+                    // {
+                    //   $jobSkill = JobSkill::findOrFail($skill);
+                    //   $jobSeeker->skills()->attach($jobSkill);
+                    // }
