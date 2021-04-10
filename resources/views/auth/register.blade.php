@@ -110,7 +110,7 @@
 
                 {{-- JobSeeker register form --}}
 
-                {{-- <div class="form-group row jobSeeker box">
+                <div class="form-group row jobSeeker box">
 
                     <div class="mx-auto col-md-5">
                         <input id="personal_postal_address" placeholder="Postal Address" type="text" class="form-control @error('personal_postal_address') is-invalid @enderror" name="personal_postal_address"
@@ -167,16 +167,7 @@
 
                         @enderror
                     </div>
-                </div> --}}
-
-
-
-  {{-- JobSeeker register form END --}}
-
-
-
-
-
+                </div>
                 {{-- <div class="form-group row jobSeeker box">
                     <div class="mx-auto col-md-5">
                         <label for="skill" class="  text-md-right">{{ __('Skill') }}</label>
@@ -194,12 +185,10 @@
                     </div>
                 </div> --}}
 
-
-
                 {{-- Employer register form--}}
 
 
-                <div class="form-group row employer box">
+                {{-- <div class="form-group row employer box">
 
                     <div class="mx-auto col-md-5">
                         <input id="company_postal_address" placeholder="Company Postal Address" type="text" class="form-control @error('company_postal_address') is-invalid @enderror" name="company_postal_address"
@@ -225,10 +214,10 @@
             </span>
             @enderror
         </div>
-    </div>
+    </div> --}}
 
 
-{{-- Employer Register form END --}}
+
 
 
 
