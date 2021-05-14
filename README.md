@@ -31,6 +31,26 @@ Xampp Install: https://www.apachefriends.org/index.html
 
 
 
+## Login Details
+
+To login to the application, you can use any of these pre-made accounts:
+
+###Admin:
+
+Email: admin@SelfMade.ie
+Password: secret
+
+###Job Seeker:
+
+Email: matthewSimmons@selfMade.ie
+Password: secret
+
+
+###Employer:
+
+Email: MatthewMBlack@gmail.com
+Password: secret
+
 ### Hosted API & Database
  
 The hosted API and Database are available at: https://self-made-app.herokuapp.com/
