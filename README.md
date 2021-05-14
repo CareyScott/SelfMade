@@ -31,8 +31,8 @@ Xampp Install: https://www.apachefriends.org/index.html
 
 
 
-### API
-
+### Hosted API & Database
+ 
 The hosted API and Database are available at: https://self-made-app.herokuapp.com/
 
 The API routes are as follows: 
