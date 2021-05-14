@@ -35,18 +35,18 @@ Xampp Install: https://www.apachefriends.org/index.html
 
 To login to the application, you can use any of these pre-made accounts:
 
-###Admin:
+### Admin:
 
 Email: admin@SelfMade.ie
 Password: secret
 
-###Job Seeker:
+### Job Seeker:
 
 Email: matthewSimmons@selfMade.ie
 Password: secret
 
 
-###Employer:
+### Employer:
 
 Email: MatthewMBlack@gmail.com
 Password: secret
