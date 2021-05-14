@@ -1,8 +1,8 @@
-Self-Made Installation Instructions
+# Self-Made Installation Instructions
 
 
 
-The instructions for installing this application are available through this video: 
+## The instructions for installing this application are available through this video: 
 
 
 
@@ -11,7 +11,7 @@ https://iadt-my.sharepoint.com/:v:/g/personal/n00181237_iadt_ie/EXX43e6w-vtAq3hS
 
 
 
-Prerequisites for the video:
+## Prerequisites for the video:
 
 Github link:  https://github.com/Cazzzz/SelfMade
  
@@ -26,11 +26,12 @@ Xampp Install: https://www.apachefriends.org/index.html
 
 
 
-If there are issues with the video, please don't hesitate to contact me through my student email.
+### If there are issues with the video, please don't hesitate to contact me through my student email.
 
 
 
 
+### API
 
 The hosted API and Database are available at: https://self-made-app.herokuapp.com/
 
