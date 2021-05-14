@@ -8,7 +8,10 @@
             <div class="parallax shadow-sm" width="100%"></div>
             <img src="https://picsum.photos/140" class=" rounded-circle margintop-custom ml-4 border shadow-sm mx-auto " alt="Profile Picture">
             <p class="h2 mt-4 text-center">{{$user->employer->user->name}}</p>
-            <button class="btn btn-info float-right" data-toggle="modal" data-target="#create">
+            <button class="btn btn-danger float-right " data-toggle="modal" data-target="#confirm-delete">
+                Delete Profile
+            </button>
+            <button class="btn btn-info float-right mr-2" data-toggle="modal" data-target="#create">
                 Edit Profile
             </button>
         </div>
@@ -82,9 +85,7 @@
 
         <div class="float-right">
 
-            <button class="btn btn-danger" data-toggle="modal" data-target="#confirm-delete">
-                Delete
-            </button>
+
             <a href="{{route('employer.home') }}" class="btn btn-light"> Back</a>
         </div>
     </div>

@@ -10,11 +10,18 @@
             <p class="h2 mt-4 text-center">{{$employer->user->name}}</p>
 
             <div class=" col mt-4 float-right">
+
+              <button class="btn btn-danger float-right ml-2" data-toggle="modal" data-target="#confirm-delete">
+                  Delete Employer
+              </button>
+
                 <a href="mailto:{{$employer->user->email}}?subject=Admin from Self-Made" <p class=" btn btn-info float-right ml-2 ">Contact</p></a>
 
               <button class="  btn btn-info float-right" data-toggle="modal" data-target="#create">
                   Edit Employer
               </button>
+
+
             </div>
         </div>
     </div>
@@ -223,9 +230,7 @@
 
         <div class="float-right">
 
-            <button class="btn btn-danger" data-toggle="modal" data-target="#confirm-delete">
-                Delete
-            </button>
+
 
             <a href="{{route('admin.employers.index') }}" class="btn btn-light"> Back</a>
         </div>

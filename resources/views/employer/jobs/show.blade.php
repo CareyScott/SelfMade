@@ -12,12 +12,14 @@
 
         <div class="col mb-3">
           @if($job->employer->id === $user->employer->id)
-            <button class="btn btn-info float-right mt-3" data-toggle="modal" data-target="#editJob">
-                Edit Job
-            </button>
+
             <button class="btn btn-danger float-right mt-3 mr-2" data-toggle="modal" data-target="#deleteJob">
                 Delete Job
             </button>
+            <button class="btn btn-info float-right mt-3 mr-2" data-toggle="modal" data-target="#editJob">
+                Edit Job
+            </button>
+
             @endif
         </div>
     </div>
@@ -35,6 +37,8 @@
       <div class="modal-body">
         <p>Are you sure you want to delete this job? </p>
         <p>This action cannot be undone.</p>
+        <p class="mt-2"><strong>Job: {{$job->title}}</strong></p>
+        <p><strong>Employer: {{$job->employer->user->name}}</strong></p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn " data-dismiss="modal">Close</button>
@@ -359,7 +363,7 @@
 
 
 
-<div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+{{-- <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header pure-black text-light">
@@ -379,7 +383,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}
 
 
 

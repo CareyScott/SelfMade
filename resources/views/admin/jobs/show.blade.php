@@ -13,12 +13,16 @@
 <div class="container">
     <div class="row">
         <div class="col mb-3">
-            <button class="btn btn-primary float-right mt-3 ml-2" data-toggle="modal" data-target="#editEmployer">
+          <button class="btn btn-danger float-right ml-2" data-toggle="modal" data-target="#confirm-delete">
+              Delete Job
+          </button>
+            <button class="btn btn-primary float-right ml-2" data-toggle="modal" data-target="#editEmployer">
                 Edit Employer
             </button>
-            <button class="btn btn-primary float-right mt-3" data-toggle="modal" data-target="#editJob">
+            <button class="btn btn-primary float-right " data-toggle="modal" data-target="#editJob">
                 Edit Job
             </button>
+
         </div>
     </div>
 </div>
@@ -292,9 +296,9 @@
 
 {{-- open delete modal --}}
 <div class="float-right">
-    <button class="btn btn-danger" data-toggle="modal" data-target="#confirm-delete">
+    {{-- <button class="btn btn-danger" data-toggle="modal" data-target="#confirm-delete">
         Delete
-    </button>
+    </button> --}}
     <a href="{{route('admin.jobs.index') }}" class="btn btn-light"> Back</a>
 </div>
 </div>

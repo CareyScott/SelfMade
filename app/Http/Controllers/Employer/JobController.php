@@ -1,7 +1,7 @@
 <?php
 
 # @Date:   2021-01-23T15:54:28+00:00
-# @Last modified time: 2021-05-13T18:03:35+01:00
+# @Last modified time: 2021-05-14T18:49:25+01:00
 
 
 
@@ -212,7 +212,7 @@ class JobController extends Controller
       smilify('success', 'Job Updated Successfully');
 
 
-      return redirect()->route('employer.home');
+      return redirect()->route('employer.jobs.show', $id);
 
     }
 
