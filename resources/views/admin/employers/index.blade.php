@@ -2,24 +2,19 @@
 
 @section('content')
 <div class="container">
-    <div class="row">
 
-        {{-- <select class="form-select form-select-sm col px-2 mr-3 " aria-label="Default select example" name="jobCategories">
-            <option selected>Location</option>
-            @foreach ($employers as $employer)
-            <option value="{{$employer->id}}">{{$employer->user->name}}</option>
-        @endforeach
-        </select> --}}
-        {{-- <form class="form-inline my-2 my-md-0 col">
-            <input class="form-control" placeholder="Search"></input>
-        </form> --}}
-    </div>
+  <div class="row">
+  <div class="col">
+    <h1 class="h1 ml-2">Employers</h1>
+  </div>
+  </div>
 
     <div class="row">
         <div class="col-8">
             <div class="my-3 p-3 bg-white rounded box-shadow col">
                 <h6 class="border-bottom border-gray pb-2 mb-0"> Employers </h6>
 
+{{-- show all employers from db in list --}}
                 @if (count($employers) === 0)
                 <p> There are no employers.</p>
                 @else
@@ -35,6 +30,9 @@
                     </p>
                 </div>
                 @endforeach
+                <div class="col mt-5">
+                    {{ $employers->links() }}
+                </div>
                 @endif
             </div>
         </div>
@@ -95,21 +93,14 @@
 
 
                                                 <div class="float-right">
-                                                    <a href="{{route('admin.employers.index')}}" class="btn btn-default"> Cancel </a>
-                                                    <button type="submit" class="btn btn-outline-primary pull-right">Submit</button>
+                                                    <a data-dismiss="modal" class="btn btn-default"> Cancel </a>
+                                                    <button type="submit" class="btn btn-success pull-right">Submit</button>
                                                 </div>
                                             </form>
 
                                         </div>
                                 </div>
-                                <div class="modal-footer">
-                                    {{-- <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                                <form style="display:inline-block" method="POST" action="{{route('admin.employers.destroy', $employer->id)}}">
-                                    <input type="hidden" name="_method" value="DELETE">
-                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                    <button type="submit" class="form-control btn btn-outline-danger">Delete</button>
-                                    </form> --}}
-                                </div>
+
                             </div>
                         </div>
                     </div>

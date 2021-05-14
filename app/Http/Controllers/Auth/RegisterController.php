@@ -1,6 +1,6 @@
 <?php
 # @Date:   2021-01-23T06:08:20+00:00
-# @Last modified time: 2021-04-10T11:31:40+01:00
+# @Last modified time: 2021-05-14T15:03:33+01:00
 
 
 
@@ -118,7 +118,7 @@ class RegisterController extends Controller
 
 
 
-          //i work
+          //i work for assigning skill and job to job skills table (linking table)
           $skill_jobSeeker = Skill::findOrFail($data['skill'] );
           foreach ((array) $data['skill'] as $skill)
           {
@@ -145,8 +145,12 @@ class RegisterController extends Controller
 
 
 
-//FOR LOGGING IN AS employer
+//for logging in as employer comment out code above and uncomment this code block
           //
+
+// Beginning of code block
+
+
           // $user->roles()->attach(Role::where('name','employer')->first());
           //
           //
@@ -165,11 +169,11 @@ class RegisterController extends Controller
           // }
 
 
+// End of code block
 
 
 
-
-
+// testing v
 
           // $jobSeeker->skills()->attach($jobSkill);
 

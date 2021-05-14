@@ -1,6 +1,6 @@
 <?php
 # @Date:   2021-01-23T15:54:28+00:00
-# @Last modified time: 2021-03-12T23:38:57+00:00
+# @Last modified time: 2021-05-14T15:11:55+01:00
 
 
 
@@ -21,6 +21,8 @@ class JobController extends Controller
 
   public function __construct()
   {
+    // middleware ensures the correct user role is accessing this page
+
       $this->middleware('auth');
       $this->middleware('role:admin');
   }
@@ -29,10 +31,13 @@ class JobController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+     // gets all data to display in index
     public function index()
     {
       {
-        $jobs = Job::paginate(5);
+        // paginate separates results to pages of 5 with links at the bottom 
+        $jobs = Job::simplePaginate(5);
 
         // $jobs = Job::all();
         $employers = Employer::all();
@@ -58,6 +63,7 @@ class JobController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+     //create form gets all data needed for this page
     public function create()
     {
       $jobs = Job::all();
@@ -83,6 +89,7 @@ class JobController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+     // POST for jobs
     public function store(Request $request)
     {
       $request->validate([
@@ -114,10 +121,10 @@ class JobController extends Controller
       $job_ids->employer_id = $job->employer_id;
       $job_ids->save();
 
-
+      // confirmation from notify
       smilify('success', 'Job Created Successfully');
 
-      return redirect()->route('admin.jobs.index');
+      return redirect()->route('admin.jobs.show', $job->id);
 
 
     }
@@ -128,6 +135,8 @@ class JobController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+     // gets and returns the job from the id which was passed into the function from the resources view
     public function show($id)
     {
       $job = Job::findOrFail($id);
@@ -152,6 +161,7 @@ class JobController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+     // data inputted and sent to update function
     public function edit($id)
     {
       $job = Job::findOrFail($id);
@@ -173,6 +183,7 @@ class JobController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+     //PUT for jobs
     public function update(Request $request, $id)
     {
       $request->validate([
@@ -202,8 +213,8 @@ class JobController extends Controller
 
       smilify('success', 'Job Updated Successfully');
 
-
-      return redirect()->route('admin.jobs.index');
+      // the route followed by id passes the job object which has just being updated back to the view page
+      return redirect()->route('admin.jobs.show', $id);
 
     }
 
@@ -213,14 +224,17 @@ class JobController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+     //deletes the job retrieved correlating with the corrisponding id
     public function destroy($id)
     {
       $job = Job::findOrFail($id);
       $job->delete();
 
+// confirmation of the job being deleted
       smilify('success', 'Job Deleted Successfully');
 
-
+//return home
       return redirect()->route('admin.jobs.index');
     }
 }

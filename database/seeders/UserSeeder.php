@@ -1,6 +1,6 @@
 <?php
 # @Date:   2021-01-22T15:59:43+00:00
-# @Last modified time: 2021-03-12T22:55:05+00:00
+# @Last modified time: 2021-05-14T16:53:58+01:00
 
 
 
@@ -21,6 +21,11 @@ class UserSeeder extends Seeder
      *
      * @return void
      */
+
+     // used during the setup phase of the project
+     // inputs sample data to the database
+
+     // seeding Users
     public function run()
     {
       $role_admin = Role::where('name', 'admin')->first();

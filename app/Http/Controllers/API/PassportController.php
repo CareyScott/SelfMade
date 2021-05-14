@@ -1,6 +1,6 @@
 <?php
 # @Date:   2021-02-01T13:54:04+00:00
-# @Last modified time: 2021-04-08T22:02:29+01:00
+# @Last modified time: 2021-05-14T16:28:59+01:00
 
 namespace App\Http\Controllers\API;
 
@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use Validator;
 use App\Models\User;
 
-
+// passport is used for token authentication but is disabled at the commented lines for the android app to use. This code does work.
 class PassportController extends Controller
 {
     public function register(Request $request)
@@ -32,6 +32,7 @@ class PassportController extends Controller
       'phone' => $request->phone
     ]);
 
+    // creates a token for authentication
     $token = $user->createToken('self-made')->accessToken;
     // return response()->json(['token' => $token], 200);      //remove me for no token api
   }
@@ -63,10 +64,12 @@ class PassportController extends Controller
     ], 200);
   }
   else {
+    // response if no token found
     return response()->json(['error' => 'Unauthorized'], 401);
   }
 }
 
+  // the user logged in can be called here GET /api/user
   public function user()
   {
     return response()->json(['user' =>auth()->user()], 200);

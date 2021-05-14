@@ -1,6 +1,6 @@
 <?php
 # @Date:   2021-01-22T15:59:43+00:00
-# @Last modified time: 2021-02-22T16:49:53+00:00
+# @Last modified time: 2021-05-14T16:54:06+01:00
 
 
 
@@ -12,6 +12,11 @@ use App\Models\Role;
 use App\Models\User;
 use App\Models\Employer;
 use Hash;
+
+// used during the setup phase of the project
+// inputs sample data to the database
+
+// seeding employers
 class EmployerSeeder extends Seeder
 {
     /**
@@ -19,6 +24,8 @@ class EmployerSeeder extends Seeder
      *
      * @return void
      */
+
+     
     public function run()
     {
       $role_employer = Role::where('name', 'employer')->first();
@@ -71,6 +78,6 @@ class EmployerSeeder extends Seeder
       // $employer->job_id = '1';
       $employer->save();
 
-    
+
     }
 }

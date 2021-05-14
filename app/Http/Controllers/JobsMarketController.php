@@ -1,6 +1,6 @@
 <?php
 # @Date:   2021-01-23T15:44:26+00:00
-# @Last modified time: 2021-03-12T17:59:09+00:00
+# @Last modified time: 2021-05-14T15:48:39+01:00
 
 
 
@@ -28,6 +28,7 @@ namespace App\Http\Controllers;
              *
              * @return \Illuminate\Contracts\Support\Renderable
              */
+             // redurects the user to their designated jobs market 
             public function index(Request $request)
             {
 

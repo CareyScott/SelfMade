@@ -18,7 +18,7 @@
                 <div id="carouselExampleControls" class="carousel slide" width="100%" data-ride="carousel">
                     <div class="carousel-inner">
                         <div class="carousel-item active">
-                            <img class="d-block" src="{{url('/images/car-1.png')}}" alt="First slide">
+                            <img class="d-block" src="{{url('/images/car-8.png')}}" alt="First slide">
                             <div class="carousel-caption d-none d-md-block">
                                 <h5 class="h2">Looking for work?</h5>
                                 <p>We've got you covered!</p>
@@ -36,6 +36,13 @@
                             <div class="carousel-caption d-none d-md-block">
                                 <h5 class="h2">Need Help Starting Up?</h5>
                                 <p>We will help you manage you company to the greatest extent!</p>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <img class="d-block" src="{{url('/images/car-4.png')}}" alt="Third slide">
+                            <div class="carousel-caption d-none d-md-block">
+                                <h5 class="h2">No matter the profession.</h5>
+                                <p>We will help you find the right place for you.</p>
                             </div>
                         </div>
                     </div>
@@ -57,14 +64,23 @@
               <img src="{{url('/images/home-1.jpg')}}" class="img-fluid">
               <p class="heading">View Employers</p>
               <p class="sub-heading">See all of the Employers currently using Self-Made.</p>
-              <a href="{{route('admin.employers.index')}}"><button class="btn home-btn-dark text-light col-8 ">Employers</button></a>
+              <a href="{{route('admin.employers.index')}}"><button class="btn btn-dark text-light col-8 ">Employers</button></a>
           <!--other item and closing tags etc-->
+
               <img src="{{url('/images/home-2.jpg')}}" class="img-fluid mt-5">
               <p class="heading">View all Jobs</p>
               <p class="sub-heading">Click here to see all of the jobs currently on the market.</p>
-              <a href="{{route('admin.jobs.index')}}"><button class="btn home-btn-dark text-light col-8 bike-img-btn">Jobs</button></a>
+              <a href="{{route('admin.jobs.index')}}"><button class="btn btn-dark text-light col-8 bike-img-btn">Jobs</button></a>
+
+
+              <img src="{{url('/images/home-5.jpg')}}" class="img-fluid mt-5">
+              <p class="heading">View all Job Seekers</p>
+              <p class="sub-heading">Click here to see all of the job seekers currently on the self made.</p>
+              <a href="{{route('admin.jobSeekers.index')}}"><button class="btn btn-dark text-light col-8 bike-img-btn">Job Seekers</button></a>
           </div>
-          <div class="col-6 mt-4 border border-dark mb-5">
+
+          {{-- graph to display employers on self made  --}}
+          <div class="col-6 mt-4 border-dark mb-5">
             <p class="heading mt-2">Active Employers</p>
             <canvas class="my-4 chartjs-render-monitor" id="myChart" width="1016" height="428" style="display: block; width: 1016px; height: 428px;"></canvas>
             <p class="heading">Job Seeker Statistics</p>
@@ -82,7 +98,8 @@
                 @foreach ($jobSeekers as $jobSeeker)
                   <tr>
                   <td>{{$jobSeeker->id}}</td>
-                  <td>{{$jobSeeker->user->name}}</td>
+                  <td><a href="{{ route('admin.jobSeekers.show', $jobSeeker->id) }}"><strong class="d-block text-dark">{{$jobSeeker->user->name}}</strong></a>
+                  </td>
                   <td>{{$jobSeeker->user->email}}</td>
                   <td>{{$jobSeeker->user_id}}</td>
                   <td>{{$jobSeeker->user->phone}}</td>
@@ -102,7 +119,7 @@
     font-weight: 700;
 }
 
-.home-btn-dark {
+.btn-dark {
     background-color: #000000;
 }
 
@@ -117,6 +134,7 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
 
+{{-- code for the chart/ graph --}}
 <script>
       var ctx = document.getElementById("myChart");
       var myChart = new Chart(ctx, {

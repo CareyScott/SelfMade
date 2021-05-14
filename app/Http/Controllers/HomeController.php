@@ -1,6 +1,6 @@
 <?php
 # @Date:   2020-11-30T10:42:41+00:00
-# @Last modified time: 2021-03-09T11:51:09+00:00
+# @Last modified time: 2021-05-14T15:48:09+01:00
 
 
 
@@ -27,9 +27,10 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
+
+     // this function gets the current users auth role and redirects them to the correct home view
     public function index(Request $request)
     {
-
         $user = Auth::user();
         $home = 'guest.home';
 

@@ -2,9 +2,11 @@
 
 @section('content')
 <div class="container">
-    <div class="row">
-
-    </div>
+  <div class="row">
+  <div class="col">
+    <h1 class="h1 ml-2">Job Seekers</h1>
+  </div>
+  </div>
 
     <div class="modal fade" id="create" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -104,6 +106,7 @@
             </div>
         </div>
     </div>
+    {{-- show all jobSeekers from db in list --}}
 
     <div class="row">
         <div class="col-8">
@@ -132,13 +135,13 @@
             @endif
         </div>
         <div class="col-4">
+
             <div class="my-3 p-3 bg-white rounded box-shadow col">
                 <div class="card-body">
-                    <h5 class="card-title">Create an Job Seeker</h5>
-                    <p class="card-text">Administrators, follow the link below to create a new Job Seeker.</p>
-                    <button class="btn btn-primary" data-toggle="modal" data-target="#create">
-                        Create Job Seeker
-                    </button>                </div>
+                    <h5 class="card-title">Promotional Listing</h5>
+                    <p class="card-text">Employers! This could be your listing. Click see more to find out more.</p>
+                    <a href="#" class="btn btn-primary">See More</a>
+                </div>
             </div>
             <div class="my-3 p-3 bg-white rounded box-shadow col">
                 <div class="card-body">

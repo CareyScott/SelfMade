@@ -2,18 +2,11 @@
 
 @section('content')
 <div class="container">
-    <div class="row">
-
-        {{-- <select class="form-select form-select-sm col px-2 mr-3 " aria-label="Default select example" name="jobCategories">
-            <option selected>Location</option>
-            @foreach ($employers as $employer)
-            <option value="{{$employer->id}}">{{$employer->user->name}}</option>
-            @endforeach
-        </select> --}}
-        <form class="form-inline my-2 my-md-0 col">
-            <input class="form-control" placeholder="Search"></input>
-        </form>
-    </div>
+  <div class="row">
+  <div class="col">
+    <h1 class="h1 ml-2">Employers</h1>
+  </div>
+  </div>
 
     <div class="row">
         <div class="col-8">
@@ -35,11 +28,15 @@
                     </p>
                 </div>
                 @endforeach
+
+            <div class="col mt-5">
+                {{ $employers->links() }}
             </div>
             @endif
         </div>
+        </div>
         <div class="col-4">
-            
+
             <div class="my-3 p-3 bg-white rounded box-shadow col">
                 <div class="card-body">
                     <h5 class="card-title">Promotional Listing</h5>

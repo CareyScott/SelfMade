@@ -2,37 +2,20 @@
 
 @section('content')
 <div class="container">
-    {{-- <div class="row">
 
-
-        <select class="form-select form-select-sm col px-2 mr-1" aria-label="Default select example" name="jobCategories">
-            <option selected>Job Category</option>
-            @foreach ($jobCategories as $jobCategory)
-            <option value="{{$jobCategory->id}}">{{$jobCategory->title}}</option>
-    @endforeach
-    </select>
-    <select class="form-select form-select-sm col px-2 mr-1" aria-label="Default select example" name="jobCategories">
-        <option selected>Companies</option>
-        @foreach ($jobs as $job)
-        <option value="{{$job->id}}">{{$job->employer->user->name}}</option>
-        @endforeach
-    </select>
-    <select class="form-select form-select-sm col px-2 mr-3 " aria-label="Default select example" name="jobCategories">
-        <option selected>Location</option>
-        @foreach ($jobs as $job)
-        <option value="{{$job->id}}">{{$job->employer->company_postal_address}}</option>
-        @endforeach
-    </select>
-    <form class="form-inline my-2 my-md-0 col">
-        <input class="form-control" placeholder="Search"></input>
-    </form>
-</div> --}}
 
 <div class="row">
+<div class="col">
+  <h1 class="h1 ml-2">Jobs Market</h1>
+</div>
+</div>
+<div class="row">
+
     <div class="col-8">
         <div class="my-3 p-3 bg-white rounded box-shadow col">
             <h6 class="border-bottom border-gray pb-2 mb-0"> Jobs </h6>
 
+            {{-- show all jobs from db in list --}}
 
             @if (count($jobs) === 0)
             <p> There are no jobs.</p>
@@ -46,10 +29,7 @@
                 <p class="media-body pb-3 mb-0 medium lh-125 border-bottom border-gray">
                     <a href="{{ route('admin.jobs.show', $job->id) }}"><strong class="d-block text-dark">{{$job->title}}</strong></a>
                     {{$job->description}}
-
-
                 </p>
-                {{-- <small class="date-only">{{$job->updated_at}}</small> --}}
             </div>
             @endforeach
             <div class="col mt-5">
@@ -98,7 +78,7 @@
                                                 <label for="title"> Job Title </label>
                                                 <input type="title" class="form-control" id='title' name='title' value='{{old('title')}}' />
                                             </div>
-
+                                            
                                             <div class="form-group">
                                                 <label for="title"> Employer </label>
                                                 <select name="employer_id">
@@ -116,17 +96,17 @@
                                             </div>
 
                                             <div class="form-group">
-                                                <label for="title"> Valid Until </label>
+                                                <label for="title"> Application Deadline </label>
                                                 <input type="date" class="form-control" id='valid_until' name='valid_until' value='{{old('valid_until')}}'></input>
                                             </div>
 
                                             <div class="form-group">
-                                                <label for="title"> Salary </label>
+                                                <label for="title"> Salary (€/h) </label>
                                                 <input type="text" class="form-control" id='salary' name='salary' value='{{old('salary')}}'></input>
                                             </div>
 
                                             <div class="form-group">
-                                                <label for="title"> description </label>
+                                                <label for="title"> Description </label>
                                                 <input type="text" class="form-control" id='description' name='description' value='{{old('description')}}'></input>
                                             </div>
 
@@ -142,7 +122,7 @@
                                             </div>
 
                                             <div class="form-group">
-                                                <label for="title"> Job Category </label>
+                                                <label for="title"> Required Skills </label>
                                                 <select name="skill_id">
                                                     @foreach ($skills as $skill)
 
@@ -154,21 +134,14 @@
 
 
                                             <div class="float-right">
-                                                <a data-dismiss="modal" class="btn btn-default"> Cancel </a>
-                                                <button type="submit" class="btn btn-outline-primary pull-right">Submit</button>
+                                                <a data-dismiss="modal" class="btn"> Cancel </a>
+                                                <button type="submit" class="btn btn-success pull-right">Submit</button>
                                             </div>
                                         </form>
 
                                     </div>
                                 </div>
-                                <div class="modal-footer">
-                                    {{-- <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                                <form style="display:inline-block" method="POST" action="{{route('admin.employers.destroy', $employer->id)}}">
-                                    <input type="hidden" name="_method" value="DELETE">
-                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                    <button type="submit" class="form-control btn btn-outline-danger">Delete</button>
-                                    </form> --}}
-                                </div>
+
                             </div>
                         </div>
                     </div>

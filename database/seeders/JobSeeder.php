@@ -1,6 +1,6 @@
 <?php
 # @Date:   2021-01-23T16:13:01+00:00
-# @Last modified time: 2021-02-24T12:53:19+00:00
+# @Last modified time: 2021-05-14T16:53:34+01:00
 
 
 
@@ -17,6 +17,12 @@ class JobSeeder extends Seeder
      *
      * @return void
      */
+
+     // used during the setup phase of the project
+     // inputs sample data to the database
+
+     // seeding jobs
+
     public function run()
     {
       $job = new Job();

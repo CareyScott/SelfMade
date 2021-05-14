@@ -1,6 +1,6 @@
 <?php
 # @Date:   2020-11-17T10:13:38+00:00
-# @Last modified time: 2021-03-08T17:56:54+00:00
+# @Last modified time: 2021-05-14T16:54:00+01:00
 
 
 
@@ -17,6 +17,13 @@ class RoleSeeder extends Seeder
      *
      * @return void
      */
+
+     // used during the setup phase of the project
+     // inputs sample data to the database
+
+     // seeding user roles
+
+
     public function run()
     {
         $role_admin = new Role();

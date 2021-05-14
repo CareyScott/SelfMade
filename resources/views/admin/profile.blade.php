@@ -8,67 +8,52 @@
             <div class="parallax shadow-sm" width="100%"></div>
             <img src="https://picsum.photos/140" class=" rounded-circle margintop-custom ml-4 border shadow-sm mx-auto " alt="Profile Picture">
             <p class="h2 mt-4 text-center">{{$user->name}}</p>
-            <nav class="nav nav-masthead justify-content-end mb-3">
-                <a class="nav-link btn btn-sm btn-outline-primary" href="{{route('admin.jobSeekers.edit', $user->id) }}">Edit Profile</a>
-            </nav>
+
         </div>
     </div>
 </div>
 <div class="container-fluid pure-black mt-2">
     <div class="container">
         <div class="row">
-            <div class="col-6 text-left overflow-hidden">
-                <div class="bg-light shadow-sm mx-auto text-dark " style="width: 80%; border-radius: 21px 21px 21px 21px;">
+            <div class="col-8 text-left overflow-hidden">
+              <p class="h1 text-light mt-3">Admin Details</p>
 
-                    <div class="list-grlight mt-5" style="border-radius: 21px 21px 21px 21px;">
-
-                        <div class="list-group-item list-group-item-action flex-column align-items-start ">
+                <div class="bg-light shadow-sm mx-auto text-dark">
+                    <div class="list-grlight pure-black mt-3">
+                        <div class="list-group-item list-group-item-action flex-column align-items-start">
                             <div class="d-flex w-100 justify-content-between">
-                                <h5 class="mb-1"><strong>Phone</strong></h5>
-                                {{-- <small>3 days ago</small> --}}
+                                <h5 class="mb-1"><strong>Name</strong></h5>
                             </div>
-                            <p class="mb-1">{{$user->phone}}</p>
-                            {{-- <small></small> --}}
+                            <p class="mb-1">{{$user->name}}</p>
                         </div>
                         <div class="list-group-item list-group-item-action flex-column align-items-start ">
                             <div class="d-flex w-100 justify-content-between">
                                 <h5 class="mb-1"><strong>Email</strong></h5>
-                                {{-- <small>3 days ago</small> --}}
                             </div>
-                            <a href="mailto:{{$user->email}}?subject=Job Query Via Self-Made" <p class="text-dark d-inline-flex">{{$user->email}}</p></a>
-                            {{-- <small></small> --}}
+                          <p class="text-dark d-inline-flex">{{$user->email}}</p>
                         </div>
-
                     </div>
                 </div>
+
             </div>
 
-            <div class="col-6 text-left text-white overflow-hidden mb-5">
-                <div class="d-flex justify-content-center shadow-sm mx-auto text-dark mt-5 mb-5" style="width:100%; "><iframe width="100%" height="300px" frameborder="0" scrolling="yes" marginheight="0" marginwidth="0"
-                      style="border-radius: 21px 21px 21px 21px; border: 1px solid black;" class=""
-                      src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q={{'Self-Made HQ'}}+(JobSeeker)&amp;z=14&amp;ie=UTF8&amp;output=embed">
+
+
+            <div class="col-4 text-left text-white overflow-hidden mb-3">
+              <p class="h1 text-light mt-3">Location</p>
+{{-- map recieved from google -- location is inputted inside the link --}}
+                <div class="d-flex justify-content-center shadow-sm mx-auto text-dark mt-3 mb-5" style="width:100%; "><iframe width="100%" height="300px" frameborder="0" scrolling="yes" marginheight="0" marginwidth="0"
+                      style=" border: 1px solid black;" class=""
+                      src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q={{'SelfMade HQ'}}+&amp;z=14&amp;ie=UTF8&amp;output=embed">
                     </iframe>
                 </div>
-                <div class="list-group-item list-group-item-action flex-column align-items-start " style="border-radius: 21px 21px 21px 21px; height: 75px;">
-                    <div>
-                        <p class="h5 ml-4 ">From:</p>
-                        <p class="h6 ml-4">Self-Made HQ</p>
-                    </div>
-                </div>
+
             </div>
         </div>
 
-
         <div class="float-right">
-
-            {{-- <form style="display:inline-block" method="POST" action="{{route('employer.employers.destroy', $user->employer->id)}}"> --}}
-                <input type="hidden" name="_method" value="DELETE">
-                <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                {{-- <button type="submit" class="form-control btn btn-outline-danger">Delete</button> --}}
-            {{-- </form> --}}
-            <a href="{{route('jobSeeker.home') }}" class="btn btn-outline-primary"> Back</a>
+            <a href="{{route('admin.home') }}" class="btn btn-light"> Back</a>
         </div>
-        {{-- <div class="elfsight-app-bfda0810-0763-4d23-9ebb-f9d9042556aa"></div> --}}
     </div>
 </div>
 

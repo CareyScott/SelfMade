@@ -1,7 +1,7 @@
 <?php
 
 # @Date:   2021-01-23T15:54:28+00:00
-# @Last modified time: 2021-03-12T23:35:59+00:00
+# @Last modified time: 2021-05-13T18:03:35+01:00
 
 
 
@@ -30,27 +30,27 @@ class JobController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-      {
-        $jobs = Job::paginate(5);
+     public function index()
+     {
+       {
+         $jobs = Job::simplePaginate(5);
 
-        $jobs = Job::all();
-        $skills = Skill::all();
-        $employers = Employer::all();
-        $jobCategories = JobCategory::all();
+         // $jobs = Job::all();
+         $employers = Employer::all();
+         $jobCategories = JobCategory::all();
+         $skills = Skill::all();
 
 
-        return view('employer.jobs.index', compact('jobs'), [
-        'skills' => $skills,
-        'jobs' => $jobs,
-        'employers' => $employers,
-        'jobCategories' => $jobCategories
+         return view('employer.jobs.index', compact('jobs'), [
+         'jobs' => $jobs,
+         'employers' => $employers,
+         'jobCategories' => $jobCategories,
+         'skills' => $skills
 
-        // ->whereRaw('DATEDIFF(CURDATE(),STR_TO_DATE(created_at, '%Y-%m-%d'))'), $daysTillTrialEnds)
-      ]);
-      }
-    }
+         // ->whereRaw('DATEDIFF(CURDATE(),STR_TO_DATE(created_at, '%Y-%m-%d'))'), $daysTillTrialEnds)
+       ]);
+       }
+     }
 
     /**
      * Show the form for creating a new resource.
@@ -123,7 +123,7 @@ class JobController extends Controller
 
       smilify('success', 'Job Created Successfully');
 
-      return redirect()->route('employer.home');
+      return redirect()->route('employer.jobs.show', $job->id);
 
 
     }
@@ -140,12 +140,15 @@ class JobController extends Controller
       $employers = Employer::all();
       $jobCategories = JobCategory::all();
       $skills = Skill::all();
+      $user = Auth::user();
+
 
       return view('employer.jobs.show', [
         'job' => $job,
         'employers' => $employers,
         'jobCategories' => $jobCategories,
         'skills' => $skills,
+        'user' => $user
       ]);
     }
 
@@ -160,6 +163,8 @@ class JobController extends Controller
       $job = Job::findOrFail($id);
       $employers = Employer::all();
       $jobCategories = JobCategory::all();
+
+
 
       return view('employer.jobs.edit', [
       'job' => $job,
@@ -180,7 +185,7 @@ class JobController extends Controller
     {
       $request->validate([
         'title' => 'required|max:191',
-        'employer_id' => 'required|max:191',
+        // 'employer_id' => 'required|max:191',
         'date_uploaded' => 'required',
         'valid_until' => 'required',
         'salary' => 'required|between:0,99.99',
@@ -190,10 +195,11 @@ class JobController extends Controller
 
       ]);
 
+      $user = Auth::user();
       $job = Job::findOrFail($id);
 
       $job->title = $request->input('title');
-      $job->employer_id = $request->input('employer_id');
+      $job->employer_id = $user->employer->id;
       $job->date_uploaded = $request->input('date_uploaded');
       $job->valid_until = $request->input('valid_until');
       $job->salary = $request->input('salary');
@@ -206,7 +212,7 @@ class JobController extends Controller
       smilify('success', 'Job Updated Successfully');
 
 
-      return redirect()->route('employer.jobs.index');
+      return redirect()->route('employer.home');
 
     }
 

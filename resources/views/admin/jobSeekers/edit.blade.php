@@ -55,15 +55,15 @@
 
                         <div class="form-group">
                           <div>
-                            <label for="title"> <strong>Pick three appropriate skills</strong> </label>
+                            <label for="title"> <strong>Pick skills</strong> </label>
                           </div>
-                            <select name="skill">
+                            {{-- <select name="skill">
                                 @foreach ($skills as $skill)
 
                                 <option value="{{$skill->id}}">{{$skill->name}}</option>
 
                                 @endforeach
-                            </select>
+                            </select> --}}
                             <select name="skill">
                                 @foreach ($skills as $skill)
 

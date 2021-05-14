@@ -1,8 +1,8 @@
 <?php
 # @Date:   2020-11-30T10:54:30+00:00
-# @Last modified time: 2021-03-11T17:04:48+00:00
+# @Last modified time: 2021-05-14T15:01:18+01:00
 
-
+// this controller handles all of the data being passed to the admin home page
 
 
 namespace App\Http\Controllers\Admin;
@@ -27,6 +27,7 @@ class HomeController extends Controller
      */
      public function __construct()
      {
+       // middleware ensures the correct user role is accessing this page
          $this->middleware('auth');
          $this->middleware('role:admin');
      }
@@ -36,8 +37,11 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
+     // displays the correct data to the home page
     public function index()
     {
+
+      // assigns $jobSeekers to each of the jobSeekers from the model class
       $jobSeekers = JobSeeker::all();
 
       $jobs = Job::all();
@@ -45,6 +49,7 @@ class HomeController extends Controller
       $jobCategories = JobCategory::all();
 
 
+      // data recieved and returned to the home view
       return view('admin.home', [
       'jobSeekers' => $jobSeekers,
       'jobs' => $jobs,

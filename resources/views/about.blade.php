@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-  
+
 <div class="container">
     <div class="row mt-3 mb-5">
         <p class="h1">About Self-Made</p>
@@ -99,8 +99,8 @@
         <div class="frame col-6 ">
             <img class="column zoomOut grid grid-img" src="{{url('/images/home-2.jpg')}}">
             <div class="details col-8">
-                <h1 class="h4">Stay Healthy.</h1>
-                <p>Make sure to wash your hands after each ride. Cant afford not to get your daily exercise in!</p>
+                <h1 class="h4">Mobile.</h1>
+                <p>Check out our mobile app available on android!</p>
             </div>
 
         </div>

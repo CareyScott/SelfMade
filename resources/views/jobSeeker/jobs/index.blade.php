@@ -3,29 +3,9 @@
 @section('content')
 <div class="container">
     <div class="row">
-
-
-        {{-- <select class="form-select form-select-sm col px-2 mr-1" aria-label="Default select example" name="jobCategories">
-            <option selected>Job Category</option>
-            @foreach ($jobCategories as $jobCategory)
-            <option value="{{$jobCategory->id}}">{{$jobCategory->title}}</option>
-            @endforeach
-        </select>
-        <select class="form-select form-select-sm col px-2 mr-1" aria-label="Default select example" name="jobCategories">
-            <option selected>Companies</option>
-            @foreach ($jobs as $job)
-            <option value="{{$job->id}}">{{$job->employer->user->name}}</option>
-            @endforeach
-        </select>
-        <select class="form-select form-select-sm col px-2 mr-3 " aria-label="Default select example" name="jobCategories">
-            <option selected>Location</option>
-            @foreach ($jobs as $job)
-            <option value="{{$job->id}}">{{$job->employer->company_postal_address}}</option>
-            @endforeach
-        </select>
-        <form class="form-inline my-2 my-md-0 col">
-            <input class="form-control" placeholder="Search"></input>
-        </form> --}}
+        <div class="col">
+            <h1 class="h1 ml-2">Jobs Market</h1>
+        </div>
     </div>
 
     <div class="row">

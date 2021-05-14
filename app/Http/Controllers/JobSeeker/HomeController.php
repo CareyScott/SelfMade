@@ -1,6 +1,6 @@
 <?php
 # @Date:   2020-11-30T10:54:30+00:00
-# @Last modified time: 2021-03-12T19:00:38+00:00
+# @Last modified time: 2021-05-11T15:16:44+01:00
 
 
 
@@ -42,7 +42,8 @@ class HomeController extends Controller
        $user = Auth::user();
        $skill = Skill::all();
        // $jobs = Job::all();
-
+       $job = Job::all();
+       $employers = Employer::all();
        // $user->load('jobSeeker');
        $jobs = Job::where('skill_id', $user->jobSeeker->skill)->get();       // $jobs = Job::where('skill_id', $user->jobSeeker->skill);
        // $user->roles()->attach(Role::where('name','jobSeeker')->first());
@@ -51,7 +52,9 @@ class HomeController extends Controller
 
 
        return view('jobSeeker.home', [
+       'employers' => $employers,
        'jobs' => $jobs,
+       'job' => $job,
        'skill' => $skill,
        'user' => $user,
        // 'jobCategories' => $jobCategories

@@ -1,6 +1,6 @@
 <?php
 # @Date:   2021-01-23T15:54:28+00:00
-# @Last modified time: 2021-03-12T23:39:31+00:00
+# @Last modified time: 2021-05-14T15:23:09+01:00
 
 
 
@@ -21,11 +21,16 @@ use App\Models\JobId;
 use App\Models\JobCategory;
 
 
+
+// admin has the ability to manage $jobSeekers
+
 class JobSeekerController extends Controller
 {
 
   public function __construct()
   {
+    // middleware ensures the correct user role is accessing this page
+
       $this->middleware('auth');
       $this->middleware('role:admin');
   }
@@ -37,7 +42,7 @@ class JobSeekerController extends Controller
     public function index()
     {
       {
-        $jobSeekers = JobSeeker::paginate(5);
+        $jobSeekers = JobSeeker::simplePaginate(5);
 
         $jobs = Job::all();
         $employers = Employer::all();
@@ -156,7 +161,7 @@ class JobSeekerController extends Controller
       // $jobSkill->jobSeeker_id =  $jobSeeker->id;
       // $jobSkill->save();
 
-      smilify('success', 'User Created Successfully');
+      smilify('success', 'Job Created Successfully');
 
       return redirect()->route('admin.jobSeekers.index');
 
@@ -269,7 +274,7 @@ class JobSeekerController extends Controller
       $jobSeeker->user->delete();
       $jobSeeker->delete();
 
-      smilify('success', 'USer Deleted Successfully');
+      smilify('success', 'User Deleted Successfully');
 
 
       return redirect()->route('admin.jobSeekers.index');

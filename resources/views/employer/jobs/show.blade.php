@@ -11,12 +11,41 @@
     <div class="row">
 
         <div class="col mb-3">
-
-            <button class="btn btn-outline-primary float-right mt-3" data-toggle="modal" data-target="#editJob">
+          @if($job->employer->id === $user->employer->id)
+            <button class="btn btn-info float-right mt-3" data-toggle="modal" data-target="#editJob">
                 Edit Job
             </button>
+            <button class="btn btn-danger float-right mt-3 mr-2" data-toggle="modal" data-target="#deleteJob">
+                Delete Job
+            </button>
+            @endif
         </div>
     </div>
+</div>
+
+<div class="modal fade" id="deleteJob" tabindex="-1" role="dialog" aria-labelledby="deleteJob" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header pure-black text-light">
+        <h5 class="modal-title" id="exampleModalLabel">Are you sure?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span class="text-light" aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Are you sure you want to delete this job? </p>
+        <p>This action cannot be undone.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn " data-dismiss="modal">Close</button>
+        <form style="display:inline-block" method="POST" action="{{route('employer.jobs.destroy', $job->id)}}">
+            <input type="hidden" name="_method" value="DELETE">
+            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+            <button type="submit" class="form-control btn btn-danger">Delete</button>
+        </form>
+            </div>
+    </div>
+  </div>
 </div>
 
 <div class="modal fade" id="editJob" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -46,7 +75,7 @@
                             <input type="title" class="form-control" id='title' name='title' value='{{old('title' , $job->title)}}' />
                         </div>
 
-                        <div class="form-group">
+                        {{-- <div class="form-group">
                             <label for="title"> Employer </label>
                             <select name="employer_id">
 
@@ -56,7 +85,7 @@
 
                                 @endforeach
                             </select>
-                        </div>
+                        </div> --}}
 
                         <div class="form-group">
                             <label for="title"> Date Uploaded </label>
@@ -69,12 +98,12 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="title"> Salary </label>
+                            <label for="title"> Salary (€/h) </label>
                             <input type="text" class="form-control" id='salary' name='salary' value='{{old('salary',$job->salary)}}'></input>
                         </div>
 
                         <div class="form-group">
-                            <label for="title"> description </label>
+                            <label for="title"> Description </label>
                             <input type="text" class="form-control" id='description' name='description' value='{{old('description',$job->description)}}'></input>
                         </div>
 
@@ -90,7 +119,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="title"> Job Category </label>
+                            <label for="title"> Skills Required </label>
                             <select name="skill_id">
                                 @foreach ($skills as $skill)
 
@@ -113,7 +142,7 @@
         </div>
     </div>
 </div>
-<div class="modal fade" id="editEmployer" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+{{-- <div class="modal fade" id="editEmployer" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header pure-black text-light">
@@ -173,16 +202,16 @@
         <div class="modal-footer">
         </div>
     </div>
-</div>
+</div> --}}
 
 
 <div class="container-fluid pure-black">
     <div class="container">
-        <div class="row">
-          <div class="col-7 mt-3 mx-auto list-group-item" style="width: 100%; border-radius: 10px 10px 10px 10px;">
-              <p class="heading text-center title-font">Job Listing</p>
 
-              <div class=" shadow-sm mx-auto  " style="width: 90%; border-radius: 10px 10px 10px 10px;">
+        <div class="row">
+            <div class="col-8 mt-3">
+                <p class=" h1 title-font text-light">Job Details</p>
+
                 <div class="list-group-item list-group-item-action flex-column align-items-start">
                     <div class="d-flex w-100 justify-content-between">
                         <h5 class="mb-1"><strong>Title</strong></h5>
@@ -203,7 +232,7 @@
                 </div>
                 <div class="list-group-item list-group-item-action flex-column align-items-start ">
                     <div class="d-flex w-100 justify-content-between">
-                        <h5 class="mb-1"><strong>Application Deadline </strong></h5>
+                        <h5 class="mb-1"><strong>Application Deadline</strong></h5>
                     </div>
                     <p class="mb-1 ">{{$job->valid_until}}</p>
                 </div>
@@ -211,73 +240,89 @@
                     <div class="d-flex w-100 justify-content-between">
                         <h5 class="mb-1"><strong>Skills Required</strong></h5>
                     </div>
-                        <p>{{$job->salary}}</p>
-
+                    <p>{{$job->skill_id}}</p>
                 </div>
-              </div>
-          </div>
-
-            <div class="col-4 mt-3  list-group-item mx-auto" style="width: 100%; border-radius: 10px 10px 10px 10px;">
-                <p class="heading text-center title-font">Employer</p>
-
-                <img src="https://picsum.photos/140" class=" rounded-circle mt-3 mb-2 border shadow-sm mx-auto " alt="Profile Picture">
-                <div class=" shadow-sm mx-auto text-dark " style="width: 100%; border-radius: 10px 10px 10px 10px;">
-
-
-                    <div class="list-group-item list-group-item-action flex-column align-items-start">
-                        <div class="d-flex w-100 justify-content-between">
-
-                            <h5 class="mb-1"><strong>Name</strong></h5>
-                        </div>
-                        <p class="mb-1">{{$employer->user->name}}</p>
+                <div class="list-group-item list-group-item-action flex-column align-items-start ">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1"><strong>  Salary (€/h) </strong></h5>
                     </div>
-                    <div class="list-group-item list-group-item-action flex-column align-items-start ">
-                        <div class="d-flex w-100 justify-content-between">
-                            <h5 class="mb-1"><strong>Email</strong></h5>
-                        </div>
-                        <a href="mailto:{{$employer->user->email}}?subject=Job Query Via Self-Made" <p class="text-dark d-inline-flex">{{$employer->user->email}}</p></a>
-                    </div>
-                    <div class="list-group-item list-group-item-action flex-column align-items-start ">
-                        <div class="d-flex w-100 justify-content-between">
-                            <h5 class="mb-1"><strong>Phone</strong></h5>
-                        </div>
-                        <p class="mb-1">{{$employer->user->phone}}</p>
-                    </div>
-                    <div class="list-group-item list-group-item-action flex-column align-items-start ">
-                        <div class="d-flex w-100 justify-content-between">
-                            <h5 class="mb-1"><strong>Category</strong></h5>
-                        </div>
-                        <p class="mb-1 ">{{$employer->category}}</p>
-                    </div>
+                    <p>{{$job->salary}}</p>
                 </div>
             </div>
+            <div class="col  ml-3 pb-5">
+                <div class="row mt-4 pb-2">
+                    <a href="mailto:{{$job->employer->user->email}}?subject=Job Query Via Self-Made" <p class=" col btn btn-secondary disabled ">Apply Now!</p></a>
+                </div>
+                <div class="row">
+                    <img class="img-fluid" src="https://picsum.photos/410/360">
+                </div>
 
+            </div>
         </div>
 
-        <div class="row">
-
+        <div class="row mt-2">
             <div class="col text-left text-white overflow-hidden mb-5">
-                <div class="d-flex justify-content-center shadow-sm mx-auto text-dark mt-5 mb-5" style="width:100%; "><iframe width="100%" height="300px" frameborder="0" scrolling="yes" marginheight="0" marginwidth="0"
-                      style="border-radius: 10px 10px 10px 10px; border: 1px solid black;" class=""
-                      src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q={{$employer->company_postal_address}}+(Employer)&amp;z=14&amp;ie=UTF8&amp;output=embed">
+              <p class="h1 text-light">Job Location</p>
+                <div class="d-flex justify-content-center shadow-sm mx-auto text-dark  mb-5" style="width:100%; "><iframe width="100%" height="300px" frameborder="0" scrolling="yes" marginheight="0" marginwidth="0"
+                      style=" border: 1px solid black;" class="" src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q={{$job->employer->company_postal_address}}+(Employer)&amp;z=14&amp;ie=UTF8&amp;output=embed">
                     </iframe>
                 </div>
-                <div class="list-group-item col-4 list-group-item-action flex-column align-items-start " style="border-radius: 10px 10px 10px 10px; height: 75px;">
-                    <div>
-                        <p class="h5 ml-3 ">Company is based in:</p>
-                        <p class="h6 ml-3">{{$employer->company_postal_address}}</p>
-                    </div>
+
+    </div>
+
+    <div class="col-4 mx-auto">
+        <p class="h1 text-light">Employer Details</p>
+
+
+        {{-- <img src="https://picsum.photos/140" class=" rounded-circle mt-3 mb-2 border shadow-sm mx-auto " alt="Profile Picture"> --}}
+        <div class=" shadow-sm mx-auto text-dark " style="width: 100%">
+
+
+            <div class="list-group-item list-group-item-action flex-column align-items-start">
+                <div class="d-flex w-100 justify-content-between">
+
+                    <h5 class="mb-1"><strong>Name</strong></h5>
                 </div>
+                <p class="mb-1">{{$job->employer->user->name}}</p>
             </div>
-        </div>
-        <div class="float-right">
-            <button class="btn btn-danger" data-toggle="modal" data-target="#confirm-delete">
-                Delete
-            </button>
-            <a href="{{route('employer.jobs.index') }}" class="btn btn-outline-light"> Back</a>
+            <div class="list-group-item list-group-item-action flex-column align-items-start ">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1"><strong>Email</strong></h5>
+                </div>
+                <p class="mb-1">{{$job->employer->user->email}}</p>
+            </div>
+            <div class="list-group-item list-group-item-action flex-column align-items-start ">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1"><strong>Phone</strong></h5>
+                </div>
+                <p class="mb-1">{{$job->employer->user->phone}}</p>
+            </div>
+            <div class="list-group-item list-group-item-action flex-column align-items-start ">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1"><strong>Category</strong></h5>
+                </div>
+                <p class="mb-1 ">{{$job->employer->category}}</p>
+            </div>
+            <div class="list-group-item list-group-item-action flex-column align-items-start ">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1"><strong>Address</strong></h5>
+                </div>
+                <p class="h6 ml-3">{{$job->employer->company_postal_address}}</p>
+            </div>
+
+            <a  href="{{ route('employer.employers.show', $job->employer) }}"<p class=" col ml-2 mb-3 mt-3 btn btn-info float-right">View Employer Profile</p></a>
+
         </div>
     </div>
 </div>
+
+
+<div class="float-right ">
+    <a href="{{route('employer.jobs.index') }}" class="btn btn-light"> Back</a>
+</div>
+</div>
+</div>
+
 
 
 

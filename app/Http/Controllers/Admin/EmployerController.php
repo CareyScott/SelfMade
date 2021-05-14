@@ -1,6 +1,6 @@
 <?php
 # @Date:   2021-01-23T15:54:28+00:00
-# @Last modified time: 2021-03-12T23:38:25+00:00
+# @Last modified time: 2021-05-14T14:02:11+01:00
 
 
 
@@ -30,14 +30,16 @@ class EmployerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    // displays all in list for index
     public function index()
     {
       {
         $jobs = Job::all();
-        $employers = Employer::all();
+        $employers = Employer::simplePaginate(5);
         $jobCategories = JobCategory::all();
 
-        return view('admin.employers.index', [
+        return view('admin.employers.index', compact('employers'), [
         'jobs' => $jobs,
         'employers' => $employers,
         'jobCategories' => $jobCategories
@@ -52,6 +54,8 @@ class EmployerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+     // manages the creation of an object
     public function create()
     {
       $jobs = Job::all();
@@ -72,6 +76,8 @@ class EmployerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
+     // takes data from view and saves to the database
     public function store(Request $request)
     {
       {
@@ -94,6 +100,7 @@ class EmployerController extends Controller
         $user->email = $request->input('email');
         $user->password = Hash::make('secret');
         $user->save();
+        //attaches the role to the user just created
         $user->roles()->attach($role_employer);
 
         $employer = new Employer();
@@ -102,10 +109,11 @@ class EmployerController extends Controller
         $employer->user_id = $user->id;
         $employer->save();
 
+        // runs the smilify plugin presenting a pop up on the next page
         smilify('success', 'Employer Created Successfully');
 
-
-        return redirect()->route('admin.employers.index');
+        //redirects to the show page of the object created
+        return redirect()->route('admin.employers.show', $employer->id);
       }
     }
 
@@ -115,15 +123,18 @@ class EmployerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+    // code for the displaying of an object from the database
     public function show($id)
     {
 
       $employer = Employer::findOrFail($id);
+      //this will get all of the jobs created by the employer with the relevant id
       $jobs = Job::where('employer_id', $employer->id)->get();
 
       // $employer->load('job');
 
-
+      // returns the view and includes the relevant data
       return view('admin.employers.show', [
         'employer' => $employer,
         'jobs' => $jobs,
@@ -140,13 +151,17 @@ class EmployerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+     //this is the code required for the edit form of this employer
     public function edit($id)
     {
 
+      // finds the specific employer
       $employer = Employer::findOrFail($id);
+      // gets the user details also
       $user = User::all();
 
-
+      // returns the view and includes the relevant data
       return view('admin.employers.edit', [
       'employer' => $employer,
       'user' => $user,
@@ -161,9 +176,11 @@ class EmployerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+     // this function takes the data from the edit function and inserts the data into the database
     public function update(Request $request, $id)
     {
       {
+        // validates the data being inserted from the form
         $request->validate([
           'name' => 'required|max:191',
           'phone' => 'required|max:191',
@@ -172,16 +189,19 @@ class EmployerController extends Controller
           'category' => 'required',
 
         ]);
+        // finds the specific user
         $user = User::findOrFail($id);
+        // finds the specific Employer
         $employer = Employer::findOrFail($id);
 
+        // saving the user class information
         $employer->user->name = $request->input('name');
         $employer->user->phone = $request->input('phone');
         $employer->user->email = $request->input('email');
         $employer->user->password = Hash::make('secret');
         $employer->user->save();
 
-
+        // saving the Employer class information
         $employer->company_postal_address = $request->input('company_postal_address');
         $employer->category = $request->input('category');
         $employer->save();
@@ -201,14 +221,18 @@ class EmployerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+     // deletes the emplpoyer declared from a recieved id
     public function destroy($id)
     {
+      // deletes employer and then the user the employer was attached to
       $employer = Employer::findOrFail($id);
       $employer->user->delete();
       $employer->delete();
 
+      // returns notification
       smilify('success', 'Employer Deleted Successfully');
 
+      // returns to index
       return redirect()->route('admin.employers.index');
     }
 }

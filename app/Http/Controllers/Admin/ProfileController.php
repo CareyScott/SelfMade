@@ -1,6 +1,6 @@
 <?php
 # @Date:   2020-11-30T10:54:30+00:00
-# @Last modified time: 2021-03-09T13:24:16+00:00
+# @Last modified time: 2021-05-14T15:23:07+01:00
 
 
 
@@ -24,6 +24,8 @@ class ProfileController extends Controller
      */
      public function __construct()
      {
+       // middleware ensures the correct user role is accessing this page
+
          $this->middleware('auth');
          $this->middleware('role:admin');
      }
@@ -33,12 +35,15 @@ class ProfileController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
+
+     //gets all of the data needed for the users profile
     public function index()
     {
       $jobSeeker = JobSeeker::all();
       $skill = Skill::all();
       $user = Auth::user();
 
+      // loads the users job seeker object
       $user->load('jobSeeker');
 
       return view('admin.profile', [

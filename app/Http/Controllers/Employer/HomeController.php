@@ -1,6 +1,6 @@
 <?php
 # @Date:   2020-11-30T10:54:30+00:00
-# @Last modified time: 2021-03-12T23:27:11+00:00
+# @Last modified time: 2021-05-12T12:02:46+01:00
 
 
 
@@ -16,6 +16,7 @@ use App\Models\User;
 use App\Models\Employer;
 use App\Models\Role;
 use App\Models\JobCategory;
+use App\Models\Skill;
 use Hash;
 
 class HomeController extends Controller
@@ -41,7 +42,8 @@ class HomeController extends Controller
       $jobSeekers = JobSeeker::all();
       $user = Auth::user();
       $jobs = Job::where('employer_id', $user->employer->id)->get();
-      // $jobs= Job::paginate(5);
+      // $jobs = Job::simplePaginate(9);
+      $skills= Skill::all();
 
       $employers = Employer::all();
       $jobCategories = JobCategory::all();
@@ -50,6 +52,7 @@ class HomeController extends Controller
       return view('employer.home', [
       'jobSeekers' => $jobSeekers,
       'jobs' => $jobs,
+      'skills' => $skills,
       'employers' => $employers,
       'jobCategories' => $jobCategories
     ]);

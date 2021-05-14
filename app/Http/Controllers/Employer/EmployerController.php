@@ -1,6 +1,6 @@
 <?php
 # @Date:   2021-01-23T15:54:28+00:00
-# @Last modified time: 2021-03-12T23:36:49+00:00
+# @Last modified time: 2021-04-10T12:47:34+01:00
 
 
 
@@ -34,11 +34,11 @@ class EmployerController extends Controller
     {
       {
         $jobs = Job::all();
-        $employers = Employer::all();
+        $employers = Employer::simplePaginate(5);
         $jobCategories = JobCategory::all();
 
 
-        return view('employer.employers.index', [
+        return view('employer.employers.index',  compact('employers'), [
         'jobs' => $jobs,
         'employers' => $employers,
         'jobCategories' => $jobCategories

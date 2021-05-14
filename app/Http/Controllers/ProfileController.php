@@ -1,6 +1,6 @@
 <?php
 # @Date:   2020-11-30T10:42:41+00:00
-# @Last modified time: 2021-03-08T18:50:59+00:00
+# @Last modified time: 2021-05-14T15:50:06+01:00
 
 
 
@@ -27,6 +27,8 @@ class ProfileController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
+
+     // redirects the user to their designated user profile
     public function index(Request $request)
     {
 

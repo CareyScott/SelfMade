@@ -37,17 +37,17 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="title"> Valid Until </label>
+                            <label for="title"> Application Deadline </label>
                             <input type="date" class="form-control" id='valid_until' name='valid_until' value='{{old('valid_until')}}'></input>
                         </div>
 
                         <div class="form-group">
-                            <label for="title"> Salary </label>
+                            <label for="title"> Salary (€/h) </label>
                             <input type="text" class="form-control" id='salary' name='salary' value='{{old('salary')}}'></input>
                         </div>
 
                         <div class="form-group">
-                            <label for="title"> description </label>
+                            <label for="title"> Description </label>
                             <input type="text" class="form-control" id='description' name='description' value='{{old('description')}}'></input>
                         </div>
 
@@ -63,7 +63,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="title"> Job Category </label>
+                            <label for="title"> Skills Required</label>
                             <select name="skill_id">
                                 @foreach ($skills as $skill)
 
@@ -76,7 +76,7 @@
 
                         <div class="float-right">
                             <a href="{{route('home')}}" class="btn btn-default"> Cancel </a>
-                            <button type="submit" class="btn btn-primary pull-right">Submit</button>
+                            <button type="submit" class="btn btn-success pull-right">Submit</button>
                         </div>
                     </form>
                   </div>

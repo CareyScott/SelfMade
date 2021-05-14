@@ -68,9 +68,23 @@
                         <a class="p-2 text-light " href="{{route('about')}}">
                             <li class="col">About</li>
                         </a>
+
+                        @guest
+
+                        @if (Route::has('login'))
+                        <li class="nav-item col">
+                            <a class="nav-link p-2 text-light" href="{{ route('welcome') }}">{{ __('Home') }}</a>
+                        </li>
+                        @endif
+
+                      @else
+
                         <a class="p-2 text-light " href="{{route('home')}}">
                             <li class="col">Home</li>
                         </a>
+
+                      @endguest
+
                         <a class="p-2 text-light " href="{{route('market')}}">
                             <li class="col">Jobs Market</li>
                         </a>

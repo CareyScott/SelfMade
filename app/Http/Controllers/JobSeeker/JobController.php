@@ -1,6 +1,6 @@
 <?php
 # @Date:   2021-01-23T15:54:28+00:00
-# @Last modified time: 2021-04-08T12:10:53+01:00
+# @Last modified time: 2021-04-10T12:49:33+01:00
 
 
 
@@ -37,7 +37,7 @@ class JobController extends Controller
     public function index()
     {
       {
-        $jobs = Job::paginate(5);
+        $jobs = Job::simplepaginate(5);
 
         // $jobs = Job::all();
         $employers = Employer::all();

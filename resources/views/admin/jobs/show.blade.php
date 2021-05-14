@@ -1,20 +1,22 @@
-@extends('layouts.app')
+ @extends('layouts.app')
 
 @section('content')
+  <div class="container">
+      <div class="row">
+          <div class="col">
+              <div class="parallax shadow-sm mb-4" width="100%">
+              </div>
+          </div>
+      </div>
+
+  </div>
 <div class="container">
     <div class="row">
-        <div class="col">
-            <div class="parallax shadow-sm" width="100%">
-            </div>
-        </div>
-    </div>
-    <div class="row">
-
         <div class="col mb-3">
-            <button class="btn btn-outline-primary float-right mt-3 ml-2" data-toggle="modal" data-target="#editEmployer">
+            <button class="btn btn-primary float-right mt-3 ml-2" data-toggle="modal" data-target="#editEmployer">
                 Edit Employer
             </button>
-            <button class="btn btn-outline-primary float-right mt-3" data-toggle="modal" data-target="#editJob">
+            <button class="btn btn-primary float-right mt-3" data-toggle="modal" data-target="#editJob">
                 Edit Job
             </button>
         </div>
@@ -38,7 +40,7 @@
                         </ul>
                     </div>
                     @endif
-
+{{-- edit job form --}}
                     <form method="POST" action="{{route('admin.jobs.update', $job->id)}}">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <input type="hidden" name="_method" value="PUT">
@@ -92,7 +94,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="title"> Job Skills </label>
+                            <label for="title"> Skills Required </label>
                             <select name="skill_id">
                                 @foreach ($skills as $skill)
 
@@ -104,7 +106,7 @@
 
                         <div class="float-right">
                             <a data-dismiss="modal" class="btn btn-default"> Cancel </a>
-                            <button type="submit" class="btn btn-primary pull-right">Submit</button>
+                            <button type="submit" class="btn btn-success pull-right">Submit</button>
                         </div>
                     </form>
 
@@ -119,7 +121,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header pure-black text-light">
-                Edit Job
+                Edit Employer
             </div>
             <div class="modal-body">
                 <div class="card-body">
@@ -132,7 +134,7 @@
                         </ul>
                     </div>
                     @endif
-
+{{-- edit employer form --}}
                     <form method="POST" action="{{route('admin.employers.update', $employer->id)}}">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <input type="hidden" name="_method" value="PUT">
@@ -165,7 +167,7 @@
 
                         <div class="float-right">
                             <a type="button" class="btn btn-default" data-dismiss="modal"> Cancel </a>
-                            <button type="submit" class="btn btn-outline-primary pull-right">Submit</button>
+                            <button type="submit" class="btn btn-success pull-right">Submit</button>
                         </div>
                     </form>
 
@@ -177,14 +179,14 @@
     </div>
 </div>
 
-
+{{-- display job details --}}
 <div class="container-fluid pure-black">
     <div class="container">
-        <div class="row">
-          <div class="col-7 mt-3 mx-auto list-group-item" style="width: 100%; border-radius: 10px 10px 10px 10px;">
-              <p class=" h1 text-center title-font">Job Listing</p>
 
-              <div class=" shadow-sm mx-auto  " style="width: 90%; border-radius: 10px 10px 10px 10px;">
+        <div class="row">
+            <div class="col-8 mt-3">
+                <p class=" h1 title-font text-light">Job Details</p>
+
                 <div class="list-group-item list-group-item-action flex-column align-items-start">
                     <div class="d-flex w-100 justify-content-between">
                         <h5 class="mb-1"><strong>Title</strong></h5>
@@ -213,72 +215,89 @@
                     <div class="d-flex w-100 justify-content-between">
                         <h5 class="mb-1"><strong>Skills Required</strong></h5>
                     </div>
-                        <p>{{$job->salary}}</p>
-
+                    <p>{{$job->skill_id}}</p>
                 </div>
-              </div>
-          </div>
-
-            <div class="col-4 mt-3  list-group-item mx-auto" style="width: 100%; border-radius: 10px 10px 10px 10px;">
-                <p class="title-font h1 text-center">Employer</p>
-
-                <img src="https://picsum.photos/140" class=" rounded-circle mt-3 mb-2 border shadow-sm mx-auto " alt="Profile Picture">
-                <div class=" shadow-sm mx-auto text-dark " style="width: 100%; border-radius: 10px 10px 10px 10px;">
-
-
-                    <div class="list-group-item list-group-item-action flex-column align-items-start">
-                        <div class="d-flex w-100 justify-content-between">
-
-                            <h5 class="mb-1"><strong>Name</strong></h5>
-                        </div>
-                        <p class="mb-1">{{$employer->user->name}}</p>
+                <div class="list-group-item list-group-item-action flex-column align-items-start ">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1"><strong>  Salary (€/h) </strong></h5>
                     </div>
-                    <div class="list-group-item list-group-item-action flex-column align-items-start ">
-                        <div class="d-flex w-100 justify-content-between">
-                            <h5 class="mb-1"><strong>Email</strong></h5>
-                        </div>
-                        <p class="mb-1">{{$employer->user->email}}</p>
-                    </div>
-                    <div class="list-group-item list-group-item-action flex-column align-items-start ">
-                        <div class="d-flex w-100 justify-content-between">
-                            <h5 class="mb-1"><strong>Phone</strong></h5>
-                        </div>
-                        <p class="mb-1">{{$employer->user->phone}}</p>
-                    </div>
-                    <div class="list-group-item list-group-item-action flex-column align-items-start ">
-                        <div class="d-flex w-100 justify-content-between">
-                            <h5 class="mb-1"><strong>Category</strong></h5>
-                        </div>
-                        <p class="mb-1 ">{{$employer->category}}</p>
-                    </div>
+                    <p>{{$job->salary}}</p>
                 </div>
             </div>
+            <div class="col  ml-3 pb-5">
+                <div class="row mt-4 pb-2">
+                    <a href="mailto:{{$job->employer->user->email}}?subject=Job Query Via Self-Made" <p class=" col btn btn-secondary disabled ">Apply Now!</p></a>
+                </div>
+                <div class="row">
+                    <img class="img-fluid" src="https://picsum.photos/410/360">
+                </div>
 
+            </div>
         </div>
 
-        <div class="row">
-
-            <div class="col text-left text-white overflow-hidden mb-5">
-                <div class="d-flex justify-content-center shadow-sm mx-auto text-dark mt-5 mb-5" style="width:100%; "><iframe width="100%" height="300px" frameborder="0" scrolling="yes" marginheight="0" marginwidth="0"
-                      style="border-radius: 10px 10px 10px 10px; border: 1px solid black;" class=""
-                      src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q={{$employer->company_postal_address}}+(Employer)&amp;z=14&amp;ie=UTF8&amp;output=embed">
+        <div class="row mt-2">
+          <div class="col text-left text-white overflow-hidden mb-5">
+              <p class="h1 text-light">Job Location</p>
+                <div class="d-flex justify-content-center shadow-sm mx-auto text-dark mb-5" style="width:100%; "><iframe width="100%" height="300px" frameborder="0" scrolling="yes" marginheight="0" marginwidth="0"
+                      style=" border: 1px solid black;" class="" src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q={{$employer->company_postal_address}}+(Employer)&amp;z=14&amp;ie=UTF8&amp;output=embed">
                     </iframe>
                 </div>
-                <div class="list-group-item col-4 list-group-item-action flex-column align-items-start " style="border-radius: 10px 10px 10px 10px; height: 75px;">
-                    <div>
-                        <p class="h5 ml-3 ">Company is based in:</p>
-                        <p class="h6 ml-3">{{$employer->company_postal_address}}</p>
-                    </div>
+
+    </div>
+{{-- show employer details --}}
+    <div class="col-4 mx-auto">
+        <p class="title-font h1 text-light">Employer Details</p>
+
+        {{-- <img src="https://picsum.photos/140" class=" rounded-circle mt-3 mb-2 border shadow-sm mx-auto " alt="Profile Picture"> --}}
+        <div class=" shadow-sm mx-auto text-dark " style="width: 100%">
+
+
+            <div class="list-group-item list-group-item-action flex-column align-items-start">
+                <div class="d-flex w-100 justify-content-between">
+
+                    <h5 class="mb-1"><strong>Name</strong></h5>
                 </div>
+                <p class="mb-1">{{$job->employer->user->name}}</p>
             </div>
-        </div>
-        <div class="float-right">
-            <button class="btn btn-danger" data-toggle="modal" data-target="#confirm-delete">
-                Delete
-            </button>
-            <a href="{{route('admin.jobs.index') }}" class="btn btn-outline-light"> Back</a>
+            <div class="list-group-item list-group-item-action flex-column align-items-start ">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1"><strong>Email</strong></h5>
+                </div>
+                <p class="mb-1">{{$job->employer->user->email}}</p>
+            </div>
+            <div class="list-group-item list-group-item-action flex-column align-items-start ">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1"><strong>Phone</strong></h5>
+                </div>
+                <p class="mb-1">{{$job->employer->user->phone}}</p>
+            </div>
+            <div class="list-group-item list-group-item-action flex-column align-items-start ">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1"><strong>Category</strong></h5>
+                </div>
+                <p class="mb-1 ">{{$job->employer->category}}</p>
+            </div>
+            <div class="list-group-item list-group-item-action flex-column align-items-start ">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1"><strong>Address</strong></h5>
+                </div>
+                <p class="h6 ml-3">{{$job->employer->company_postal_address}}</p>
+            </div>
+
+            <a  href="{{ route('admin.employers.show', $job->employer) }}"<p class=" col ml-2 mb-3 mt-3 btn btn-info float-right">View Employer Profile</p></a>
+
         </div>
     </div>
+</div>
+
+{{-- open delete modal --}}
+<div class="float-right">
+    <button class="btn btn-danger" data-toggle="modal" data-target="#confirm-delete">
+        Delete
+    </button>
+    <a href="{{route('admin.jobs.index') }}" class="btn btn-light"> Back</a>
+</div>
+</div>
 </div>
 
 
@@ -315,26 +334,31 @@
 </div> --}}
 
 
-
+{{-- delete job using delete in job controller --}}
 <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header pure-black text-light">
-                Are you sure you want to delete this Job?
-            </div>
-            <div class="modal-body">
-                <p class="mb-1">{{$job->title}}</p>
-                <p class="mb-1">Job-Id: &nbsp; {{$job->id}}</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                <form style="display:inline-block" method="POST" action="{{route('admin.jobs.destroy', $job->id)}}">
-                    <input type="hidden" name="_method" value="DELETE">
-                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                    <button type="submit" class="form-control btn btn-outline-danger">Delete</button>
-                </form>
-            </div>
+      <div class="modal-content">
+        <div class="modal-header pure-black">
+          <h5 class="modal-title text-light" id="exampleModalLabel">Are you sure?</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true" class="text-light">&times;</span>
+          </button>
         </div>
+        <div class="modal-body">
+          <p>Are you sure you want to delete this job? </p>
+          <p>This action cannot be undone.</p>
+          <p class="mt-2"><strong>Job: {{$job->title}}</strong></p>
+          <p><strong>Employer: {{$job->employer->user->name}}</strong></p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn " data-dismiss="modal">Close</button>
+          <form style="display:inline-block" method="POST" action="{{route('admin.jobs.destroy', $job->id)}}">
+              <input type="hidden" name="_method" value="DELETE">
+              <input type="hidden" name="_token" value="{{ csrf_token() }}">
+              <button type="submit" class="form-control btn btn-danger">Delete</button>
+          </form>
+              </div>
+      </div>
     </div>
 </div>
 
